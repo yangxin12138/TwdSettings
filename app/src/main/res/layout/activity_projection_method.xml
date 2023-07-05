@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/background">
+
+
+    <ImageView
+        android:layout_width="@dimen/projection_title_arrow_width"
+        android:layout_height="@dimen/projection_title_arrow_height"
+        android:src="@drawable/arrow_back"
+        android:layout_marginStart="@dimen/projection_title_arrow_marginStart"
+        android:layout_marginTop="@dimen/projection_title_arrow_marginTop" />
+
+    <!--投影方式 二级菜单 标题-->
+    <TextView
+        android:id="@+id/title_projection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/projection_title_marginTop"
+        android:text="投影方式"
+        android:textColor="@color/black"
+        android:layout_marginStart="@dimen/projection_title_marginStart"
+        android:textSize="@dimen/projection_title_textSize"
+        android:textStyle="normal" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/projection_LL_marginTop"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true">
+
+        <RelativeLayout
+            android:id="@+id/pro_pos_pos"
+            android:layout_width="@dimen/projection_RL_width"
+            android:layout_height="@dimen/projection_RL_height"
+            android:background="@drawable/test"
+            android:focusable="true">
+
+            <!--正装正投-->
+            <TextView
+                android:id="@+id/tv_pos_pos"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/projection_tv_height"
+                android:paddingTop="@dimen/projection_tv_paddingTop"
+                android:layout_marginLeft="@dimen/projection_tv_marginLeft"
+                android:text="正装正投"
+                android:textColor="@color/black"
+                android:textSize="@dimen/projection_tv_textSize"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/sel_pos_pos"
+                android:layout_width="@dimen/projection_iv_width"
+                android:layout_height="@dimen/projection_iv_height"
+                android:layout_marginStart="@dimen/projection_iv_marginStart"
+                android:layout_marginTop="@dimen/projection_iv_marginTop" />
+        </RelativeLayout>
+
+        <!--正装背投-->
+        <RelativeLayout
+            android:id="@+id/pro_pos_neg"
+            android:layout_width="@dimen/projection_RL_width"
+            android:layout_height="@dimen/projection_RL_height"
+            android:background="@drawable/test"
+            android:focusable="true"
+            android:layout_marginTop="@dimen/projection_RL_marginTop">
+
+            <TextView
+                android:id="@+id/tv_pos_neg"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/projection_tv_height"
+                android:paddingTop="@dimen/projection_tv_paddingTop"
+                android:layout_marginLeft="@dimen/projection_tv_marginLeft"
+                android:text="正装背投"
+                android:textColor="@color/black"
+                android:textSize="@dimen/projection_tv_textSize"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/sel_pos_neg"
+                android:layout_width="@dimen/projection_iv_width"
+                android:layout_height="@dimen/projection_iv_height"
+                android:layout_marginStart="@dimen/projection_iv_marginStart"
+                android:layout_marginTop="@dimen/projection_iv_marginTop" />
+        </RelativeLayout>
+
+        <!--吊装正投-->
+        <RelativeLayout
+            android:id="@+id/pro_neg_pos"
+            android:layout_width="@dimen/projection_RL_width"
+            android:layout_height="@dimen/projection_RL_height"
+            android:background="@drawable/test"
+            android:focusable="true"
+            android:layout_marginTop="@dimen/projection_RL_marginTop">
+
+            <TextView
+                android:id="@+id/tv_neg_pos"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/projection_tv_height"
+                android:paddingTop="@dimen/projection_tv_paddingTop"
+                android:layout_marginLeft="@dimen/projection_tv_marginLeft"
+                android:text="吊装正投"
+                android:textColor="@color/black"
+                android:textSize="@dimen/projection_tv_textSize"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/sel_neg_pos"
+                android:layout_width="@dimen/projection_iv_width"
+                android:layout_height="@dimen/projection_iv_height"
+                android:layout_marginStart="@dimen/projection_iv_marginStart"
+                android:layout_marginTop="@dimen/projection_iv_marginTop" />
+        </RelativeLayout>
+
+        <!--吊装背投-->
+        <RelativeLayout
+            android:id="@+id/pro_neg_neg"
+            android:layout_width="@dimen/projection_RL_width"
+            android:layout_height="@dimen/projection_RL_height"
+            android:background="@drawable/test"
+            android:focusable="true"
+            android:layout_marginTop="@dimen/projection_RL_marginTop">
+
+            <TextView
+                android:id="@+id/tv_neg_neg"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/projection_tv_height"
+                android:paddingTop="@dimen/projection_tv_paddingTop"
+                android:layout_marginLeft="@dimen/projection_tv_marginLeft"
+                android:text="吊装背投"
+                android:textColor="@color/black"
+                android:textSize="@dimen/projection_tv_textSize"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/sel_neg_neg"
+                android:layout_width="@dimen/projection_iv_width"
+                android:layout_height="@dimen/projection_iv_height"
+                android:layout_marginStart="@dimen/projection_iv_marginStart"
+                android:layout_marginTop="@dimen/projection_iv_marginTop" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>

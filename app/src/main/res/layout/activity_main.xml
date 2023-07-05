@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#103AE9"
+    android:background="@color/background_color"
     android:orientation="vertical">
 
     <TextView
@@ -14,13 +14,13 @@
         android:layout_height="wrap_content"
         android:text="设置"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="@dimen/index_title_textSize"
         android:textStyle="bold"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="100dp"/>
+        android:layout_marginTop="@dimen/index_title_marginTop0"
+        android:layout_marginStart="@dimen/index_title_marginStart"/>
 
     <RelativeLayout
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/index_RL_marginTop"
         android:layout_below="@+id/index_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,164 +28,164 @@
 
         <LinearLayout
             android:id="@+id/LL_index_projection"
-            android:layout_marginStart="120dp"
-            android:layout_width="450dp"
-            android:layout_height="80dp"
+            android:layout_marginStart="@dimen/index_LL_marginStart"
+            android:layout_width="@dimen/index_LL_width"
+            android:layout_height="@dimen/index_LL_height"
             android:gravity="center_vertical">
             <ImageView
                 android:id="@+id/im_projection"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="20dp"
+                android:layout_width="@dimen/index_ivFront_width"
+                android:layout_height="@dimen/index_ivFront_height"
+                android:layout_marginStart="@dimen/index_ivFront_marginStart"
                 android:src="@drawable/projection"/>
             <TextView
                 android:id="@+id/projection_text"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/index_tv_width"
                 android:layout_height="wrap_content"
                 android:text="投影设置"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_marginStart="10dp"/>
+                android:textSize="@dimen/index_tv_textSize"
+                android:layout_marginStart="@dimen/index_tv_marginStart"/>
             <ImageView
                 android:id="@+id/indexArrow_projection"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="260dp"
+                android:layout_width="@dimen/index_iv_width"
+                android:layout_height="@dimen/index_iv_height"
+                android:layout_marginStart="@dimen/index_iv_marginStart"
                 android:src="@drawable/arrow"/>
         </LinearLayout>
         <LinearLayout
             android:layout_below="@+id/LL_index_projection"
             android:id="@+id/LL_index_wifi"
-            android:layout_marginStart="120dp"
-            android:layout_width="450dp"
-            android:layout_height="80dp"
+            android:layout_marginStart="@dimen/index_LL_marginStart"
+            android:layout_width="@dimen/index_LL_width"
+            android:layout_height="@dimen/index_LL_height"
             android:gravity="center_vertical">
             <ImageView
                 android:id="@+id/im_wifi"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="20dp"
+                android:layout_width="@dimen/index_ivFront_width"
+                android:layout_height="@dimen/index_ivFront_height"
+                android:layout_marginStart="@dimen/index_ivFront_marginStart"
                 android:src="@drawable/wifi"/>
             <TextView
                 android:id="@+id/wifi_text"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/index_tv_width"
                 android:layout_height="wrap_content"
                 android:text="网络"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_marginStart="10dp"/>
+                android:textSize="@dimen/index_tv_textSize"
+                android:layout_marginStart="@dimen/index_tv_marginStart"/>
             <ImageView
                 android:id="@+id/indexArrow_wifi"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="260dp"
+                android:layout_width="@dimen/index_iv_width"
+                android:layout_height="@dimen/index_iv_height"
+                android:layout_marginStart="@dimen/index_iv_marginStart"
                 android:src="@drawable/arrow"/>
         </LinearLayout>
         <LinearLayout
             android:layout_below="@+id/LL_index_wifi"
             android:id="@+id/LL_index_bluetooth"
-            android:layout_marginStart="120dp"
-            android:layout_width="450dp"
-            android:layout_height="80dp"
+            android:layout_marginStart="@dimen/index_LL_marginStart"
+            android:layout_width="@dimen/index_LL_width"
+            android:layout_height="@dimen/index_LL_height"
             android:gravity="center_vertical">
             <ImageView
                 android:id="@+id/im_bluetooth"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="20dp"
+                android:layout_width="@dimen/index_ivFront_width"
+                android:layout_height="@dimen/index_ivFront_height"
+                android:layout_marginStart="@dimen/index_ivFront_marginStart"
                 android:src="@drawable/bluetooth"/>
             <TextView
                 android:id="@+id/bluetooth_text"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/index_tv_width"
                 android:layout_height="wrap_content"
                 android:text="蓝牙"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_marginStart="10dp"/>
+                android:textSize="@dimen/index_tv_textSize"
+                android:layout_marginStart="@dimen/index_tv_marginStart"/>
             <ImageView
                 android:id="@+id/indexArrow_bluetooth"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="260dp"
+                android:layout_width="@dimen/index_iv_width"
+                android:layout_height="@dimen/index_iv_height"
+                android:layout_marginStart="@dimen/index_iv_marginStart"
                 android:src="@drawable/arrow"/>
         </LinearLayout>
         <LinearLayout
             android:layout_below="@+id/LL_index_bluetooth"
             android:id="@+id/LL_index_setup"
-            android:layout_marginStart="120dp"
-            android:layout_width="450dp"
-            android:layout_height="80dp"
+            android:layout_marginStart="@dimen/index_LL_marginStart"
+            android:layout_width="@dimen/index_LL_width"
+            android:layout_height="@dimen/index_LL_height"
             android:gravity="center_vertical">
             <ImageView
                 android:id="@+id/im_setup"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="20dp"
+                android:layout_width="@dimen/index_ivFront_width"
+                android:layout_height="@dimen/index_ivFront_height"
+                android:layout_marginStart="@dimen/index_ivFront_marginStart"
                 android:src="@drawable/setup"/>
             <TextView
                 android:id="@+id/setup_text"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/index_tv_width"
                 android:layout_height="wrap_content"
                 android:text="通用"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_marginStart="10dp"/>
+                android:textSize="@dimen/index_tv_textSize"
+                android:layout_marginStart="@dimen/index_tv_marginStart"/>
             <ImageView
                 android:id="@+id/indexArrow_setup"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="260dp"
+                android:layout_width="@dimen/index_iv_width"
+                android:layout_height="@dimen/index_iv_height"
+                android:layout_marginStart="@dimen/index_iv_marginStart"
                 android:src="@drawable/arrow"/>
         </LinearLayout>
         <LinearLayout
             android:layout_below="@+id/LL_index_setup"
             android:id="@+id/LL_index_about"
-            android:layout_marginStart="120dp"
-            android:layout_width="450dp"
-            android:layout_height="80dp"
+            android:layout_marginStart="@dimen/index_LL_marginStart"
+            android:layout_width="@dimen/index_LL_width"
+            android:layout_height="@dimen/index_LL_height"
             android:gravity="center_vertical">
             <ImageView
                 android:id="@+id/im_about"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="20dp"
+                android:layout_width="@dimen/index_ivFront_width"
+                android:layout_height="@dimen/index_ivFront_height"
+                android:layout_marginStart="@dimen/index_ivFront_marginStart"
                 android:src="@drawable/about"/>
             <TextView
                 android:id="@+id/about_text"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/index_tv_width"
                 android:layout_height="wrap_content"
                 android:text="系统与设备"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_marginStart="10dp"/>
+                android:textSize="@dimen/index_tv_textSize"
+                android:layout_marginStart="@dimen/index_tv_marginStart"/>
             <ImageView
                 android:id="@+id/indexArrow_about"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="260dp"
+                android:layout_width="@dimen/index_iv_width"
+                android:layout_height="@dimen/index_iv_height"
+                android:layout_marginStart="@dimen/index_iv_marginStart"
                 android:src="@drawable/arrow"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginStart="570dp"
-            android:layout_width="390dp"
-            android:layout_height="400dp"
+            android:layout_marginStart="@dimen/index_LL_display_marginStart"
+            android:layout_width="@dimen/index_LL_display_width"
+            android:layout_height="@dimen/index_LL_display_height"
             android:gravity="center"
             android:orientation="vertical"
             >
             <ImageView
                 android:id="@+id/display_pic"
                 android:src="@drawable/about"
-                android:layout_width="200dp"
-                android:layout_height="200dp"/>
+                android:layout_width="@dimen/index_display_iv_width"
+                android:layout_height="@dimen/index_display_iv_height"/>
             <TextView
                 android:id="@+id/display_text"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:text="系统与设备"
-                android:textSize="20sp"
-                android:layout_marginTop="20dp"
-                android:layout_width="200dp"
+                android:textSize="@dimen/index_display_tv_textSize"
+                android:layout_marginTop="@dimen/index_display_tv_marginTop"
+                android:layout_width="@dimen/index_display_tv_width"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </RelativeLayout>

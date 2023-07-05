@@ -3,6 +3,7 @@ package com.twd.twdsettings;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnFocusChangeListener {
+import com.twd.twdsettings.projection.ProjectionSettingsActivity;
+
+public class MainActivity extends AppCompatActivity implements View.OnFocusChangeListener , View.OnClickListener {
 
     private LinearLayout index_LLProjection;
     private LinearLayout index_LLWifi;
@@ -91,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         index_LLBluetooth.setOnFocusChangeListener(this);
         index_LLSetup.setOnFocusChangeListener(this);
         index_LLAbout.setOnFocusChangeListener(this);
+
+        index_LLProjection.setOnClickListener(this);
     }
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
@@ -173,6 +178,15 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
             IV_about.setImageResource(R.drawable.about);
             TV_about.setTextColor(getResources().getColor(R.color.white));
             arrow_about.setImageResource(R.drawable.arrow);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent ;
+        if (v.getId() == R.id.LL_index_projection){
+            intent = new Intent(this, ProjectionSettingsActivity.class);
+            startActivity(intent);
         }
     }
 }

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/trape_background">
+    <!--左上角-->
+    <ImageView
+        android:id="@+id/iv_single_left_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/singlePoint_lu_marginStart"
+        android:layout_marginTop="@dimen/singlePoint_lu_marginTop"
+        android:src="@drawable/trape_dot"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_single_left_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0,0"
+        android:textSize="@dimen/single_tv_textSize"
+        android:layout_marginTop="@dimen/single_tv_margin"
+        android:layout_marginLeft="@dimen/single_tv_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!--右上角-->
+    <ImageView
+        android:id="@+id/iv_single_right_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/singlePoint_ru_marginTop"
+        android:layout_marginEnd="@dimen/singlePoint_ru_marginEnd"
+        android:src="@drawable/trape_dot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_single_right_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:text="0,0"
+        android:textSize="@dimen/single_tv_textSize"
+        android:layout_marginTop="@dimen/single_tv_margin"
+        android:layout_marginEnd="@dimen/single_tv_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!--左下角-->
+    <ImageView
+        android:id="@+id/iv_single_left_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/singlePoint_ld_marginStart"
+        android:layout_marginBottom="@dimen/singlePoint_ld_marginBottom"
+        android:src="@drawable/trape_dot"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_single_left_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:text="0,0"
+        android:textSize="@dimen/single_tv_textSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="@dimen/single_tv_margin"
+        android:layout_marginBottom="@dimen/single_tv_margin"/>
+
+    <!--右下角-->
+    <ImageView
+        android:id="@+id/iv_single_right_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/singlePoint_rd_marginEnd"
+        android:layout_marginBottom="@dimen/singlePoint_rd_marginBottom"
+        android:src="@drawable/trape_dot"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_single_right_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:text="0,0"
+        android:textSize="@dimen/single_tv_textSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/single_tv_margin"
+        android:layout_marginEnd="@dimen/single_tv_margin"/>
+
+    <!--提示图片-->
+    <ImageView
+        android:layout_width="@dimen/singlePoint_iv_width"
+        android:layout_height="@dimen/singlePoint_iv_height"
+        android:src="@mipmap/trape_tips_single"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

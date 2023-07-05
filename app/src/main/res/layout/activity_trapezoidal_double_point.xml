@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/trape_background">
+
+    <!--提示图片 居中显示-->
+    <ImageView
+        android:id="@+id/iv_trapezoidal01"
+        android:layout_width="@dimen/singlePoint_iv_width"
+        android:layout_height="@dimen/singlePoint_iv_height"
+        android:src="@mipmap/trape_tips"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--调整数值-->
+    <RelativeLayout
+        android:id="@+id/double_RL"
+        android:layout_width="@dimen/double_RL_width"
+        android:layout_height="@dimen/double_RL_height"
+        android:layout_marginTop="@dimen/double_RL_marginTop"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_trapezoidal01">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_vertical"
+            android:paddingTop="@dimen/double_vertical_paddingTop" />
+
+        <TextView
+            android:id="@+id/tv_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/double_tv_vertical_paddingStart"
+            android:paddingTop="@dimen/double_tv_vertical_paddingTop"
+            android:text="0,0"
+            android:textSize="@dimen/size_textLevel_textSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_arrow_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/double_horizontal_paddingStart"
+            android:paddingTop="@dimen/double_horizontal_paddingTop"
+            android:src="@mipmap/arrow_horizont" />
+
+        <TextView
+            android:id="@+id/tv_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/double_tv_horizontal_paddingStart"
+            android:paddingTop="@dimen/double_tv_horizontal_paddingTop"
+            android:text="0,0"
+            android:textSize="@dimen/size_textLevel_textSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/iv_arrow_horizontal" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
