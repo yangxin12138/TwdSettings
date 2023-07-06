@@ -2,10 +2,13 @@ package com.twd.twdsettings.network;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.twd.twdsettings.R;
@@ -19,9 +22,10 @@ public class NetworkActivity extends AppCompatActivity implements View.OnFocusCh
     private TextView net_tv_wlan;
     private TextView net_tv_wlanAble;
     private TextView net_tv_speed;
-
+    private Switch mSwitch;
     private ImageView net_arrow_wlanAble;
     private ImageView net_arrow_speed;
+    boolean isChecked = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,17 @@ public class NetworkActivity extends AppCompatActivity implements View.OnFocusCh
         net_tv_speed = findViewById(R.id.net_tv_speed);
         net_arrow_wlanAble = findViewById(R.id.arrow_wlanAble);
         net_arrow_speed = findViewById(R.id.arrow_speed);
+        mSwitch = findViewById(R.id.net_switch);
+        SharedPreferences preferences = getSharedPreferences("Switch_Checked",MODE_PRIVATE);
+        boolean check = preferences.getBoolean("isChecked",false);
+        Log.i("yang","mSwitch = "+check);
+        mSwitch.setChecked(preferences.getBoolean("isChecked",false));
 
+        if (!mSwitch.isChecked()){
+            net_LL_wlanAble.setVisibility(View.GONE);
+        }else {
+            net_LL_wlanAble.setVisibility(View.VISIBLE);
+        }
         net_LL_wlan.setFocusable(true);
         net_LL_wlan.setFocusableInTouchMode(true);
         net_LL_wlanAble.setFocusable(true);
@@ -59,7 +73,23 @@ public class NetworkActivity extends AppCompatActivity implements View.OnFocusCh
 
     @Override
     public void onClick(View v) {
+        SharedPreferences.Editor editor = getSharedPreferences("Switch_Checked",MODE_PRIVATE).edit();
+        isChecked = mSwitch.isChecked();
+        if (v.getId() == R.id.net_LL_wlan){
+            if (isChecked){
+                mSwitch.setChecked(false);
+                net_LL_wlanAble.setVisibility(View.GONE);
+                editor.putBoolean("isChecked",false);
+                editor.apply();
+            }else {
+                mSwitch.setChecked(true);
+                net_LL_wlanAble.setVisibility(View.VISIBLE);
+                editor.putBoolean("isChecked",true);
+                editor.apply();
+            }
 
+            Log.i("yang","mSwitch = "+mSwitch.isChecked());
+        }
     }
 
     @Override

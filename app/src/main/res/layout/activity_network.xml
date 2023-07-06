@@ -57,6 +57,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="30dp"/>
             <Switch
+                android:id="@+id/net_switch"
                 android:layout_marginStart="450dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
