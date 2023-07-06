@@ -3,22 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"
+    <uses-permission
+        android:name="android.permission.CHANGE_CONFIGURATION"
         tools:ignore="ProtectedPermissions" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TwdSettings"
-        tools:targetApi="31"
-        android:requestLegacyExternalStorage="true">
+        tools:targetApi="31">
+        <activity
+            android:name=".network.NetworkActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -28,11 +34,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".projection.ProjectionSettingsActivity"/>
-        <activity android:name=".projection.TrapezoidalDoubleActivity"/>
-        <activity android:name=".projection.TrapezoidalSingleActivity"/>
-        <activity android:name=".projection.SizeActivity"/>
-        <activity android:name=".projection.ProjectionMethodActivity"/>
+        <activity android:name=".projection.ProjectionSettingsActivity" />
+        <activity android:name=".projection.TrapezoidalDoubleActivity" />
+        <activity android:name=".projection.TrapezoidalSingleActivity" />
+        <activity android:name=".projection.SizeActivity" />
+        <activity android:name=".projection.ProjectionMethodActivity" />
     </application>
 
 </manifest>

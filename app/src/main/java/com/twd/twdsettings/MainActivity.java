@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.twd.twdsettings.network.NetworkActivity;
 import com.twd.twdsettings.projection.ProjectionSettingsActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnFocusChangeListener , View.OnClickListener {
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         index_LLAbout.setOnFocusChangeListener(this);
 
         index_LLProjection.setOnClickListener(this);
+        index_LLWifi.setOnClickListener(this);
     }
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
@@ -186,6 +188,9 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         Intent intent ;
         if (v.getId() == R.id.LL_index_projection){
             intent = new Intent(this, ProjectionSettingsActivity.class);
+            startActivity(intent);
+        } else if (v.getId() == R.id.LL_index_wifi) {
+            intent = new Intent(this, NetworkActivity.class);
             startActivity(intent);
         }
     }
