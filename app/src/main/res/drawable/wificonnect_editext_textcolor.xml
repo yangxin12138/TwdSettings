@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true" android:color="#000000" /> <!-- 设置获得焦点时的文字颜色 -->
+    <item android:color="#FFFFFF" /> <!-- 设置失去焦点时的文字颜色 -->
+</selector>

@@ -12,12 +12,16 @@
         android:textColor="@color/white"
         android:layout_width="500dp"
         android:layout_height="50dp"
+        android:paddingStart="50dp"
+        android:gravity="center_vertical"
         android:layout_gravity="center_vertical"/>
     <ImageView
-        android:id="@+id/wifi_signal"
+        android:id="@+id/wifiSignalImageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="200dp"
+        android:layout_marginStart="250dp"
+        android:textSize="30sp"
+        android:textColor="@color/white"
         android:layout_gravity="center_vertical"/>
 
 </LinearLayout>
