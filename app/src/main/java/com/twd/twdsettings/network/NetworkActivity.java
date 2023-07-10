@@ -2,6 +2,7 @@ package com.twd.twdsettings.network;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -75,6 +76,7 @@ public class NetworkActivity extends AppCompatActivity implements View.OnFocusCh
     public void onClick(View v) {
         SharedPreferences.Editor editor = getSharedPreferences("Switch_Checked",MODE_PRIVATE).edit();
         isChecked = mSwitch.isChecked();
+        Intent intent;
         if (v.getId() == R.id.net_LL_wlan){
             if (isChecked){
                 mSwitch.setChecked(false);
@@ -87,8 +89,10 @@ public class NetworkActivity extends AppCompatActivity implements View.OnFocusCh
                 editor.putBoolean("isChecked",true);
                 editor.apply();
             }
-
             Log.i("yang","mSwitch = "+mSwitch.isChecked());
+        } else if (v.getId() == R.id.net_LL_wlanAble) {
+            intent = new Intent(this,WifiListActivity.class);
+            startActivity(intent);
         }
     }
 

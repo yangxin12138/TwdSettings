@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32"
@@ -23,9 +27,6 @@
         android:theme="@style/Theme.TwdSettings"
         tools:targetApi="31">
         <activity
-            android:name=".network.NetworkActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -39,6 +40,10 @@
         <activity android:name=".projection.TrapezoidalSingleActivity" />
         <activity android:name=".projection.SizeActivity" />
         <activity android:name=".projection.ProjectionMethodActivity" />
+        <activity android:name=".network.WifiListActivity"/>
+        <activity
+            android:name=".network.NetworkActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
