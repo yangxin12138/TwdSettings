@@ -11,7 +11,10 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -109,7 +112,27 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
         Button connectButton = dialogView.findViewById(R.id.password_btn);
         //设置文本输入框的输入类型
         passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        //创建一个TextWatcher来监听EditText中的文本变化
+        TextWatcher textWatcher  = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String password = s.toString();
+                Log.i("yang","字符长度："+password.length());
+                connectButton.setFocusable(password.length() >= 8);
+            }
+        };
+        //将TextWatcher添加到EditText中
+        passwordEditText.addTextChangedListener(textWatcher);
         //设置连接按钮的点击事件
         connectButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +141,9 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                 connectToWifi(wifi,password);
             }
         });
+
+        //设置底部空间
+        dialogView.setPadding(0,0,0,50);
         builder.show();
     }
 
