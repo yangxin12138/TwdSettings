@@ -83,10 +83,20 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="30dp"/>
+            <TextView
+                android:id="@+id/net_tv_ssidcurrent"
+                android:text="123"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="300dp"/>
             <ImageView
                 android:id="@+id/arrow_wlanAble"
                 android:src="@drawable/arrow"
-                android:layout_marginStart="470dp"
+                android:layout_marginStart="70dp"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical"/>

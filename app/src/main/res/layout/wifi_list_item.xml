@@ -15,11 +15,18 @@
         android:paddingStart="50dp"
         android:gravity="center_vertical"
         android:layout_gravity="center_vertical"/>
+    <TextView
+        android:id="@+id/text_isChecked"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="200dp"
+        android:textSize="30sp"/>
     <ImageView
         android:id="@+id/wifiSignalImageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="250dp"
         android:textSize="30sp"
         android:textColor="@color/white"
         android:layout_gravity="center_vertical"/>

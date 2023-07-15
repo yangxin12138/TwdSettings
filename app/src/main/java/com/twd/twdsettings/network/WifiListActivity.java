@@ -1,19 +1,21 @@
 package com.twd.twdsettings.network;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.net.wifi.ScanResult;
+import android.net.wifi.SupplicantState;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +28,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,7 +36,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.PackageManagerCompat;
 
 import com.twd.twdsettings.R;
 import com.twd.twdsettings.bean.WifiItem;
@@ -46,6 +48,11 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
     ListView wifiListView;
     List<ScanResult> wifiList;
     WifiManager wifiManager;
+    Dialog passwordDialog;
+
+    List<WifiItem> wifiItems;
+
+    private final Context context = this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,29 +75,45 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void scanWifi() {
-        wifiManager.startScan();
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        }else {
-            wifiList = wifiManager.getScanResults();
-        }
-        List<WifiItem> wifiItems = new ArrayList<>();
-        for (ScanResult wifi : wifiList){
-            wifiItems.add(new WifiItem(wifi.SSID,wifi.level));
-        }
-        WifiAdapter adapter = new WifiAdapter(this,wifiItems);
-        wifiListView.setAdapter(adapter);
-        wifiListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                adapter.setFocusedItem(position);
-            }
 
+        //显示加载动画
+        ProgressDialog progressDialog = ProgressDialog.show(context,"","扫描中，请稍等...");
+        new Thread(new Runnable() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void run() {
+                wifiManager.startScan();
+                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                }else {
+                    wifiList = wifiManager.getScanResults();
+                }
+                wifiItems = new ArrayList<>();
+                for (ScanResult wifi : wifiList){
+                    wifiItems.add(new WifiItem(wifi.SSID,wifi.level));
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //隐藏加载动画
+                        progressDialog.dismiss();
+                        WifiAdapter adapter = new WifiAdapter(context,wifiItems);
+                        wifiListView.setAdapter(adapter);
+                        wifiListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                adapter.setFocusedItem(position);
+                            }
 
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+                    }
+                });
             }
-        });
+        }).start();
+
     }
 
     @Override
@@ -100,15 +123,17 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void showPasswordDialog(final ScanResult wifi){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Connect to " + wifi.SSID);
+        passwordDialog = new Dialog(this);
+        passwordDialog.setTitle("Connect to " + wifi.SSID);
 
         //加载自定义布局文件
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogView = inflater.inflate(R.layout.wifi_connect_layout,null);
-        builder.setView(dialogView);
+        passwordDialog.setContentView(dialogView);
 
         final EditText passwordEditText = dialogView.findViewById(R.id.password_edittext);
+        final TextView passwordTitle = dialogView.findViewById(R.id.password_title);
+        passwordTitle.setText(wifi.SSID);
         Button connectButton = dialogView.findViewById(R.id.password_btn);
         //设置文本输入框的输入类型
         passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -144,11 +169,48 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
 
         //设置底部空间
         dialogView.setPadding(0,0,0,50);
-        builder.show();
+        passwordDialog.show();
     }
 
     private void connectToWifi(ScanResult wifi,String password){
-        //TODO:使用wifi.SSID和password参数进行连接
+
+        //显示加载动画
+        ProgressDialog progressDialog = ProgressDialog.show(context,"","连接中，请稍等...");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.i("yang","开始连接");
+                //TODO:使用wifi.SSID和password参数进行连接
+                WifiConfiguration wifiConfig = new WifiConfiguration();
+                wifiConfig.SSID = "\"" + wifi.SSID + "\"";
+                wifiConfig.preSharedKey = "\"" + password + "\"";
+
+                int networkId = wifiManager.addNetwork(wifiConfig);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        wifiManager.disconnect();
+                        wifiManager.enableNetwork(networkId,true);
+
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                                boolean isConnected = wifiInfo.getNetworkId() == networkId && wifiInfo.getSupplicantState() == SupplicantState.COMPLETED;
+                                if (isConnected){
+                                    Toast.makeText(context, "连接成功！", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(context, "密码错误请重试！", Toast.LENGTH_SHORT).show();
+                                }
+                                progressDialog.dismiss();
+                                passwordDialog.dismiss();
+                            }
+                        },5000);
+                    }
+                });
+            }
+        }).start();
     }
 
     public class WifiAdapter extends ArrayAdapter<WifiItem>{
@@ -156,6 +218,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
         private LayoutInflater inflater;
         int signalStrength;
         ImageView wifiSignalImageView;
+        TextView isCheckedText;
 
         private int focusedItem = -1;
 
@@ -180,6 +243,21 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
 
             TextView wifiNameTextView = itemView.findViewById(R.id.wifi_ssid);
             wifiSignalImageView = itemView.findViewById(R.id.wifiSignalImageView);
+            isCheckedText = itemView.findViewById(R.id.text_isChecked);
+
+            // 获取当前连接的WiFi网络的SSID
+            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            String connectedSsid = wifiInfo.getSSID();
+
+            // 获取展示的网络的SSID
+            String displayedSsid = wifiNameTextView.getText().toString();
+            // 判断当前连接的网络和展示的网络是否相同
+            if (connectedSsid != null && connectedSsid.equals("\"" + displayedSsid + "\"")) {
+                isCheckedText.setText("已连接");
+            } else {
+                isCheckedText.setText("");
+            }
 
             WifiItem wifiItem = getItem(position);
             if (wifiItem != null){
@@ -198,6 +276,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             if (position == focusedItem){
                 itemView.setBackgroundResource(R.drawable.bg_sel);
                 wifiNameTextView.setTextColor(getResources().getColor(R.color.sel_blue));
+                isCheckedText.setTextColor(getResources().getColor(R.color.sel_blue));
                 if (signalStrength >= -50){
                     wifiSignalImageView.setImageResource(R.drawable.wifisignal_sel_3);
                 } else if (signalStrength >= -70) {
@@ -208,6 +287,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             }else {
                 itemView.setBackgroundColor(Color.TRANSPARENT);
                 wifiNameTextView.setTextColor(getResources().getColor(R.color.white));
+                isCheckedText.setTextColor(getResources().getColor(R.color.white));
                 if (signalStrength >= -50){
                     wifiSignalImageView.setImageResource(R.drawable.wifisignal_unsel_3);
                 } else if (signalStrength >= -70) {

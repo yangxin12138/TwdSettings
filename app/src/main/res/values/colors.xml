@@ -11,4 +11,5 @@
     <color name="teal_700">#FF018786</color>
     <color name="grey">#EB6A6A6A</color>
     <color name="pswd_btn_unfocus">#F02647D1</color>
+    <color name="button_unable">#787878</color>
 </resources>
