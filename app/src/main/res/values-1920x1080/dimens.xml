@@ -123,4 +123,13 @@
     <dimen name="index_tv_width">100dp</dimen>
     <dimen name="index_tv_textSize">20sp</dimen>
     <dimen name="index_tv_marginStart">10dp</dimen>
+
+    <!--Network-->
+    <dimen name="net_title_marginTop">35dp</dimen>
+    <dimen name="net_title_iv_width">25dp</dimen>
+    <dimen name="net_title_iv_height">25dp</dimen>
+    <dimen name="net_title_iv_marginStart">80dp</dimen>
+    <dimen name="net_title_tv_textSize">25sp</dimen>
+    <dimen name="net_title_tv_width">50dp</dimen>
+    <dimen name="net_title_tv_marginStart">10dp</dimen>
 </resources>

@@ -122,4 +122,34 @@
     <dimen name="index_tv_width">100dp</dimen>
     <dimen name="index_tv_textSize">20sp</dimen>
     <dimen name="index_tv_marginStart">20dp</dimen>
+
+    <!--Network-->
+    <dimen name="net_title_marginTop">45dp</dimen>
+    <dimen name="net_title_iv_width">25dp</dimen>
+    <dimen name="net_title_iv_height">25dp</dimen>
+    <dimen name="net_title_iv_marginStart">80dp</dimen>
+    <dimen name="net_title_tv_textSize">25sp</dimen>
+    <dimen name="net_title_tv_width">50dp</dimen>
+    <dimen name="net_title_tv_marginStart">10dp</dimen>
+    <dimen name="net_content_LL_paddingStart">200dp</dimen>
+    <dimen name="net_content_LL_paddingTop">50dp</dimen>
+    <dimen name="net_content_LL_paddingEnd">200dp</dimen>
+    <dimen name="net_content_LL_height">80dp</dimen>
+    <dimen name="net_switch_marginStart">650dp</dimen>
+    <dimen name="net_ssidcurrent_marginStart">500dp</dimen>
+    <dimen name="net_arrow_wlanAble_marginStart">60dp</dimen>
+    <dimen name="net_arrow_spped_marginStart">650dp</dimen>
+    <dimen name="wifiListView_height">500dp</dimen>
+    <dimen name="wifiListView_paddingStart">200dp</dimen>
+    <dimen name="wifiListView_paddingEnd">200dp</dimen>
+    <dimen name="wifiListView_paddingTop">50dp</dimen>
+    <dimen name="wifi_list_item_isChecked_marginStart">170dp</dimen>
+    <dimen name="wifi_speedometerView_width_height">400dp</dimen>
+    <dimen name="wifi_speedometerView_marginStart">200dp</dimen>
+    <dimen name="wifi_speedometerView_marginTop">200dp</dimen>
+    <dimen name="wifi_speed_testResult_width_height">500dp</dimen>
+    <dimen name="wifi_speed_testResult_textSize">30sp</dimen>
+    <dimen name="wifi_speed_testResult_marginStart">600dp</dimen>
+    <dimen name="wifi_speed_button_marginStart">750dp</dimen>
+    <dimen name="wifi_speed_button_marginTop">5dp</dimen>
 </resources>

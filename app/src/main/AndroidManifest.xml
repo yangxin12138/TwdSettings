@@ -47,6 +47,7 @@
             android:name=".network.NetworkActivity"
             android:exported="false" />
         <activity android:name=".network.NetSpeedActivity"/>
+        <activity android:name=".bluetooth.BluetoothActivity"/>
     </application>
 
 </manifest>

@@ -6,49 +6,49 @@
 
     <LinearLayout
         android:id="@+id/LL_speed_test_title"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/net_title_marginTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="@dimen/net_title_iv_width"
+            android:layout_height="@dimen/net_title_iv_height"
             android:src="@drawable/arrow_back_white"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="@dimen/net_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
             android:text="网络测试"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:layout_width="100dp"
+            android:textSize="@dimen/net_title_tv_textSize"
+            android:layout_width="@dimen/net_title_wlanAble_tv_width"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/net_title_tv_marginStart"
             android:layout_gravity="center_vertical"/>
     </LinearLayout>
     <com.twd.twdsettings.view.SpeedometerView
         android:id="@+id/speedometerView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/wifi_speedometerView_width_height"
+        android:layout_height="@dimen/wifi_speedometerView_width_height"
         android:layout_below="@id/LL_speed_test_title"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginStart="@dimen/wifi_speedometerView_marginStart"
+        android:layout_marginTop="@dimen/wifi_speedometerView_marginTop"/>
     <TextView
         android:id="@+id/speed_testResult"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="@dimen/wifi_speed_testResult_width_height"
+        android:layout_height="@dimen/wifi_speed_testResult_width_height"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="@dimen/wifi_speed_testResult_textSize"
         android:layout_below="@id/LL_speed_test_title"
         android:gravity="center"
-        android:layout_marginStart="500dp"/>
+        android:layout_marginStart="@dimen/wifi_speed_testResult_marginStart"/>
     <Button
         android:id="@+id/buttonStart"
-        android:layout_width="200dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/wifi_speed_button_width"
+        android:layout_height="@dimen/wifi_speed_button_height"
         android:text="开始测速"
-        android:textSize="30sp"
-        android:layout_below="@id/speedometerView"
-        android:layout_marginStart="600dp"
-        android:layout_marginTop="16dp"
+        android:textSize="@dimen/wifi_speed_button_textSize"
+        android:layout_below="@id/speed_testResult"
+        android:layout_marginStart="@dimen/wifi_speed_button_marginStart"
+        android:layout_marginTop="@dimen/wifi_speed_button_marginTop"
         android:background="@color/white"/>
 </RelativeLayout>
