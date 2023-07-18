@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.wifi.ScanResult;
@@ -41,7 +43,9 @@ import com.twd.twdsettings.R;
 import com.twd.twdsettings.bean.WifiItem;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WifiListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -49,16 +53,24 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
     List<ScanResult> wifiList;
     WifiManager wifiManager;
     Dialog passwordDialog;
+    Dialog connectedDialog;
 
     List<WifiItem> wifiItems;
 
     private final Context context = this;
+    private SharedPreferences wifi_infoPreferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_netlist);
         initListView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        scanWifi();
     }
 
     private void initListView() {
@@ -118,8 +130,80 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        wifi_infoPreferences = getSharedPreferences("wifi_password",MODE_PRIVATE);
         ScanResult selectedWifi = wifiList.get(position);
-        showPasswordDialog(selectedWifi);
+        String selectedSSID = selectedWifi.SSID;
+        if (!wifi_infoPreferences.getString(selectedSSID, "").equals("")){
+            showConnectByPreferencesDialog(selectedWifi);
+        }else {
+            showPasswordDialog(selectedWifi);
+        }
+
+    }
+
+    private void showConnectByPreferencesDialog(final ScanResult wifi){
+        connectedDialog = new Dialog(this);
+
+        //加载自定义布局文件
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View dialogView = inflater.inflate(R.layout.wifi_connectbypreferences_layout,null);
+        connectedDialog.setContentView(dialogView);
+        dialogView.setPadding(100,0,100,100);
+
+
+        final TextView connectTitle = dialogView.findViewById(R.id.connect_title);
+        final Button connectButton = dialogView.findViewById(R.id.connect_btn);
+        final Button ignoreNetworkButton = dialogView.findViewById(R.id.ignore_network_btn);
+
+        connectTitle.setText("此网络已经保存,是否直接连接？");
+        connectedDialog.show();
+        SharedPreferences connectPreferences = getSharedPreferences("wifi_password",MODE_PRIVATE);
+        String password  = connectPreferences.getString(wifi.SSID,"");
+        connectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                connectToWifi(wifi,password);
+                connectedDialog.dismiss();
+            }
+        });
+
+        ignoreNetworkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("确定要忽略此网络吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //TODO:
+                        SharedPreferences.Editor ignoreEditor = getSharedPreferences("wifi_password",MODE_PRIVATE).edit();
+                        ignoreEditor.putString(wifi.SSID,"");
+                        ignoreEditor.apply();
+
+                        // 获取当前连接的WiFi网络的SSID
+                        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                        String connectedSsid = wifiInfo.getSSID();
+                        if (wifi.SSID.equals(connectedSsid)){
+                            wifiManager.disconnect();
+                        }
+                        dialog.dismiss();
+                        connectedDialog.dismiss();
+                    }
+                })
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //TODO:点击取消按钮关闭AlertDialog
+                                dialog.dismiss();
+                                connectedDialog.dismiss();
+                            }
+                        });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
+
     }
 
     private void showPasswordDialog(final ScanResult wifi){
@@ -134,6 +218,9 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
         final EditText passwordEditText = dialogView.findViewById(R.id.password_edittext);
         final TextView passwordTitle = dialogView.findViewById(R.id.password_title);
         passwordTitle.setText(wifi.SSID);
+        //设置底部空间
+        dialogView.setPadding(0,0,0,50);
+        passwordDialog.show();
         Button connectButton = dialogView.findViewById(R.id.password_btn);
         //设置文本输入框的输入类型
         passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -164,12 +251,11 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             public void onClick(View v) {
                 String password = passwordEditText.getText().toString();
                 connectToWifi(wifi,password);
+                passwordDialog.dismiss();
             }
         });
 
-        //设置底部空间
-        dialogView.setPadding(0,0,0,50);
-        passwordDialog.show();
+
     }
 
     private void connectToWifi(ScanResult wifi,String password){
@@ -184,7 +270,10 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                 WifiConfiguration wifiConfig = new WifiConfiguration();
                 wifiConfig.SSID = "\"" + wifi.SSID + "\"";
                 wifiConfig.preSharedKey = "\"" + password + "\"";
-
+                //保存密码
+                SharedPreferences.Editor editor = getSharedPreferences("wifi_password",MODE_PRIVATE).edit();
+                editor.putString(wifi.SSID,password);
+                editor.apply();
                 int networkId = wifiManager.addNetwork(wifiConfig);
                 runOnUiThread(new Runnable() {
                     @Override
@@ -204,7 +293,6 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                                     Toast.makeText(context, "密码错误请重试！", Toast.LENGTH_SHORT).show();
                                 }
                                 progressDialog.dismiss();
-                                passwordDialog.dismiss();
                             }
                         },5000);
                     }
@@ -250,11 +338,14 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             WifiInfo wifiInfo = wifiManager.getConnectionInfo();
             String connectedSsid = wifiInfo.getSSID();
 
+            wifi_infoPreferences = getSharedPreferences("wifi_password",MODE_PRIVATE);
             // 获取展示的网络的SSID
             String displayedSsid = wifiNameTextView.getText().toString();
             // 判断当前连接的网络和展示的网络是否相同
             if (connectedSsid != null && connectedSsid.equals("\"" + displayedSsid + "\"")) {
                 isCheckedText.setText("已连接");
+            } else if (!wifi_infoPreferences.getString(displayedSsid, "").equals("")){
+                isCheckedText.setText("已保存");
             } else {
                 isCheckedText.setText("");
             }
