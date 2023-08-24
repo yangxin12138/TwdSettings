@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.twd.twdsettings.bluetooth.BluetoothActivity;
 import com.twd.twdsettings.network.NetworkActivity;
 import com.twd.twdsettings.projection.ProjectionSettingsActivity;
 
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
 
         index_LLProjection.setOnClickListener(this);
         index_LLWifi.setOnClickListener(this);
+        index_LLBluetooth.setOnClickListener(this);
     }
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
@@ -191,6 +193,9 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
             startActivity(intent);
         } else if (v.getId() == R.id.LL_index_wifi) {
             intent = new Intent(this, NetworkActivity.class);
+            startActivity(intent);
+        } else if (v.getId() == R.id.LL_index_bluetooth) {
+            intent = new Intent(this, BluetoothActivity.class);
             startActivity(intent);
         }
     }

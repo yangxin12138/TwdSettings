@@ -125,16 +125,19 @@ public class NetworkActivity extends AppCompatActivity implements View.OnFocusCh
     public void onClick(View v) {
         SharedPreferences.Editor editor = getSharedPreferences("Switch_Checked",MODE_PRIVATE).edit();
         isChecked = mSwitch.isChecked();
+        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         Intent intent;
         if (v.getId() == R.id.net_LL_wlan){
             if (isChecked){
                 mSwitch.setChecked(false);
                 net_LL_wlanAble.setVisibility(View.GONE);
+                wifiManager.setWifiEnabled(false);
                 editor.putBoolean("isChecked",false);
                 editor.apply();
             }else {
                 mSwitch.setChecked(true);
                 net_LL_wlanAble.setVisibility(View.VISIBLE);
+                wifiManager.setWifiEnabled(true);
                 editor.putBoolean("isChecked",true);
                 editor.apply();
             }

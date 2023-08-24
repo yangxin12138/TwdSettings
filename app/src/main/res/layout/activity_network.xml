@@ -85,7 +85,7 @@
                 android:layout_marginStart="@dimen/net_tv_marginStart"/>
             <TextView
                 android:id="@+id/net_tv_ssidcurrent"
-                android:text="123"
+                android:text=""
                 android:textSize="@dimen/net_tv_textSize"
                 android:textColor="@color/white"
                 android:layout_width="@dimen/net_tv_width"
