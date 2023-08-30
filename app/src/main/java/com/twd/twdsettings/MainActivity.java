@@ -14,31 +14,32 @@ import android.widget.TextView;
 import com.twd.twdsettings.bluetooth.BluetoothActivity;
 import com.twd.twdsettings.network.NetworkActivity;
 import com.twd.twdsettings.projection.ProjectionSettingsActivity;
+import com.twd.twdsettings.universal.UniversalActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnFocusChangeListener , View.OnClickListener {
 
     private LinearLayout index_LLProjection;
     private LinearLayout index_LLWifi;
     private LinearLayout index_LLBluetooth;
-    private LinearLayout index_LLSetup;
+    private LinearLayout index_LLUniversal;
     private LinearLayout index_LLAbout;
 
     private ImageView IV_projection;
     private ImageView IV_wifi;
     private ImageView IV_bluetooth;
-    private ImageView IV_setup;
+    private ImageView IV_universal;
     private ImageView IV_about;
 
     private TextView TV_projection;
     private TextView TV_wifi;
     private TextView TV_bluetooth;
-    private TextView TV_setup;
+    private TextView TV_universal;
     private TextView TV_about;
 
     private ImageView arrow_projection;
     private ImageView arrow_wifi;
     private ImageView arrow_bluetooth;
-    private ImageView arrow_setup;
+    private ImageView arrow_universal;
     private ImageView arrow_about;
 
     private ImageView displayPic;
@@ -55,25 +56,25 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         index_LLProjection = findViewById(R.id.LL_index_projection);
         index_LLWifi = findViewById(R.id.LL_index_wifi);
         index_LLBluetooth = findViewById(R.id.LL_index_bluetooth);
-        index_LLSetup = findViewById(R.id.LL_index_setup);
+        index_LLUniversal = findViewById(R.id.LL_index_setup);
         index_LLAbout = findViewById(R.id.LL_index_about);
 
         IV_projection = findViewById(R.id.im_projection);
         IV_wifi = findViewById(R.id.im_wifi);
         IV_bluetooth = findViewById(R.id.im_bluetooth);
-        IV_setup = findViewById(R.id.im_setup);
+        IV_universal = findViewById(R.id.im_setup);
         IV_about = findViewById(R.id.im_about);
 
         TV_projection = findViewById(R.id.projection_text);
         TV_wifi = findViewById(R.id.wifi_text);
         TV_bluetooth = findViewById(R.id.bluetooth_text);
-        TV_setup = findViewById(R.id.setup_text);
+        TV_universal = findViewById(R.id.setup_text);
         TV_about = findViewById(R.id.about_text);
 
         arrow_projection = findViewById(R.id.indexArrow_projection);
         arrow_wifi = findViewById(R.id.indexArrow_wifi);
         arrow_bluetooth = findViewById(R.id.indexArrow_bluetooth);
-        arrow_setup = findViewById(R.id.indexArrow_setup);
+        arrow_universal = findViewById(R.id.indexArrow_setup);
         arrow_about = findViewById(R.id.indexArrow_about);
 
         displayPic = findViewById(R.id.display_pic);
@@ -85,8 +86,8 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         index_LLWifi.setFocusableInTouchMode(true);
         index_LLBluetooth.setFocusable(true);
         index_LLBluetooth.setFocusableInTouchMode(true);
-        index_LLSetup.setFocusable(true);
-        index_LLSetup.setFocusableInTouchMode(true);
+        index_LLUniversal.setFocusable(true);
+        index_LLUniversal.setFocusableInTouchMode(true);
         index_LLAbout.setFocusable(true);
         index_LLAbout.setFocusableInTouchMode(true);
 
@@ -94,12 +95,13 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         index_LLWifi.setOnFocusChangeListener(this);
         index_LLBluetooth.setOnFocusChangeListener(this);
         index_LLBluetooth.setOnFocusChangeListener(this);
-        index_LLSetup.setOnFocusChangeListener(this);
+        index_LLUniversal.setOnFocusChangeListener(this);
         index_LLAbout.setOnFocusChangeListener(this);
 
         index_LLProjection.setOnClickListener(this);
         index_LLWifi.setOnClickListener(this);
         index_LLBluetooth.setOnClickListener(this);
+        index_LLUniversal.setOnClickListener(this);
     }
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
             displayText.setText(TV_bluetooth.getText().toString());
         } else if (view.getId() == R.id.LL_index_setup) {
             displayPic.setImageResource(R.drawable.setup);
-            displayText.setText(TV_setup.getText().toString());
+            displayText.setText(TV_universal.getText().toString());
         } else if (view.getId() == R.id.LL_index_about) {
             displayPic.setImageResource(R.drawable.about);
             displayText.setText(TV_about.getText().toString());
@@ -151,9 +153,9 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
             TV_bluetooth.setTextColor(getResources().getColor(R.color.sel_blue));
             arrow_bluetooth.setImageResource(R.drawable.arrow_sel);
         } else if (ViewId == R.id.LL_index_setup) {
-            IV_setup.setImageResource(R.drawable.setup_sel);
-            TV_setup.setTextColor(getResources().getColor(R.color.sel_blue));
-            arrow_setup.setImageResource(R.drawable.arrow_sel);
+            IV_universal.setImageResource(R.drawable.setup_sel);
+            TV_universal.setTextColor(getResources().getColor(R.color.sel_blue));
+            arrow_universal.setImageResource(R.drawable.arrow_sel);
         } else if (ViewId == R.id.LL_index_about) {
             IV_about.setImageResource(R.drawable.about_sel);
             TV_about.setTextColor(getResources().getColor(R.color.sel_blue));
@@ -175,9 +177,9 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
             TV_bluetooth.setTextColor(getResources().getColor(R.color.white));
             arrow_bluetooth.setImageResource(R.drawable.arrow);
         } else if (ViewId == R.id.LL_index_setup) {
-            IV_setup.setImageResource(R.drawable.setup);
-            TV_setup.setTextColor(getResources().getColor(R.color.white));
-            arrow_setup.setImageResource(R.drawable.arrow);
+            IV_universal.setImageResource(R.drawable.setup);
+            TV_universal.setTextColor(getResources().getColor(R.color.white));
+            arrow_universal.setImageResource(R.drawable.arrow);
         } else if (ViewId == R.id.LL_index_about) {
             IV_about.setImageResource(R.drawable.about);
             TV_about.setTextColor(getResources().getColor(R.color.white));
@@ -196,6 +198,9 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
             startActivity(intent);
         } else if (v.getId() == R.id.LL_index_bluetooth) {
             intent = new Intent(this, BluetoothActivity.class);
+            startActivity(intent);
+        } else if (v.getId() == R.id.LL_index_setup) {
+            intent = new Intent(this, UniversalActivity.class);
             startActivity(intent);
         }
     }
