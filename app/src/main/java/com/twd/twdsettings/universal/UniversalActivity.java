@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.twd.twdsettings.R;
 import com.twd.twdsettings.bean.InputItem;
 
+import java.util.Locale;
+
 public class UniversalActivity extends AppCompatActivity implements View.OnFocusChangeListener, View.OnClickListener {
 
     private LinearLayout LL_input;
@@ -37,7 +39,7 @@ public class UniversalActivity extends AppCompatActivity implements View.OnFocus
     protected void onResume() {
         super.onResume();
         initView();
-
+        //当前输入法
         String selectedInputMethodId = Settings.Secure.getString(getContentResolver(),Settings.Secure.DEFAULT_INPUT_METHOD);
         if (selectedInputMethodId.contains("sogou")){
             tv_inputCurrent.setText("搜狗输入法");
@@ -45,6 +47,17 @@ public class UniversalActivity extends AppCompatActivity implements View.OnFocus
             tv_inputCurrent.setText("谷歌拼音输入法");
         } else if (selectedInputMethodId.contains("inputmethod.latin")) {
             tv_inputCurrent.setText("Android键盘(AOSP)");
+        }
+
+        //当前语言
+        Locale currentLocale = getResources().getConfiguration().locale;
+        String currentLanguage = currentLocale.getDisplayName()+"_"+currentLocale.getLanguage()+"_"+currentLocale.getCountry();
+        if (currentLanguage.contains("zh_CN")){
+            tv_languageCurrent.setText("简体中文");
+        } else if (currentLanguage.contains("(繁体中文,香港)_zh_HK")) {
+            tv_languageCurrent.setText("繁体中文");
+        } else if (currentLanguage.equals("英文 (美国)_en_US")) {
+            tv_languageCurrent.setText("English");
         }
 
     }
@@ -78,6 +91,9 @@ public class UniversalActivity extends AppCompatActivity implements View.OnFocus
         Intent intent;
         if (v.getId() == R.id.universal_LL_input){
             intent = new Intent(this,UniversalInputActivity.class);
+            startActivity(intent);
+        }else {
+            intent = new Intent(this,UniversalLanguageActivity.class);
             startActivity(intent);
         }
     }

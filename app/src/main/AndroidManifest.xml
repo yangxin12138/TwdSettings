@@ -24,11 +24,14 @@
         android:name="android.permission.CHANGE_CONFIGURATION"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.INPUT_METHOD" />
-
     <uses-permission android:name="android.permission.INPUT_METHOD" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"
+    <uses-permission
+        android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"
         tools:ignore="ProtectedPermissions" />
 
     <application
@@ -43,10 +46,10 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".universal.UniversalInputActivity"
+            android:name=".universal.UniversalLanguageActivity"
             android:exported="false" />
         <activity
-            android:name=".universal.MainActivity"
+            android:name=".universal.UniversalInputActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
