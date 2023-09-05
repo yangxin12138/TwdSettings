@@ -60,6 +60,8 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
     private final Context context = this;
     private SharedPreferences wifi_infoPreferences;
 
+    WifiAdapter adapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +73,18 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
     protected void onResume() {
         super.onResume();
         scanWifi();
+    }
+
+    private void showToast(String text){
+        LayoutInflater inflater = getLayoutInflater();
+        View customToastView = inflater.inflate(R.layout.custom_toast,null);
+
+        TextView textView = customToastView.findViewById(R.id.toast_text);
+        textView.setText(text);
+        Toast customToast = new Toast(getApplicationContext());
+        customToast.setView(customToastView);
+        customToast.setDuration(Toast.LENGTH_SHORT);
+        customToast.show();
     }
 
     private void initListView() {
@@ -108,7 +122,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                     public void run() {
                         //隐藏加载动画
                         progressDialog.dismiss();
-                        WifiAdapter adapter = new WifiAdapter(context,wifiItems);
+                        adapter = new WifiAdapter(context,wifiItems);
                         wifiListView.setAdapter(adapter);
                         wifiListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
@@ -142,7 +156,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void showConnectByPreferencesDialog(final ScanResult wifi){
-        connectedDialog = new Dialog(this);
+        connectedDialog = new Dialog(this,R.style.DialogStyle);
 
         //加载自定义布局文件
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -163,6 +177,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View v) {
                 connectToWifi(wifi,password);
+                scanWifi();
                 connectedDialog.dismiss();
             }
         });
@@ -176,17 +191,23 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //TODO:
-                        SharedPreferences.Editor ignoreEditor = getSharedPreferences("wifi_password",MODE_PRIVATE).edit();
-                        ignoreEditor.putString(wifi.SSID,"");
-                        ignoreEditor.apply();
 
                         // 获取当前连接的WiFi网络的SSID
                         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
                         String connectedSsid = wifiInfo.getSSID();
-                        if (wifi.SSID.equals(connectedSsid)){
+                        Log.i("yang", "onClick: connectedSsid = " + connectedSsid);
+                        Log.i("yang", "onClick: wifi.SSID = " + wifi.SSID);
+                        String currentNetSSID = "\"" + wifi.SSID + "\"";
+                        if (currentNetSSID.equals(connectedSsid)){
                             wifiManager.disconnect();
                         }
+
+                        SharedPreferences.Editor ignoreEditor = getSharedPreferences("wifi_password",MODE_PRIVATE).edit();
+                        ignoreEditor.putString(wifi.SSID,"");
+                        ignoreEditor.apply();
+
+                        adapter.notifyDataSetChanged();
                         dialog.dismiss();
                         connectedDialog.dismiss();
                     }
@@ -207,8 +228,8 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void showPasswordDialog(final ScanResult wifi){
-        passwordDialog = new Dialog(this);
-        passwordDialog.setTitle("Connect to " + wifi.SSID);
+        passwordDialog = new Dialog(this,R.style.DialogStyle);
+        Log.i("yang", "showPasswordDialog: ------wifi,ssid = " + wifi.SSID);
 
         //加载自定义布局文件
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -288,9 +309,13 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                                 WifiInfo wifiInfo = wifiManager.getConnectionInfo();
                                 boolean isConnected = wifiInfo.getNetworkId() == networkId && wifiInfo.getSupplicantState() == SupplicantState.COMPLETED;
                                 if (isConnected){
-                                    Toast.makeText(context, "连接成功！", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(context, "连接成功！", Toast.LENGTH_SHORT).show();
+                                    scanWifi();
+                                    showToast("连接成功！");
                                 }else {
-                                    Toast.makeText(context, "密码错误请重试！", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(context, "密码错误请重试！", Toast.LENGTH_SHORT).show();
+                                    scanWifi();
+                                    showToast("密码错误请重试！");
                                 }
                                 progressDialog.dismiss();
                             }
@@ -342,9 +367,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             // 获取展示的网络的SSID
             String displayedSsid = wifiNameTextView.getText().toString();
             // 判断当前连接的网络和展示的网络是否相同
-            if (connectedSsid != null && connectedSsid.equals("\"" + displayedSsid + "\"")) {
-                isCheckedText.setText("已连接");
-            } else if (!wifi_infoPreferences.getString(displayedSsid, "").equals("")){
+            if (!wifi_infoPreferences.getString(displayedSsid, "").equals("")){
                 isCheckedText.setText("已保存");
             } else {
                 isCheckedText.setText("");
@@ -352,7 +375,11 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
 
             WifiItem wifiItem = getItem(position);
             if (wifiItem != null){
-                wifiNameTextView.setText(wifiItem.getName());
+                if(wifiItem.getName().isEmpty()){
+                    wifiNameTextView.setText("unknown");
+                }else {
+                    wifiNameTextView.setText(wifiItem.getName());
+                }
                  signalStrength= wifiItem.getSignalStrength();
                 if (signalStrength >= -50){
                     wifiSignalImageView.setImageResource(R.drawable.wifisignal_unsel_3); //full
