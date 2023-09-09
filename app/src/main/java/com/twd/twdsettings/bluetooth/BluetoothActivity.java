@@ -2,23 +2,19 @@ package com.twd.twdsettings.bluetooth;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +23,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,14 +31,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.twd.twdsettings.R;
 import com.twd.twdsettings.bean.BluetoothItem;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +50,7 @@ public class BluetoothActivity extends AppCompatActivity {
     private BluetoothAdapter bluetoothAdapter;
     private List<BluetoothDevice> bluetoothDevices;
     private BluetoothDeviceAdapter deviceAdapter;
-    private ListView listView;
+    private RecyclerView recyclerView;
 
     private LinearLayout bluetooth_LL_bt;
     private LinearLayout bluetooth_LL_search;
@@ -63,6 +58,7 @@ public class BluetoothActivity extends AppCompatActivity {
     private Switch bluetooth_switch;
     private TextView bluetooth_tv_search;
     private boolean isChecked;
+    private List<BluetoothDevice> pairedDevicesList = new ArrayList<>();//保存已配对的设备
 
     private Context mContext = this;
 
@@ -132,13 +128,13 @@ public class BluetoothActivity extends AppCompatActivity {
                     //打开蓝牙
                     enableBluetooth();
                     bluetooth_tv_search.setVisibility(View.VISIBLE);
-                    listView.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.VISIBLE);
                     bluetooth_tv_search.setText("搜索中....");
                 } else {
                     //关闭蓝牙
                     disableBluetooth();
                     bluetooth_tv_search.setVisibility(View.INVISIBLE);
-                    listView.setVisibility(View.INVISIBLE);
+                    recyclerView.setVisibility(View.INVISIBLE);
 
                 }
             }
@@ -168,10 +164,13 @@ public class BluetoothActivity extends AppCompatActivity {
         });
 
         //初始化ListView和适配器
-        listView = findViewById(R.id.bluetooth_listview);
+        recyclerView = findViewById(R.id.bluetooth_recyclerview);
         bluetoothDevices = new ArrayList<>();
-        deviceAdapter = new BluetoothDeviceAdapter(this, bluetoothDevices);
-        listView.setAdapter(deviceAdapter);
+        deviceAdapter = new BluetoothDeviceAdapter(this, bluetoothDevices, pairedDevicesList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(deviceAdapter);
+        getPairedDevices();
 
         //注册广播接收器
         IntentFilter filter = new IntentFilter();
@@ -182,10 +181,18 @@ public class BluetoothActivity extends AppCompatActivity {
         startBluetoothScan();
     }
 
+    /*获取已配对的设备*/
+    private void getPairedDevices() {
+        checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
+        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+        pairedDevicesList.clear();
+        pairedDevicesList.addAll(pairedDevices);
+        deviceAdapter.notifyDataSetChanged();
+    }
+
     private void showToast(String text) {
         LayoutInflater inflater = getLayoutInflater();
         View customToastView = inflater.inflate(R.layout.custom_toast, null);
-
         TextView textView = customToastView.findViewById(R.id.toast_text);
         textView.setText(text);
         Toast customToast = new Toast(getApplicationContext());
@@ -194,11 +201,9 @@ public class BluetoothActivity extends AppCompatActivity {
         customToast.show();
     }
 
-    private void enableBluetooth() {
+    private void enableBluetooth() { /*打开蓝牙*/
         if (!bluetoothAdapter.isEnabled()) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
-            }
+            checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
             bluetoothAdapter.enable();
             bluetoothDevices.clear();
             deviceAdapter.notifyDataSetChanged();
@@ -213,11 +218,9 @@ public class BluetoothActivity extends AppCompatActivity {
         }
     }
 
-    private void disableBluetooth() {
+    private void disableBluetooth() { /*关闭蓝牙*/
         if (bluetoothAdapter.isEnabled()) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
-            }
+            checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
             bluetoothAdapter.disable();
             stopBluetoothScan();
         }
@@ -246,9 +249,7 @@ public class BluetoothActivity extends AppCompatActivity {
     private Runnable stopScanRunnable = new Runnable() {
         @Override
         public void run() {
-            if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 1);
-            }
+            checkPermission(Manifest.permission.BLUETOOTH_SCAN);
             if (bluetoothAdapter.isDiscovering()) {
                 bluetoothAdapter.cancelDiscovery();
             }
@@ -258,13 +259,12 @@ public class BluetoothActivity extends AppCompatActivity {
 
     private void startBluetoothScan() {
         //检查是否已经在扫描
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 1);
-        }
+        checkPermission(Manifest.permission.BLUETOOTH_SCAN);
         if (bluetoothAdapter.isDiscovering()) {
             bluetoothAdapter.cancelDiscovery();
         }
         //开始扫描
+        getPairedDevices();
         bluetoothAdapter.startDiscovery();
         Log.i("yang", "startBluetoothScan: --开始扫描");
 
@@ -275,13 +275,12 @@ public class BluetoothActivity extends AppCompatActivity {
     }
 
     private void stopBluetoothScan() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 1);
-        }
+        checkPermission(Manifest.permission.BLUETOOTH_SCAN);
         if (bluetoothAdapter.isDiscovering()) {
             bluetoothAdapter.cancelDiscovery();
         }
         bluetoothDevices.clear();
+        getPairedDevices();
         deviceAdapter.notifyDataSetChanged();
 
     }
@@ -293,10 +292,11 @@ public class BluetoothActivity extends AppCompatActivity {
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 //发现新设备
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                bluetoothDevices.add(device);
-                Log.i("yangxin", "onReceive: 触发扫描回调");
-                deviceAdapter.focusedPosition = bluetoothDevices.size()-1;
-                deviceAdapter.notifyDataSetChanged();
+                if (!isPairedDevice(device)) {
+                    bluetoothDevices.add(device);
+                    Log.i("yangxin", "onReceive: 触发扫描回调");
+                    deviceAdapter.notifyDataSetChanged();
+                }
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 //蓝牙扫描完成
                 showToast("蓝牙扫描完成");
@@ -304,6 +304,15 @@ public class BluetoothActivity extends AppCompatActivity {
             }
         }
     };
+
+    private boolean isPairedDevice(BluetoothDevice device) {
+        for (BluetoothDevice pairedDevice : pairedDevicesList) {
+            if (pairedDevice.getAddress().equals(device.getAddress())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     protected void onDestroy() {
@@ -317,9 +326,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
         String deviceAddress = item.getDeviceAddress();
         BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions((Activity) this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
-        }
+        checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
         device.createBond();
 
         BroadcastReceiver pairingReceiver = new BroadcastReceiver() {
@@ -328,9 +335,7 @@ public class BluetoothActivity extends AppCompatActivity {
                 String action = intent.getAction();
                 if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)) {
                     BluetoothDevice pairedDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
-                    }
+                    checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
                     int bondState = pairedDevice.getBondState();
                     if (bondState == BluetoothDevice.BOND_BONDED) {
                         item.setDeviceStatus("已配对");
@@ -397,155 +402,120 @@ public class BluetoothActivity extends AppCompatActivity {
         });
     }
 
-    public class BluetoothDeviceAdapter extends ArrayAdapter<BluetoothDevice> {
+    public class BluetoothDeviceAdapter extends RecyclerView.Adapter<BluetoothDeviceAdapter.ViewHolder> {
         private List<BluetoothDevice> devices;
+        private List<BluetoothDevice> pairedDevicesList;
         private Context context;
 
-        BluetoothItem bluetoothItem;
-        private int focusedPosition = -1;
-
-        public BluetoothDeviceAdapter(Context context, List<BluetoothDevice> devices) {
-            super(context, 0, devices);
+        public BluetoothDeviceAdapter(Context context, List<BluetoothDevice> devices, List<BluetoothDevice> pairedDevicesList) {
             this.context = context;
             this.devices = devices;
+            this.pairedDevicesList = pairedDevicesList;
         }
-
 
         @NonNull
         @Override
-        public View getView(int position, @NonNull View convertView, @NonNull ViewGroup parent) {
-            View itemView = convertView;
-            if (itemView == null) {
-                        itemView = LayoutInflater.from(context).inflate(R.layout.bluetooth_list_item, parent, false);
-            }
-            itemView.setFocusable(true);
-            itemView.setFocusableInTouchMode(true);
-
-            BluetoothDevice device = devices.get(position);
-
-            TextView deviceNameTextView = itemView.findViewById(R.id.bluetooth_name);
-            TextView deviceStatusTextView = itemView.findViewById(R.id.bluetooth_status);
-            String name = deviceNameTextView.getText().toString();
-            String status = deviceStatusTextView.getText().toString();
-            String address = device.getAddress();
-            bluetoothItem = new BluetoothItem(name, status, address);
-
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            }
-            bluetoothItem.setDeviceName(device.getName());
-
-            deviceNameTextView.setText(bluetoothItem.getDeviceName());
-            int pairState = device.getBondState();
-            switch (pairState) {
-                case BluetoothDevice.BOND_BONDED:
-                    bluetoothItem.setDeviceStatus("已配对");
-                    break;
-                case BluetoothDevice.BOND_BONDING:
-                    bluetoothItem.setDeviceStatus("配对中");
-                    break;
-                case BluetoothDevice.BOND_NONE:
-                    bluetoothItem.setDeviceStatus("");
-                    break;
-            }
-            deviceStatusTextView.setText(bluetoothItem.getDeviceStatus());
-            final BluetoothProfile.ServiceListener profileListener = new BluetoothProfile.ServiceListener() {
-                @Override
-                public void onServiceConnected(int profile, BluetoothProfile proxy) {
-                    if (profile == BluetoothProfile.A2DP) {
-                        List<BluetoothDevice> devices = proxy.getConnectedDevices();
-                        for (BluetoothDevice device : devices) {
-                            String deviceAddress = bluetoothItem.getDeviceAddress();
-                            if (device.getAddress().equals(deviceAddress)) {
-                                // 当前选中的蓝牙设备已连接
-                                Log.i("yang", "onServiceConnected: --已连接");
-                                bluetoothItem.setDeviceStatus("已连接");
-                                deviceStatusTextView.setText(bluetoothItem.getDeviceStatus());
-                                return;
-                            }
-                        }
-                    }
-                }
-                @Override
-                public void onServiceDisconnected(int profile) {
-                    if (profile == BluetoothProfile.A2DP) {
-                        // 处理断开连接的逻辑
-                    }
-                }
-            };
-
-            //TODO:判断是否已连接
-            // 检查当前选择的蓝牙设备是否已连接
-            bluetoothAdapter.getProfileProxy(context,profileListener,BluetoothProfile.A2DP);
-
-            //TODO:查下为什么连接之后重新扫描会断开连接
-
-            itemView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (hasFocus) {
-                        // 子项获得焦点时的操作
-                        v.setBackgroundResource(R.drawable.bg_sel);
-                        deviceNameTextView.setTextColor(getResources().getColor(R.color.sel_blue));
-                        deviceStatusTextView.setTextColor(getResources().getColor(R.color.sel_blue));
-                    } else {
-                        // 子项失去焦点时的操作
-                        v.setBackgroundColor(getResources().getColor(R.color.background_color));
-                        deviceNameTextView.setTextColor(getResources().getColor(R.color.white));
-                        deviceStatusTextView.setTextColor(getResources().getColor(R.color.white));
-                    }
-                }
-            });
-
-            if (position == focusedPosition) {
-                // 设置聚焦效果
-                itemView.requestFocus();
-                // 设置背景和文本颜色
-                itemView.setBackgroundResource(R.drawable.bg_sel);
-                deviceNameTextView.setTextColor(getResources().getColor(R.color.sel_blue));
-                deviceStatusTextView.setTextColor(getResources().getColor(R.color.sel_blue));
-            } else {
-                // 清除聚焦效果
-                itemView.setBackgroundColor(getResources().getColor(R.color.background_color));
-                deviceNameTextView.setTextColor(getResources().getColor(R.color.white));
-                deviceStatusTextView.setTextColor(getResources().getColor(R.color.white));
-            }
-
-            if (position == 0){
-                //设置第一个子项获取焦点
-                itemView.requestFocus();
-            }
-
-            //设置点击监听
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //TODO:蓝牙配对的逻辑
-                    String status = bluetoothItem.getDeviceStatus();
-                    switch (status) {
-                        case "":
-                            showPairConectedDialog(bluetoothItem);
-                            break;
-                        case "已配对":
-                            showConnectDeviceDialog(bluetoothItem);
-                            break;
-                        case "已连接":
-//                showCancelPairDialog();
-                            break;
-                    }
-                }
-            });
-
-
-            return itemView;
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.bluetooth_list_item, parent, false);
+            return new ViewHolder(itemView);
         }
 
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+            BluetoothDevice device;
+            if (position < pairedDevicesList.size()) {
+                device = pairedDevicesList.get(position);
+            } else {
+                device = devices.get(position - pairedDevicesList.size());
+            }
+            holder.bindData(device);
+        }
+
+        @Override
+        public int getItemCount() {
+            return devices.size() + pairedDevicesList.size();
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            public TextView deviceNameTextView;
+            public TextView deviceStatusTextView;
+            BluetoothItem bluetoothItem;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+                deviceNameTextView = itemView.findViewById(R.id.bluetooth_name);
+                deviceStatusTextView = itemView.findViewById(R.id.bluetooth_status);
+
+                itemView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if (hasFocus) {
+                            v.setBackgroundResource(R.drawable.bg_sel);
+                            deviceNameTextView.setTextColor(ContextCompat.getColor(context, R.color.sel_blue));
+                            deviceStatusTextView.setTextColor(ContextCompat.getColor(context, R.color.sel_blue));
+                        } else {
+                            v.setBackgroundColor(ContextCompat.getColor(context, R.color.background_color));
+                            deviceNameTextView.setTextColor(ContextCompat.getColor(context, R.color.white));
+                            deviceStatusTextView.setTextColor(ContextCompat.getColor(context, R.color.white));
+                        }
+                    }
+                });
+
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String status = deviceStatusTextView.getText().toString();
+                        switch (status) {
+                            case "":
+                                showPairConectedDialog(bluetoothItem);
+                                break;
+                            case "已配对":
+                                showConnectDeviceDialog(bluetoothItem);
+                                break;
+                            case "已连接":
+                                // showCancelPairDialog();
+                                break;
+                        }
+                    }
+                });
+            }
+
+            public void bindData(BluetoothDevice device) {
+                checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
+                String name = device.getName();
+                String status = "";
+                String address = device.getAddress();
+                bluetoothItem = new BluetoothItem(name, status, address);
+                bluetoothItem.setDeviceName(device.getName());
+                deviceNameTextView.setText(bluetoothItem.getDeviceName());
+                int pairState = device.getBondState();
+                switch (pairState) {
+                    case BluetoothDevice.BOND_BONDED:
+                        bluetoothItem.setDeviceStatus("已配对");
+                        break;
+                    case BluetoothDevice.BOND_BONDING:
+                        bluetoothItem.setDeviceStatus("配对中");
+                        break;
+                    case BluetoothDevice.BOND_NONE:
+                        bluetoothItem.setDeviceStatus("");
+                        break;
+                }
+                deviceStatusTextView.setText(bluetoothItem.getDeviceStatus());
+            }
+        }
+    }
+
+    private void checkPermission(String Permission) {
+        if (ActivityCompat.checkSelfPermission(this, Permission) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) this, new String[]{Permission}, 1);
+        }
     }
 
     /*
      * 蓝牙连接Dialog*/
     private void showConnectDeviceDialog(BluetoothItem item) {
         Dialog conDialog = new Dialog(this, R.style.DialogStyle);
+        //TODO: 1.点击连接之后停止扫描 2.检测已连接的蓝牙设备
 
         //加载自定义布局文件
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -561,7 +531,9 @@ public class BluetoothActivity extends AppCompatActivity {
         conDialog.show();
         String deviceAddress = item.getDeviceAddress();
         BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);
-        ConnectThread connectThread = new ConnectThread(device);
+        //在主线程中创建Handler对象
+        Handler mHandler = new Handler(Looper.getMainLooper());
+        ConnectThread connectThread = new ConnectThread(device, mHandler);
         ConIgnoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -570,88 +542,30 @@ public class BluetoothActivity extends AppCompatActivity {
                 conDialog.dismiss();
             }
         });
-
         ConConnectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showToast("点击了连接");
                 conDialog.dismiss();
-//                connectToDevice(item);
                 connectThread.run();
             }
         });
     }
 
-    private void connectToDevice(BluetoothItem item) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 1);
-        }
-        if (bluetoothAdapter.isDiscovering()) {
-            bluetoothAdapter.cancelDiscovery();
-        }
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                String deviceAddress = item.getDeviceAddress();
-                BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);
-
-                try {
-                    if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
-                    }
-                    /*UUID uuid = null;
-                    uuid = device.getUuids()[0].getUuid();*/
-
-                    UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // 替换为您需要连接的服务UUID
-                    BluetoothSocket socket  = device.createRfcommSocketToServiceRecord(uuid);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                                ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
-                            }
-                            try {
-                                socket.connect();
-                                showToast("---连接成功---");
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                                showToast("与设备连接失败请重试");
-                            } finally {
-                                try {
-                                    socket.close();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                    });
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    showToast("---连接失败---");
-                    // 连接失败的处理
-                }
-            }
-        });
-
-    }
-
     private class ConnectThread extends Thread {
         private final BluetoothSocket mmSocket;
         private final BluetoothDevice mmDevice;
+        private final Handler mHandler;
 
-        public ConnectThread(BluetoothDevice device) {
-            // Use a temporary object that is later assigned to mmSocket
-            // because mmSocket is final.
+        public ConnectThread(BluetoothDevice device, Handler handler) {
             BluetoothSocket tmp = null;
             mmDevice = device;
+            mHandler = handler;
 
             try {
-                // Get a BluetoothSocket to connect with the given BluetoothDevice.
-                // MY_UUID is the app's UUID string, also used in the server code.
-                if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
-                }
-                UUID MY_UUID = UUID.fromString("2CC174A9-095F-C7AF-AD72-F6E4619132B4");
+
+                UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+                checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
                 tmp = device.createRfcommSocketToServiceRecord(MY_UUID);
             } catch (IOException e) {
                 Log.e("yang", "Socket's create() method failed", e);
@@ -660,32 +574,41 @@ public class BluetoothActivity extends AppCompatActivity {
         }
 
         public void run() {
-            // Cancel discovery because it otherwise slows down the connection.
-            if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
-            }
+            checkPermission(Manifest.permission.BLUETOOTH_SCAN);
             bluetoothAdapter.cancelDiscovery();
-
-            try {
-                // Connect to the remote device through the socket. This call blocks
-                // until it succeeds or throws an exception.
-                mmSocket.connect();
-            } catch (IOException connectException) {
-                // Unable to connect; close the socket and return.
-                try {
-                    mmSocket.close();
-                } catch (IOException closeException) {
-                    Log.e("yang", "Could not close the client socket", closeException);
+            //创建一个新的线程来执行连接操作
+            Thread connectThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
+                        mmSocket.connect();
+                        Log.i("yang", "run: 连接成功");
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                showToast("恭喜你连接成功");
+                            }
+                        });
+                    } catch (IOException connectException) {
+                        try {
+                            mmSocket.close();
+                            Log.e("yang", "run: 连接失败" );
+                            connectException.printStackTrace();
+                        } catch (IOException closeException) {
+                            Log.e("yang", "Could not close the client socket", closeException);
+                        }
+                        return;
+                    }
                 }
-                return;
+            });
+            connectThread.start();//启动连接线程
+            try {
+                connectThread.join();//等待连接线程执行完毕
+            } catch (InterruptedException e){
+                e.printStackTrace();
             }
-
-            // The connection attempt succeeded. Perform work associated with
-            // the connection in a separate thread.
-//            manageMyConnectedSocket(mmSocket);
         }
-
-        // Closes the client socket and causes the thread to finish.
         public void cancel() {
             try {
                 mmSocket.close();

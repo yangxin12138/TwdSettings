@@ -101,17 +101,12 @@
                 android:layout_height="@dimen/net_arrow_wlanAble_height"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
-        <TextView
-            android:text="其他功能"
-            android:textSize="@dimen/net_content_tv_textSize"
-            android:textColor="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
         <LinearLayout
             android:id="@+id/net_LL_speed"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/net_content_LL_height">
+            android:layout_height="@dimen/net_content_LL_height"
+            android:visibility="gone">
             <TextView
                 android:id="@+id/net_tv_speed"
                 android:text="网络测速"

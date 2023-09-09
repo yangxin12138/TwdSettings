@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:background="@color/background_color">
@@ -11,8 +11,6 @@
         android:id="@+id/icon_bluetooth"
         android:layout_width="@dimen/wifi_list_item_signal_width_height"
         android:layout_height="@dimen/wifi_list_item_signal_width_height"
-        android:textSize="@dimen/wifi_list_item_signal_textSize"
-        android:textColor="@color/white"
         android:src="@drawable/icon_bluetooth_item"
         android:layout_gravity="center_vertical"/>
     <TextView

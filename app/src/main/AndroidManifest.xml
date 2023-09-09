@@ -31,8 +31,10 @@
     <uses-permission
         android:name="android.permission.WRITE_SECURE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"
+    <uses-permission
+        android:name="android.permission.CHANGE_CONFIGURATION"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -45,6 +47,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".device.DeviceStorageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".device.DeviceInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".device.DeviceActivity"
+            android:exported="false" />
         <activity
             android:name=".universal.UniversalLanguageActivity"
             android:exported="false" />
