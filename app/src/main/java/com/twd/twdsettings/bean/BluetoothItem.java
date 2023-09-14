@@ -8,11 +8,17 @@ import android.content.pm.PackageManager;
 
 import androidx.core.app.ActivityCompat;
 
+import com.twd.twdsettings.bluetooth.BluetoothActivity;
+
 public class BluetoothItem {
     private String deviceName;
     private String deviceStatus;
 
     private String deviceAddress;
+    private BluetoothActivity.ConnectThread connectThread;
+
+    public BluetoothItem() {
+    }
 
     public BluetoothItem(String deviceName, String deviceStatus, String deviceAddress) {
         this.deviceName = deviceName;
@@ -50,5 +56,13 @@ public class BluetoothItem {
 
     public void setDeviceAddress(String deviceAddress) {
         this.deviceAddress = deviceAddress;
+    }
+
+    public BluetoothActivity.ConnectThread getConnectThread() {
+        return connectThread;
+    }
+
+    public void setConnectThread(BluetoothActivity.ConnectThread connectThread) {
+        this.connectThread = connectThread;
     }
 }

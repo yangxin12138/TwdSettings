@@ -172,7 +172,7 @@
     <dimen name="wifi_list_item_isChecked_width">100dp</dimen>
     <dimen name="wifi_list_item_isChecked_marginStart">200dp</dimen>
     <dimen name="wifi_list_item_isChecked_textSize">30sp</dimen>
-    <dimen name="wifi_list_item_signal_width_height">50dp</dimen>
+    <dimen name="wifi_list_item_signal_width_height">40dp</dimen>
     <dimen name="wifi_list_item_signal_textSize">30sp</dimen>
     <dimen name="wifi_speedometerView_width_height">200dp</dimen>
     <dimen name="wifi_speedometerView_marginStart">100dp</dimen>
@@ -237,4 +237,28 @@
     <dimen name="devices_storage_iv_marginStart">300dp</dimen>
     <dimen name="devices_storage_iv_width">20dp</dimen>
     <dimen name="devices_storage_iv_height">20dp</dimen>
+
+    <!--Bluetooth-->
+    <dimen name="blu_title_marginTop">30dp</dimen>
+    <dimen name="blu_title_iv_width">20dp</dimen>
+    <dimen name="blu_title_iv_height">20dp</dimen>
+    <dimen name="blu_title_iv_marginStart">80dp</dimen>
+    <dimen name="blu_title_tv_textSize">20sp</dimen>
+    <dimen name="blu_title_tv_width">50dp</dimen>
+    <dimen name="blu_title_tv_marginStart">10dp</dimen>
+    <dimen name="blu_content_LL_paddingStart">150dp</dimen>
+    <dimen name="blu_content_LL_paddingTop">50dp</dimen>
+    <dimen name="blu_content_LL_paddingEnd">150dp</dimen>
+    <dimen name="blu_content_LL_height">50dp</dimen>
+    <dimen name="blu_bluetooth_tv_textSize">25sp</dimen>
+    <dimen name="blu_bluetooth_tv_width">100dp</dimen>
+    <dimen name="blu_bluetooth_tv_marginStart">30dp</dimen>
+    <dimen name="blu_switch_marginStart">450dp</dimen>
+    <dimen name="blu_switch_thumbPadding">2dp</dimen>
+    <dimen name="blu_switch_switchMinWidth">60dp</dimen>
+    <dimen name="blu_tv_search_devices_textSize">20sp</dimen>
+    <dimen name="blu_search_tv_textSize">25sp</dimen>
+    <dimen name="blu_search_tv_width">100dp</dimen>
+    <dimen name="blu_search_tv_marginStart">30dp</dimen>
+    <dimen name="blu_item_iv_marginStart">30dp</dimen>
 </resources>

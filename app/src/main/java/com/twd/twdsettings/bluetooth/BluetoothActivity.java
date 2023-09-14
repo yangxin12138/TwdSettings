@@ -179,6 +179,7 @@ public class BluetoothActivity extends AppCompatActivity {
         this.registerReceiver(bluetoothReceiver, filter);
         //开始扫描蓝牙设备
         startBluetoothScan();
+        registerBroadcastReveiver();
     }
 
     /*获取已配对的设备*/
@@ -319,6 +320,7 @@ public class BluetoothActivity extends AppCompatActivity {
         super.onDestroy();
         stopBluetoothScan();
         unregisterReceiver(bluetoothReceiver);
+        unRegisterBroadcastReceiver();
     }
 
     //进行配对
@@ -374,16 +376,21 @@ public class BluetoothActivity extends AppCompatActivity {
     /*
      * 蓝牙配对*/
     private void showPairConectedDialog(BluetoothItem item) {
-        Dialog pairDialog = new Dialog(this);
+        checkPermission(Manifest.permission.BLUETOOTH_SCAN);
+        if (bluetoothAdapter.isDiscovering()) {
+            bluetoothAdapter.cancelDiscovery();
+        }
+        Dialog pairDialog = new Dialog(this,R.style.DialogStyle);
 
         //加载自定义布局文件
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogView = inflater.inflate(R.layout.bluetooth_pairtodevice, null);
         pairDialog.setContentView(dialogView);
+        dialogView.setPadding(100,0,100,100);
+
         final TextView PairTitle = dialogView.findViewById(R.id.pair_title);
         final Button PairButton = dialogView.findViewById(R.id.pair_btn);
         final Button PairCancelButton = dialogView.findViewById(R.id.pair_cancel_btn);
-
         PairTitle.setText(item.getDeviceName() + " 的蓝牙配对请求");
         pairDialog.show();
         PairButton.setOnClickListener(new View.OnClickListener() {
@@ -406,6 +413,7 @@ public class BluetoothActivity extends AppCompatActivity {
         private List<BluetoothDevice> devices;
         private List<BluetoothDevice> pairedDevicesList;
         private Context context;
+        private ConnectThread connectThread;
 
         public BluetoothDeviceAdapter(Context context, List<BluetoothDevice> devices, List<BluetoothDevice> pairedDevicesList) {
             this.context = context;
@@ -428,6 +436,9 @@ public class BluetoothActivity extends AppCompatActivity {
             } else {
                 device = devices.get(position - pairedDevicesList.size());
             }
+            //在主线程中创建Handler对象
+            Handler mHandler = new Handler(Looper.getMainLooper());
+            connectThread = new ConnectThread(device, mHandler);
             holder.bindData(device);
         }
 
@@ -470,10 +481,10 @@ public class BluetoothActivity extends AppCompatActivity {
                                 showPairConectedDialog(bluetoothItem);
                                 break;
                             case "已配对":
-                                showConnectDeviceDialog(bluetoothItem);
+                                showConnectDeviceDialog(0,bluetoothItem,connectThread);
                                 break;
                             case "已连接":
-                                // showCancelPairDialog();
+                                showConnectDeviceDialog(1,bluetoothItem,connectThread);
                                 break;
                         }
                     }
@@ -483,10 +494,12 @@ public class BluetoothActivity extends AppCompatActivity {
             public void bindData(BluetoothDevice device) {
                 checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
                 String name = device.getName();
+                if (name == null){
+                    name = device.getAddress();
+                }
                 String status = "";
                 String address = device.getAddress();
-                bluetoothItem = new BluetoothItem(name, status, address);
-                bluetoothItem.setDeviceName(device.getName());
+                bluetoothItem = new BluetoothItem(name,status,address);
                 deviceNameTextView.setText(bluetoothItem.getDeviceName());
                 int pairState = device.getBondState();
                 switch (pairState) {
@@ -500,9 +513,50 @@ public class BluetoothActivity extends AppCompatActivity {
                         bluetoothItem.setDeviceStatus("");
                         break;
                 }
+                ArrayList<BluetoothDevice> deviceList = checkLinkState();
+                boolean isConnected = false;
+                for (BluetoothDevice connectedDevice : deviceList) {
+                    if (connectedDevice.getAddress().equals(device.getAddress())) {
+                        isConnected = true;
+                        break;
+                    }
+                }
+                if (isConnected) {
+                    bluetoothItem.setDeviceStatus("已连接");
+                }
                 deviceStatusTextView.setText(bluetoothItem.getDeviceStatus());
+
             }
         }
+    }
+
+    private ArrayList checkLinkState(){
+        ArrayList<BluetoothDevice> deviceList = new ArrayList<>();
+        BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+        Class<BluetoothAdapter> bluetoothAdapterClass = BluetoothAdapter.class;//得到BluetoothAdapter的Class对象
+        try {
+            //得到连接状态的方法
+            Method method = bluetoothAdapterClass.getDeclaredMethod("getConnectionState", (Class[]) null);
+            //打开权限
+            method.setAccessible(true);
+            int state = (int) method.invoke(adapter, (Object[]) null);
+            if (state == BluetoothAdapter.STATE_CONNECTED) {
+                checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
+                Set<BluetoothDevice> devices = adapter.getBondedDevices();
+                for (BluetoothDevice device : devices) {
+                    Method isConnectedMethod = BluetoothDevice.class.getDeclaredMethod("isConnected", (Class[]) null);
+                    method.setAccessible(true);
+                    boolean isConnected = (boolean) isConnectedMethod.invoke(device, (Object[]) null);
+                    if (isConnected) {
+                        Log.i("yang", "checkLinkState: " + "connected:" + device.getName());
+                        deviceList.add(device);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return deviceList;
     }
 
     private void checkPermission(String Permission) {
@@ -511,9 +565,14 @@ public class BluetoothActivity extends AppCompatActivity {
         }
     }
 
+
     /*
      * 蓝牙连接Dialog*/
-    private void showConnectDeviceDialog(BluetoothItem item) {
+    private void showConnectDeviceDialog(int flag,BluetoothItem item,ConnectThread connectThread) {
+        checkPermission(Manifest.permission.BLUETOOTH_SCAN);
+        if (bluetoothAdapter.isDiscovering()) {
+            bluetoothAdapter.cancelDiscovery();
+        }
         Dialog conDialog = new Dialog(this, R.style.DialogStyle);
         //TODO: 1.点击连接之后停止扫描 2.检测已连接的蓝牙设备
 
@@ -525,21 +584,29 @@ public class BluetoothActivity extends AppCompatActivity {
 
         final TextView ConTitle = dialogView.findViewById(R.id.bt_connect_title);
         final Button ConConnectButton = dialogView.findViewById(R.id.bt_connect_btn);
+        final Button ConCancelButton = dialogView.findViewById(R.id.bt_cancel_btn);
         final Button ConIgnoreButton = dialogView.findViewById(R.id.ignore_bt_btn);
 
-        ConTitle.setText("此设备已经配对，是否直接连接？");
+        if (flag == 0){
+            ConTitle.setText("此设备已经配对，是否直接连接？");
+            ConCancelButton.setVisibility(View.GONE);
+            ConConnectButton.setVisibility(View.VISIBLE);
+        } else if (flag == 1) {
+            ConTitle.setText("此设备已经连接");
+            ConCancelButton.setVisibility(View.VISIBLE);
+            ConConnectButton.setVisibility(View.GONE);
+        }
+
         conDialog.show();
         String deviceAddress = item.getDeviceAddress();
         BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);
-        //在主线程中创建Handler对象
-        Handler mHandler = new Handler(Looper.getMainLooper());
-        ConnectThread connectThread = new ConnectThread(device, mHandler);
         ConIgnoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showToast("点击了忽略");
                 removeToDevice(device);
                 conDialog.dismiss();
+                deviceAdapter.notifyDataSetChanged();
             }
         });
         ConConnectButton.setOnClickListener(new View.OnClickListener() {
@@ -548,11 +615,21 @@ public class BluetoothActivity extends AppCompatActivity {
                 showToast("点击了连接");
                 conDialog.dismiss();
                 connectThread.run();
+                item.setConnectThread(connectThread);
+                Log.i("yang", "onClick: 点击了连接connectThread = " + connectThread);
+                deviceAdapter.notifyDataSetChanged();
+            }
+        });
+
+        ConCancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                conDialog.dismiss();
             }
         });
     }
 
-    private class ConnectThread extends Thread {
+    public class ConnectThread extends Thread {
         private final BluetoothSocket mmSocket;
         private final BluetoothDevice mmDevice;
         private final Handler mHandler;
@@ -595,6 +672,12 @@ public class BluetoothActivity extends AppCompatActivity {
                             mmSocket.close();
                             Log.e("yang", "run: 连接失败" );
                             connectException.printStackTrace();
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showToast("连接失败");
+                                }
+                            });
                         } catch (IOException closeException) {
                             Log.e("yang", "Could not close the client socket", closeException);
                         }
@@ -612,10 +695,56 @@ public class BluetoothActivity extends AppCompatActivity {
         public void cancel() {
             try {
                 mmSocket.close();
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        showToast("断开成功");
+                    }
+                });
             } catch (IOException e) {
                 Log.e("yang", "Could not close the client socket", e);
             }
         }
     }
 
+    private void registerBroadcastReveiver() {
+        IntentFilter connectStateChangeFilter = new IntentFilter(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
+        IntentFilter stateChangeFilter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+        IntentFilter connectFilter = new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED);
+        IntentFilter disConnectFilter = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+
+        registerReceiver(stateChangeReceiver, connectStateChangeFilter);
+        registerReceiver(stateChangeReceiver, stateChangeFilter);
+        registerReceiver(stateChangeReceiver, connectFilter);
+        registerReceiver(stateChangeReceiver, disConnectFilter);
+    }
+
+    private void unRegisterBroadcastReceiver() {
+        unregisterReceiver(stateChangeReceiver);
+    }
+
+    private BroadcastReceiver stateChangeReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
+                deviceAdapter.notifyDataSetChanged();
+            }
+            if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
+                deviceAdapter.notifyDataSetChanged();
+            }
+
+            if (BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED.equals(action)) {
+                deviceAdapter.notifyDataSetChanged();
+            }
+
+            if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) {
+                deviceAdapter.notifyDataSetChanged();
+            }
+        }
+    };
+
 }
+
+

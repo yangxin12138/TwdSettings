@@ -12,10 +12,11 @@
         android:layout_width="@dimen/wifi_list_item_signal_width_height"
         android:layout_height="@dimen/wifi_list_item_signal_width_height"
         android:src="@drawable/icon_bluetooth_item"
+        android:layout_marginStart="@dimen/blu_item_iv_marginStart"
         android:layout_gravity="center_vertical"/>
     <TextView
         android:id="@+id/bluetooth_name"
-        android:text="123456"
+        android:text=""
         android:textSize="@dimen/wifi_list_item_ssid_textSize"
         android:textColor="@color/white"
         android:layout_width="@dimen/wifi_list_item_ssid_width"

@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/background_color">
 
     <TextView
         android:id="@+id/pair_title"
@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="30dp"/>
 
     <LinearLayout
@@ -22,27 +22,27 @@
         android:orientation="horizontal"
         android:gravity="center">
         <Button
+            android:id="@+id/pair_cancel_btn"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="取消"
+            android:textSize="20sp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:nextFocusRight="@id/pair_btn"
+            android:background="@drawable/button_focus"/>
+        <Button
             android:id="@+id/pair_btn"
             android:layout_gravity="center_horizontal"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginStart="70dp"
-            android:text="取消"
-            android:textSize="20sp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:nextFocusLeft="@+id/pair_cancel_btn"
-            android:background="@drawable/button_focus"/>
-        <Button
-            android:id="@+id/pair_cancel_btn"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
             android:text="配对"
             android:textSize="20sp"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:nextFocusRight="@id/pair_btn"
+            android:nextFocusLeft="@+id/pair_cancel_btn"
             android:background="@drawable/button_focus"/>
     </LinearLayout>
 

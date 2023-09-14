@@ -22,7 +22,9 @@ public final class BluetoothPairingRequestReceiver extends BroadcastReceiver {
                 intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
         try {
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
+                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);Intent permissionIntent = new Intent(context, BluetoothActivity.class);
+                permissionIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(permissionIntent);
             }
             device.setPairingConfirmation(true);//确认配对
             abortBroadcast();//拦截掉广播

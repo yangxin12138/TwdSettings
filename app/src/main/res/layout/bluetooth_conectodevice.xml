@@ -32,6 +32,16 @@
             android:focusableInTouchMode="true"
             android:background="@drawable/button_focus"/>
         <Button
+            android:id="@+id/bt_cancel_btn"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="取消"
+            android:textSize="20sp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/button_focus"/>
+        <Button
             android:id="@+id/ignore_bt_btn"
             android:layout_gravity="center_horizontal"
             android:layout_width="200dp"
