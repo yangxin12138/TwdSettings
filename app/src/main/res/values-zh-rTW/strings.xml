@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TwdSettings</string>
+    <string name="app_name">設定</string>
     <string name="title_language">語言</string>
     <string name="dialog_changeLanguage_title">提示</string>
     <string name="dialog_changeLanguage_message">切換語言設置需要重啟設備後生效,是否切換?</string>

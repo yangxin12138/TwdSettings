@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TwdSettings</string>
+    <string name="app_name">Settings</string>
     <string name="title_language">Language</string>
     <string name="dialog_changeLanguage_title">Tips</string>
     <string name="dialog_changeLanguage_message">Switching languages will take effect only after restarting the application. Do you want to switch?</string>
