@@ -21,7 +21,7 @@
         android:id="@+id/tvtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="投影设置"
+        android:text="@string/projection_index_title_text"
         android:textColor="@color/black"
         android:textSize="@dimen/main_title_textSize"
         android:textStyle="normal"
@@ -69,7 +69,7 @@
                 android:layout_height="@dimen/main_tv_height"
                 android:layout_toRightOf="@+id/iv_trapezoidal_double_point"
                 android:gravity="center_vertical"
-                android:text="两点梯形校正"
+                android:text="@string/projection_index_double_point"
                 android:textColor="@color/black"
                 android:textSize="@dimen/main_tv_textSize"
                 android:textStyle="normal"/>
@@ -108,7 +108,7 @@
                 android:layout_height="@dimen/main_tv_height"
                 android:layout_toRightOf="@+id/iv_trapezoidal_single_point"
                 android:gravity="center_vertical"
-                android:text="四点梯形校正"
+                android:text="@string/projection_index_single_point"
                 android:textColor="@color/black"
                 android:textSize="@dimen/main_tv_textSize"
                 android:textStyle="normal" />
@@ -148,7 +148,7 @@
                 android:layout_height="@dimen/main_tv_height"
                 android:layout_toRightOf="@+id/iv_size"
                 android:gravity="center_vertical"
-                android:text="尺寸调节"
+                android:text="@string/projection_index_size"
                 android:textColor="@color/black"
                 android:textSize="@dimen/main_tv_textSize"
                 android:textStyle="normal" />
@@ -188,7 +188,7 @@
                 android:layout_height="@dimen/main_tv_height"
                 android:layout_toRightOf="@+id/iv_projection"
                 android:gravity="center_vertical"
-                android:text="投影方式"
+                android:text="@string/projection_index_projection_method"
                 android:textColor="@color/black"
                 android:textSize="@dimen/main_tv_textSize"
                 android:textStyle="normal" />

@@ -105,7 +105,7 @@
     <dimen name="index_LL_marginStart">180dp</dimen>
     <dimen name="index_LL_width">550dp</dimen>
     <dimen name="index_LL_height">100dp</dimen>
-    <dimen name="index_iv_marginStart">350dp</dimen>
+    <dimen name="index_iv_marginStart">250dp</dimen>
     <dimen name="index_iv_width">30dp</dimen>
     <dimen name="index_iv_height">30dp</dimen>
     <dimen name="index_LL_display_marginStart">800dp</dimen>
@@ -119,7 +119,7 @@
     <dimen name="index_ivFront_marginStart">20dp</dimen>
     <dimen name="index_ivFront_width">30dp</dimen>
     <dimen name="index_ivFront_height">30dp</dimen>
-    <dimen name="index_tv_width">100dp</dimen>
+    <dimen name="index_tv_width">200dp</dimen>
     <dimen name="index_tv_textSize">20sp</dimen>
     <dimen name="index_tv_marginStart">20dp</dimen>
 

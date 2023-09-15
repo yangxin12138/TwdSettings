@@ -5,4 +5,22 @@
     <string name="dialog_changeLanguage_message">切換語言設置需要重啟設備後生效,是否切換?</string>
     <string name="dialog_changeLanguage_btConfirm">確認</string>
     <string name="dialog_changeLanguage_btCancel">取消</string>
+    <string name="main_index_title_text">設定</string>
+    <string name="main_projection_text">投影設置</string>
+    <string name="main_wifi_text">網絡設置</string>
+    <string name="main_bluetooth_text">藍牙</string>
+    <string name="main_Universal_text">通用</string>
+    <string name="main_aboutDevice_text">關於設備</string>
+    <!--Projection-->
+    <string name="projection_index_title_text">投影設置</string>
+    <string name="projection_index_double_point">兩點梯形校正</string>
+    <string name="projection_index_single_point">四點梯形校正</string>
+    <string name="projection_index_size">尺寸調節</string>
+    <string name="projection_index_projection_method">投影方式</string>
+    <string name="projection_size_level_text">左右鍵縮放尺寸</string>
+    <string name="projection_method_title_text">投影方式</string>
+    <string name="projection_method_pos_pos">正裝正投</string>
+    <string name="projection_method_pos_neg">正裝背投</string>
+    <string name="projection_method_neg_pos">吊裝正投</string>
+    <string name="projection_method_neg_neg">吊裝背投</string>
 </resources>

@@ -5,4 +5,23 @@
     <string name="dialog_changeLanguage_message">Switching languages will take effect only after restarting the application. Do you want to switch?</string>
     <string name="dialog_changeLanguage_btConfirm">Confirm</string>
     <string name="dialog_changeLanguage_btCancel">Cancel</string>
+    <!--Index-->
+    <string name="main_index_title_text">Setting</string>
+    <string name="main_projection_text">Projection Setting</string>
+    <string name="main_wifi_text">Internet</string>
+    <string name="main_bluetooth_text">Bluetooth</string>
+    <string name="main_Universal_text">Universal</string>
+    <string name="main_aboutDevice_text">About Device</string>
+    <!--Projection-->
+    <string name="projection_index_title_text">Projection</string>
+    <string name="projection_index_double_point">Correction-DoublePoint</string>
+    <string name="projection_index_single_point">Correction-SinglePoint</string>
+    <string name="projection_index_size">Size</string>
+    <string name="projection_index_projection_method">Projection Method</string>
+    <string name="projection_size_level_text">Left and right keys to zoom in and out</string>
+    <string name="projection_method_title_text">Projection Method</string>
+    <string name="projection_method_pos_pos">Forward-mounted Forward-projection</string>
+    <string name="projection_method_pos_neg">Forward-mounted Reverse-projection</string>
+    <string name="projection_method_neg_pos">Reverse-mounted Forward-projection</string>
+    <string name="projection_method_neg_neg">Reverse-mounted Reverse-projection</string>
 </resources>

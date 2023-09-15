@@ -61,10 +61,10 @@ public class ProjectionSettingsActivity extends AppCompatActivity implements Vie
         /* 设置投影方式显示文字 根据mSharedPreferences中提取的值判断显示*/
         TextView tv_projection_small =  findViewById(R.id.tv_projection_small);
         Log.i("投影方式：","pos_pos_check:"+pos_pos_check+",pos_neg_check:"+pos_neg_check+",neg_pos_check:"+neg_pos_check+",neg_neg_check:"+neg_neg_check);
-        if (pos_pos_check) tv_projection_small.setText("正装正投");
-        if (pos_neg_check) tv_projection_small.setText("正装背投");
-        if (neg_pos_check) tv_projection_small.setText("吊装正投");
-        if (neg_neg_check) tv_projection_small.setText("吊装背投");
+        if (pos_pos_check) tv_projection_small.setText(R.string.projection_method_pos_pos);
+        if (pos_neg_check) tv_projection_small.setText(R.string.projection_method_pos_neg);
+        if (neg_pos_check) tv_projection_small.setText(R.string.projection_method_neg_pos);
+        if (neg_neg_check) tv_projection_small.setText(R.string.projection_method_neg_neg);
         /* 设置监听器 */
         double_TrapezoidalRL.setOnClickListener(this);
         single_TrapezoidalRL.setOnClickListener(this);

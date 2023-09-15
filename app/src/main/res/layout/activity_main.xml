@@ -12,7 +12,7 @@
         android:id="@+id/index_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="设置"
+        android:text="@string/main_index_title_text"
         android:textColor="@color/white"
         android:textSize="@dimen/index_title_textSize"
         android:textStyle="bold"
@@ -42,7 +42,7 @@
                 android:id="@+id/projection_text"
                 android:layout_width="@dimen/index_tv_width"
                 android:layout_height="wrap_content"
-                android:text="投影设置"
+                android:text="@string/main_projection_text"
                 android:textColor="@color/white"
                 android:textSize="@dimen/index_tv_textSize"
                 android:layout_marginStart="@dimen/index_tv_marginStart"/>
@@ -70,7 +70,7 @@
                 android:id="@+id/wifi_text"
                 android:layout_width="@dimen/index_tv_width"
                 android:layout_height="wrap_content"
-                android:text="网络"
+                android:text="@string/main_wifi_text"
                 android:textColor="@color/white"
                 android:textSize="@dimen/index_tv_textSize"
                 android:layout_marginStart="@dimen/index_tv_marginStart"/>
@@ -98,7 +98,7 @@
                 android:id="@+id/bluetooth_text"
                 android:layout_width="@dimen/index_tv_width"
                 android:layout_height="wrap_content"
-                android:text="蓝牙"
+                android:text="@string/main_bluetooth_text"
                 android:textColor="@color/white"
                 android:textSize="@dimen/index_tv_textSize"
                 android:layout_marginStart="@dimen/index_tv_marginStart"/>
@@ -126,7 +126,7 @@
                 android:id="@+id/setup_text"
                 android:layout_width="@dimen/index_tv_width"
                 android:layout_height="wrap_content"
-                android:text="通用"
+                android:text="@string/main_Universal_text"
                 android:textColor="@color/white"
                 android:textSize="@dimen/index_tv_textSize"
                 android:layout_marginStart="@dimen/index_tv_marginStart"/>
@@ -154,7 +154,7 @@
                 android:id="@+id/about_text"
                 android:layout_width="@dimen/index_tv_width"
                 android:layout_height="wrap_content"
-                android:text="系统与设备"
+                android:text="@string/main_aboutDevice_text"
                 android:textColor="@color/white"
                 android:textSize="@dimen/index_tv_textSize"
                 android:layout_marginStart="@dimen/index_tv_marginStart"/>
@@ -182,7 +182,7 @@
                 android:id="@+id/display_text"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:text="系统与设备"
+                android:text="@string/main_aboutDevice_text"
                 android:textSize="@dimen/index_display_tv_textSize"
                 android:layout_marginTop="@dimen/index_display_tv_marginTop"
                 android:layout_width="@dimen/index_display_tv_width"

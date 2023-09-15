@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/projection_title_marginTop"
-        android:text="投影方式"
+        android:text="@string/projection_method_title_text"
         android:textColor="@color/black"
         android:layout_marginStart="@dimen/projection_title_marginStart"
         android:textSize="@dimen/projection_title_textSize"
@@ -47,7 +47,7 @@
                 android:layout_height="@dimen/projection_tv_height"
                 android:paddingTop="@dimen/projection_tv_paddingTop"
                 android:layout_marginLeft="@dimen/projection_tv_marginLeft"
-                android:text="正装正投"
+                android:text="@string/projection_method_pos_pos"
                 android:textColor="@color/black"
                 android:textSize="@dimen/projection_tv_textSize"
                 android:textStyle="normal" />
@@ -75,7 +75,7 @@
                 android:layout_height="@dimen/projection_tv_height"
                 android:paddingTop="@dimen/projection_tv_paddingTop"
                 android:layout_marginLeft="@dimen/projection_tv_marginLeft"
-                android:text="正装背投"
+                android:text="@string/projection_method_pos_neg"
                 android:textColor="@color/black"
                 android:textSize="@dimen/projection_tv_textSize"
                 android:textStyle="normal" />
@@ -103,7 +103,7 @@
                 android:layout_height="@dimen/projection_tv_height"
                 android:paddingTop="@dimen/projection_tv_paddingTop"
                 android:layout_marginLeft="@dimen/projection_tv_marginLeft"
-                android:text="吊装正投"
+                android:text="@string/projection_method_neg_pos"
                 android:textColor="@color/black"
                 android:textSize="@dimen/projection_tv_textSize"
                 android:textStyle="normal" />
@@ -131,7 +131,7 @@
                 android:layout_height="@dimen/projection_tv_height"
                 android:paddingTop="@dimen/projection_tv_paddingTop"
                 android:layout_marginLeft="@dimen/projection_tv_marginLeft"
-                android:text="吊装背投"
+                android:text="@string/projection_method_neg_neg"
                 android:textColor="@color/black"
                 android:textSize="@dimen/projection_tv_textSize"
                 android:textStyle="normal" />
