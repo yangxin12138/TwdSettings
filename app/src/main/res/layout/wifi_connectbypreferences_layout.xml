@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/connect_title"
-        android:layout_width="500dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
@@ -20,13 +20,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
         <Button
             android:id="@+id/connect_btn"
             android:layout_gravity="center_horizontal"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="50dp"
-            android:text="连接"
+            android:text="@string/net_connectbypreference_dialog_ok_button"
             android:textSize="20sp"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -34,10 +37,11 @@
         <Button
             android:id="@+id/ignore_network_btn"
             android:layout_gravity="center_horizontal"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="50dp"
             android:layout_marginStart="70dp"
-            android:text="忽略此网络"
+            android:text="@string/net_connectbypreference_dialog_ignore_button"
             android:textSize="20sp"
             android:focusable="true"
             android:focusableInTouchMode="true"

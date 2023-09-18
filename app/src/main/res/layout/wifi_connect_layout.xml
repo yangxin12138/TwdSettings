@@ -29,12 +29,14 @@
     <Button
         android:id="@+id/password_btn"
         android:layout_gravity="center_horizontal"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:text="连接"
+        android:text="@string/net_connect_dialog_ok_button"
         android:textSize="20sp"
         android:focusable="false"
         android:focusableInTouchMode="true"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
         android:background="@drawable/button_focus"/>
 </LinearLayout>

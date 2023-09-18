@@ -5,6 +5,7 @@
     <string name="dialog_changeLanguage_message">Switching languages will take effect only after restarting the application. Do you want to switch?</string>
     <string name="dialog_changeLanguage_btConfirm">Confirm</string>
     <string name="dialog_changeLanguage_btCancel">Cancel</string>
+    <!--Index-->
     <string name="main_index_title_text">Setting</string>
     <string name="main_projection_text">Projection Setting</string>
     <string name="main_wifi_text">Internet</string>
@@ -23,4 +24,23 @@
     <string name="projection_method_pos_neg">Forward-mounted Reverse-projection</string>
     <string name="projection_method_neg_pos">Reverse-mounted Forward-projection</string>
     <string name="projection_method_neg_neg">Reverse-mounted Reverse-projection</string>
+    <!--Internet-->
+    <string name="net_index_title_text">Internet</string>
+    <string name="net_index_wifi_tv">Wireless</string>
+    <string name="net_index_available_tv">Available networks</string>
+    <string name="net_connect_dialog_ok_button">Confirm</string>
+    <string name="net_connectbypreference_dialog_ok_button">Connect</string>
+    <string name="net_connectbypreference_dialog_ignore_button">Clean Password</string>
+    <string name="net_wifiList_scanToast_tv">Scanning, please wait...</string>
+    <string name="net_wifiList_connectbypreference_title_tv">
+        This network has been saved. Do you want to connect?</string>
+    <string name="net_wifiList_connectbypreference_ignoreTitle_tv">
+        Are you sure you want to clear this network?</string>
+    <string name="net_wifiList_connectbypreference_ignoreConfirm_tv">OK</string>
+    <string name="net_wifiList_connectbypreference_ignoreCancel_tv">Cancel</string>
+    <string name="net_wifiList_connecttoWifi_title_tv">Connecting, please wait...</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_true">Succeeded</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_false">
+        Failed, please try again</string>
+    <string name="net_wifiList_isCheckedText_saved">Saved</string>
 </resources>

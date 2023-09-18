@@ -17,10 +17,10 @@
             android:layout_marginStart="@dimen/net_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
-            android:text="可用网络"
+            android:text="@string/net_index_available_tv"
             android:textColor="@color/white"
             android:textSize="@dimen/net_title_tv_textSize"
-            android:layout_width="@dimen/net_title_wlanAble_tv_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/net_title_tv_marginStart"
             android:layout_gravity="center_vertical"/>

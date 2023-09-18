@@ -20,10 +20,10 @@
             android:layout_marginStart="@dimen/net_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
-            android:text="网络"
+            android:text="@string/net_index_title_text"
             android:textColor="@color/white"
             android:textSize="@dimen/net_title_tv_textSize"
-            android:layout_width="@dimen/net_title_tv_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/net_title_tv_marginStart"
             android:layout_gravity="center_vertical"/>
@@ -37,7 +37,7 @@
         android:paddingEnd="@dimen/net_content_LL_paddingEnd"
         android:orientation="vertical">
         <TextView
-            android:text="无线网络"
+            android:text="@string/net_index_wifi_tv"
             android:textSize="@dimen/net_content_tv_textSize"
             android:textColor="@color/white"
             android:layout_width="match_parent"
@@ -49,17 +49,18 @@
             android:layout_height="@dimen/net_content_LL_height">
             <TextView
                 android:id="@+id/net_tv_wlan"
-                android:text="无线网络"
+                android:text="@string/net_index_wifi_tv"
                 android:textSize="@dimen/net_tv_textSize"
                 android:textColor="@color/white"
-                android:layout_width="@dimen/net_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/net_tv_marginStart"/>
             <Switch
                 android:id="@+id/net_switch"
-                android:layout_marginStart="@dimen/net_switch_marginStart"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:thumb="@drawable/custom_switch_thumb"
                 android:thumbTextPadding="@dimen/net_switch_thumbTextPadding"
@@ -67,6 +68,7 @@
                 android:checked="true"
                 android:track="@drawable/custom_switch_track"
                 android:layout_gravity="center_vertical"
+                android:paddingEnd="25dp"
                 />
         </LinearLayout>
         <LinearLayout
@@ -76,10 +78,11 @@
             android:layout_height="@dimen/net_content_LL_height">
             <TextView
                 android:id="@+id/net_tv_wlanAble"
-                android:text="可用网络"
+                android:text="@string/net_index_available_tv"
                 android:textSize="@dimen/net_tv_textSize"
                 android:textColor="@color/white"
-                android:layout_width="@dimen/net_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/net_tv_marginStart"/>
@@ -88,16 +91,16 @@
                 android:text=""
                 android:textSize="@dimen/net_tv_textSize"
                 android:textColor="@color/white"
-                android:layout_width="@dimen/net_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/net_ssidcurrent_marginStart"/>
+                android:layout_gravity="center_vertical" />
             <ImageView
                 android:id="@+id/arrow_wlanAble"
                 android:src="@drawable/arrow"
-                android:layout_marginStart="@dimen/net_arrow_wlanAble_marginStart"
-                android:layout_width="@dimen/net_arrow_wlanAble_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/net_arrow_wlanAble_height"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>

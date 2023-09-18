@@ -5,6 +5,7 @@
     <string name="dialog_changeLanguage_message">切换语言设置需要重启应用后生效,是否切换?</string>
     <string name="dialog_changeLanguage_btConfirm">确认</string>
     <string name="dialog_changeLanguage_btCancel">取消</string>
+    <!--Index-->
     <string name="main_index_title_text">设置</string>
     <string name="main_projection_text">投影设置</string>
     <string name="main_wifi_text">网络设置</string>
@@ -23,4 +24,23 @@
     <string name="projection_method_pos_neg">正装背投</string>
     <string name="projection_method_neg_pos">吊装正投</string>
     <string name="projection_method_neg_neg">吊装背投</string>
+    <!--Internet-->
+    <string name="net_index_title_text">网络</string>
+    <string name="net_index_wifi_tv">无线网络</string>
+    <string name="net_index_available_tv">可用网络</string>
+    <string name="net_connect_dialog_ok_button">确认</string>
+    <string name="net_connectbypreference_dialog_ok_button">连接</string>
+    <string name="net_connectbypreference_dialog_ignore_button">忽略此网络</string>
+    <string name="net_wifiList_scanToast_tv">扫描中,请稍后...</string>
+    <string name="net_wifiList_connectbypreference_title_tv">
+        此网络已经保存,是否直接连接?</string>
+    <string name="net_wifiList_connectbypreference_ignoreTitle_tv">
+        确定要忽略此网络吗?</string>
+    <string name="net_wifiList_connectbypreference_ignoreConfirm_tv">确定</string>
+    <string name="net_wifiList_connectbypreference_ignoreCancel_tv">取消</string>
+    <string name="net_wifiList_connecttoWifi_title_tv">连接中,请稍后...</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_true">连接成功</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_false">
+        连接失败，请重试</string>
+    <string name="net_wifiList_isCheckedText_saved">已保存</string>
 </resources>

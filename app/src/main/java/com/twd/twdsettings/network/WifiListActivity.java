@@ -23,6 +23,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -103,7 +105,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
     private void scanWifi() {
 
         //显示加载动画
-        ProgressDialog progressDialog = ProgressDialog.show(context,"","扫描中，请稍等...");
+        ProgressDialog progressDialog = ProgressDialog.show(context,"",getString(R.string.net_wifiList_scanToast_tv));
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -162,14 +164,21 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogView = inflater.inflate(R.layout.wifi_connectbypreferences_layout,null);
         connectedDialog.setContentView(dialogView);
-        dialogView.setPadding(100,0,100,100);
+        Window window = connectedDialog.getWindow();
+        if (window != null){
+            WindowManager.LayoutParams layoutParams = window.getAttributes();
+            layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
+            layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            window.setAttributes(layoutParams);
+        }
+        dialogView.setPadding(50,0,50,50);
 
 
         final TextView connectTitle = dialogView.findViewById(R.id.connect_title);
         final Button connectButton = dialogView.findViewById(R.id.connect_btn);
         final Button ignoreNetworkButton = dialogView.findViewById(R.id.ignore_network_btn);
 
-        connectTitle.setText("此网络已经保存,是否直接连接？");
+        connectTitle.setText(getString(R.string.net_wifiList_connectbypreference_title_tv));
         connectedDialog.show();
         SharedPreferences connectPreferences = getSharedPreferences("wifi_password",MODE_PRIVATE);
         String password  = connectPreferences.getString(wifi.SSID,"");
@@ -187,7 +196,9 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("确定要忽略此网络吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                builder.setMessage(getString(R.string.net_wifiList_connectbypreference_ignoreTitle_tv))
+                        .setPositiveButton(getString(R.string.net_wifiList_connectbypreference_ignoreConfirm_tv),
+                                new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //TODO:
@@ -212,7 +223,8 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                         connectedDialog.dismiss();
                     }
                 })
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(getString(R.string.net_wifiList_connectbypreference_ignoreCancel_tv)
+                                , new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //TODO:点击取消按钮关闭AlertDialog
@@ -282,7 +294,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
     private void connectToWifi(ScanResult wifi,String password){
 
         //显示加载动画
-        ProgressDialog progressDialog = ProgressDialog.show(context,"","连接中，请稍等...");
+        ProgressDialog progressDialog = ProgressDialog.show(context,"",getString(R.string.net_wifiList_connecttoWifi_title_tv));
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -311,11 +323,13 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                                 if (isConnected){
 //                                    Toast.makeText(context, "连接成功！", Toast.LENGTH_SHORT).show();
                                     scanWifi();
-                                    showToast("连接成功！");
+                                    Log.i("yang", "run: -------成功");
+                                    showToast(getString(R.string.net_wifiList_connecttoWifi_isConnected_true));
                                 }else {
 //                                    Toast.makeText(context, "密码错误请重试！", Toast.LENGTH_SHORT).show();
                                     scanWifi();
-                                    showToast("密码错误请重试！");
+                                    Log.i("yang", "run: ---------失败");
+                                    showToast(getString(R.string.net_wifiList_connecttoWifi_isConnected_false));
                                 }
                                 progressDialog.dismiss();
                             }
@@ -368,7 +382,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             String displayedSsid = wifiNameTextView.getText().toString();
             // 判断当前连接的网络和展示的网络是否相同
             if (!wifi_infoPreferences.getString(displayedSsid, "").equals("")){
-                isCheckedText.setText("已保存");
+                isCheckedText.setText(getString(R.string.net_wifiList_isCheckedText_saved));
             } else {
                 isCheckedText.setText("");
             }
