@@ -1,10 +1,5 @@
 <resources>
     <string name="app_name">设置</string>
-    <string name="title_language">语言</string>
-    <string name="dialog_changeLanguage_title">提示</string>
-    <string name="dialog_changeLanguage_message">切换语言设置需要重启应用后生效,是否切换?</string>
-    <string name="dialog_changeLanguage_btConfirm">确认</string>
-    <string name="dialog_changeLanguage_btCancel">取消</string>
     <!--Index-->
     <string name="main_index_title_text">设置</string>
     <string name="main_projection_text">投影设置</string>
@@ -43,4 +38,37 @@
     <string name="net_wifiList_connecttoWifi_isConnected_false">
         连接失败，请重试</string>
     <string name="net_wifiList_isCheckedText_saved">已保存</string>
+    <!--Bluetooth-->
+    <string name="bluetooth_index_title_text">蓝牙</string>
+    <string name="bluetooth_index_bt_tv">蓝牙开关</string>
+    <string name="bluetooth_index_search_title_tv">搜索到的设备</string>
+    <string name="bluetooth_index_search_tv">搜索中</string>
+    <string name="bluetooth_index_NotSupport">该设备不支持蓝牙</string>
+    <string name="bluetooth_index_search_again_tv">重新搜索</string>
+    <string name="bluetooth_index_search_finish">蓝牙扫描完成</string>
+    <string name="bluetooth_index_deviceStatus_Bonded">已配对</string>
+    <string name="bluetooth_index_deviceStatus_Bonding">配对中</string>
+    <string name="bluetooth_index_deviceStatus_Connected">已连接</string>
+    <string name="bluetooth_index_deviceStatus_BondFiled"> : 配对失败</string>
+    <string name="bluetooth_index_piarTodevice_title">  蓝牙配对请求</string>
+    <string name="bluetooth_index_Connectdialog_flag_0">
+        此设备已配对，是否直接连接?</string>
+    <string name="bluetooth_index_Connectdialog_flag_1">
+        此设备已连接.确定断开连接吗？</string>
+    <string name="bluetooth_index_connect_succese">连接成功</string>
+    <string name="bluetooth_index_connect_failed">连接失败</string>
+    <string name="bluetooth_index_close">断开成功</string>
+    <string name="bluetooth_dialog_connect">连接</string>
+    <string name="bluetooth_dialog_cancel">取消</string>
+    <string name="bluetooth_dialog_clear">忽略此网络</string>
+    <string name="bluetooth_dialog_pair">配对</string>
+    <!--Universal-->
+    <string name="universal_index_title_tv">通用</string>
+    <string name="universal_index_input_tv">输入法</string>
+    <string name="universal_index_language_tv">语言</string>
+    <string name="title_language">语言</string>
+    <string name="dialog_changeLanguage_title">提示</string>
+    <string name="dialog_changeLanguage_message">切换语言设置需要重启应用后生效,是否切换?</string>
+    <string name="dialog_changeLanguage_btConfirm">确认</string>
+    <string name="dialog_changeLanguage_btCancel">取消</string>
 </resources>

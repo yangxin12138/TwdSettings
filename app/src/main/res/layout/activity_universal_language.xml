@@ -23,7 +23,7 @@
             android:text="@string/title_language"
             android:textColor="@color/white"
             android:textSize="@dimen/universal_title_tv_textSize"
-            android:layout_width="@dimen/universal_title_tv_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/universal_title_tv_marginStart"
             android:layout_gravity="center_vertical"/>

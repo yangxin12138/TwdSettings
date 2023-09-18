@@ -1,10 +1,5 @@
 <resources>
     <string name="app_name">Settings</string>
-    <string name="title_language">Language</string>
-    <string name="dialog_changeLanguage_title">Tips</string>
-    <string name="dialog_changeLanguage_message">Switching languages will take effect only after restarting the application. Do you want to switch?</string>
-    <string name="dialog_changeLanguage_btConfirm">Confirm</string>
-    <string name="dialog_changeLanguage_btCancel">Cancel</string>
     <!--Index-->
     <string name="main_index_title_text">Setting</string>
     <string name="main_projection_text">Projection Setting</string>
@@ -43,4 +38,37 @@
     <string name="net_wifiList_connecttoWifi_isConnected_false">
         Failed, please try again</string>
     <string name="net_wifiList_isCheckedText_saved">Saved</string>
+    <!--Bluetooth-->
+    <string name="bluetooth_index_title_text">Bluetooth</string>
+    <string name="bluetooth_index_bt_tv">Bluetooth switch</string>
+    <string name="bluetooth_index_search_title_tv">Devices found</string>
+    <string name="bluetooth_index_search_tv">Searching</string>
+    <string name="bluetooth_index_NotSupport">This device does not support Bluetooth</string>
+    <string name="bluetooth_index_search_again_tv">Search again</string>
+    <string name="bluetooth_index_search_finish">Bluetooth search completed</string>
+    <string name="bluetooth_index_deviceStatus_Bonded">Bonded</string>
+    <string name="bluetooth_index_deviceStatus_Bonding">Bonding</string>
+    <string name="bluetooth_index_deviceStatus_Connected">Connected</string>
+    <string name="bluetooth_index_deviceStatus_BondFiled"> : Pairing failed</string>
+    <string name="bluetooth_index_piarTodevice_title">  Bluetooth pairing request</string>
+    <string name="bluetooth_index_Connectdialog_flag_0">
+        This device has been bound. Do you want to connect?</string>
+    <string name="bluetooth_index_Connectdialog_flag_1">
+        This device has been bound.Are you sure you want to disconnect?</string>
+    <string name="bluetooth_index_connect_succese">Connect succeeded</string>
+    <string name="bluetooth_index_connect_failed">Connect Fail</string>
+    <string name="bluetooth_index_close">Disconnected successfully</string>
+    <string name="bluetooth_dialog_connect">Connect</string>
+    <string name="bluetooth_dialog_cancel">Cancel</string>
+    <string name="bluetooth_dialog_clear">Clear</string>
+    <string name="bluetooth_dialog_pair">Pair</string>
+    <!--Universal-->
+    <string name="universal_index_title_tv">Universal</string>
+    <string name="universal_index_input_tv">Input</string>
+    <string name="universal_index_language_tv">Language</string>
+    <string name="title_language">Language</string>
+    <string name="dialog_changeLanguage_title">Tips</string>
+    <string name="dialog_changeLanguage_message">Switching languages will take effect only after restarting the application. Do you want to switch?</string>
+    <string name="dialog_changeLanguage_btConfirm">Confirm</string>
+    <string name="dialog_changeLanguage_btCancel">Cancel</string>
 </resources>

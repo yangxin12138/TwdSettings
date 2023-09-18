@@ -5,11 +5,13 @@
     android:layout_height="wrap_content"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    android:paddingEnd="@dimen/blu_item_iv_marginStart"
     android:background="@color/background_color">
 
     <ImageView
         android:id="@+id/icon_bluetooth"
-        android:layout_width="@dimen/wifi_list_item_signal_width_height"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="@dimen/wifi_list_item_signal_width_height"
         android:src="@drawable/icon_bluetooth_item"
         android:layout_marginStart="@dimen/blu_item_iv_marginStart"
@@ -19,18 +21,18 @@
         android:text=""
         android:textSize="@dimen/wifi_list_item_ssid_textSize"
         android:textColor="@color/white"
-        android:layout_width="@dimen/wifi_list_item_ssid_width"
+        android:layout_width="0dp"
+        android:layout_weight="7"
         android:layout_height="@dimen/wifi_list_item_ssid_height"
-        android:paddingStart="@dimen/wifi_list_item_ssid_paddingStart"
         android:gravity="center_vertical"
         android:layout_gravity="center_vertical"/>
     <TextView
         android:id="@+id/bluetooth_status"
-        android:layout_width="@dimen/wifi_list_item_isChecked_width"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="@dimen/wifi_list_item_isChecked_marginStart"
         android:textSize="@dimen/wifi_list_item_isChecked_textSize"/>
 
 

@@ -20,10 +20,10 @@
             android:layout_marginStart="@dimen/universal_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
-            android:text="通用"
+            android:text="@string/universal_index_title_tv"
             android:textColor="@color/white"
             android:textSize="@dimen/universal_title_tv_textSize"
-            android:layout_width="@dimen/universal_title_tv_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/universal_title_tv_marginStart"
             android:layout_gravity="center_vertical"/>
@@ -43,10 +43,11 @@
             android:layout_height="@dimen/universal_content_LL_height">
             <TextView
                 android:id="@+id/universal_tv_input"
-                android:text="输入法"
+                android:text="@string/universal_index_input_tv"
                 android:textSize="@dimen/universal_tv_textSize"
                 android:textColor="@color/white"
-                android:layout_width="@dimen/universal_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/universal_tv_marginStart"/>
@@ -55,16 +56,16 @@
                 android:text=""
                 android:textSize="@dimen/universal_tv_textSize"
                 android:textColor="@color/white"
-                android:layout_width="@dimen/universal_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="4"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/universal_current_tv_marginStart"/>
+                android:layout_gravity="center_vertical" />
             <ImageView
                 android:id="@+id/arrow_input"
                 android:src="@drawable/arrow"
-                android:layout_marginStart="@dimen/universal_current_arrow_marginStart"
-                android:layout_width="@dimen/universal_current_arrow_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/universal_current_arrow_height"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
@@ -75,10 +76,11 @@
             android:layout_height="@dimen/universal_content_LL_height">
             <TextView
                 android:id="@+id/universal_tv_language"
-                android:text="语言"
+                android:text="@string/universal_index_language_tv"
                 android:textSize="@dimen/universal_tv_textSize"
                 android:textColor="@color/white"
-                android:layout_width="@dimen/universal_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/universal_tv_marginStart"/>
@@ -87,16 +89,16 @@
                 android:text=""
                 android:textSize="@dimen/universal_tv_textSize"
                 android:textColor="@color/white"
-                android:layout_width="@dimen/universal_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="4"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/universal_current_tv_marginStart"/>
+                android:layout_gravity="center_vertical" />
             <ImageView
                 android:id="@+id/arrow_language"
                 android:src="@drawable/arrow"
-                android:layout_marginStart="@dimen/universal_current_arrow_marginStart"
-                android:layout_width="@dimen/universal_current_arrow_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/universal_current_arrow_height"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
