@@ -66,7 +66,7 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
 
         for (Locale locale : availableLocales) {
            // String language = locale.getDisplayLanguage(locale)+"_"+locale.getLanguage()+"_"+locale.getCountry()+"_"+locale.getDisplayName();
-            String language =locale.getDisplayName()+"_"+locale.getLanguage()+"_"+locale.getCountry();
+            String language =locale.getDisplayName(locale)+"_"+locale.getLanguage()+"_"+locale.getCountry();
             String languageCode = locale.getLanguage()+"_"+locale.getCountry();
             if (!language.isEmpty() && !languageList.contains(language)) {
                 languageList.add(language);
@@ -78,13 +78,13 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
                     languageBean.setSelect(true);
                 }
                 languageBeans.add(languageBean);
-            } else if (language.contains("(繁体中文,台湾)_zh_TW")) {
-                languageBean = new LanguageBean("繁体中文",languageCode,false);
+            } else if (language.contains("zh_TW")) {
+                languageBean = new LanguageBean("繁體中文",languageCode,false);
                 if (languageCode.equals(currentLanguageCode)){
                     languageBean.setSelect(true);
                 }
                 languageBeans.add(languageBean);
-            } else if (language.equals("英文 (美国)_en_US")) {
+            } else if (language.equals("English (United States)_en_US")) {
                 languageBean = new LanguageBean("English",languageCode,false);
                 if (languageCode.equals(currentLanguageCode)){
                     languageBean.setSelect(true);

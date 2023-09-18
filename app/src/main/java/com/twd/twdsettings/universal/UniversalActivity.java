@@ -1,8 +1,10 @@
 package com.twd.twdsettings.universal;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -51,12 +53,16 @@ public class UniversalActivity extends AppCompatActivity implements View.OnFocus
 
         //当前语言
         Locale currentLocale = getResources().getConfiguration().locale;
-        String currentLanguage = currentLocale.getDisplayName()+"_"+currentLocale.getLanguage()+"_"+currentLocale.getCountry();
+        Configuration configuration = new Configuration();
+        configuration.setLocale(currentLocale);
+        String name = configuration.locale.getDisplayName(currentLocale);
+        String currentLanguage = name+"_"+currentLocale.getLanguage()+"_"+currentLocale.getCountry();
+
         if (currentLanguage.contains("zh_CN")){
             tv_languageCurrent.setText("简体中文");
-        } else if (currentLanguage.contains("(繁体中文,香港)_zh_HK")) {
-            tv_languageCurrent.setText("繁体中文");
-        } else if (currentLanguage.equals("英文 (美国)_en_US")) {
+        } else if (currentLanguage.contains("zh_TW")) {
+            tv_languageCurrent.setText("繁體中文");
+        } else if (currentLanguage.equals("English (United States)_en_US")) {
             tv_languageCurrent.setText("English");
         }
 
