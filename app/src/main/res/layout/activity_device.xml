@@ -20,10 +20,10 @@
             android:layout_marginStart="@dimen/devices_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
-            android:text="系统与信息"
+            android:text="@string/device_index_title_tv"
             android:textColor="@color/white"
             android:textSize="@dimen/devices_title_tv_textSize"
-            android:layout_width="@dimen/devices_title_tv_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/devices_title_tv_marginStart"
             android:layout_gravity="center_vertical"/>
@@ -43,18 +43,19 @@
             android:layout_height="@dimen/devices_content_LL_height">
             <TextView
                 android:id="@+id/devices_tv_Info"
-                android:text="本机信息"
+                android:text="@string/device_index_info_tv"
                 android:textSize="@dimen/devices_info_tv_textSize"
                 android:textColor="@color/white"
-                android:layout_width="@dimen/devices_info_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/devices_info_tv_marginStart"/>
             <ImageView
                 android:id="@+id/arrow_info"
                 android:src="@drawable/arrow"
-                android:layout_marginStart="@dimen/devices_info_iv_marginStart"
-                android:layout_width="@dimen/devices_info_iv_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/devices_info_iv_height"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
@@ -65,18 +66,19 @@
             android:layout_height="@dimen/devices_content_LL_height">
             <TextView
                 android:id="@+id/devices_tv_storage"
-                android:text="存储详情"
+                android:text="@string/device_index_storage_tv"
                 android:textSize="@dimen/devices_storage_tv_textSize"
                 android:textColor="@color/white"
-                android:layout_width="@dimen/devices_storage_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/devices_storage_tv_marginStart"/>
             <ImageView
                 android:id="@+id/arrow_storage"
                 android:src="@drawable/arrow"
-                android:layout_marginStart="@dimen/devices_storage_iv_marginStart"
-                android:layout_width="@dimen/devices_storage_iv_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/devices_storage_iv_height"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>

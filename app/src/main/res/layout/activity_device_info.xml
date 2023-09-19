@@ -20,10 +20,10 @@
             android:layout_marginStart="@dimen/devices_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
-            android:text="本机信息"
+            android:text="@string/device_index_info_tv"
             android:textColor="@color/white"
             android:textSize="@dimen/devices_title_tv_textSize"
-            android:layout_width="@dimen/devices_title_tv_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/devices_title_tv_marginStart"
             android:layout_gravity="center_vertical"/>
@@ -38,7 +38,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="设备号"
+            android:text="@string/device_info_deviceNo"
             android:textSize="25sp"
             android:layout_marginStart="200dp"
             android:textColor="@color/white" />
@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="Android版本"
+            android:text="@string/device_info_androidVersion"
             android:textSize="25sp"
             android:textColor="@color/white"
             android:layout_marginStart="200dp"/>
@@ -83,7 +83,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="软件号"
+            android:text="@string/device_info_softwareVersion"
             android:textSize="25sp"
             android:textColor="@color/white"
             android:layout_marginStart="200dp"/>
@@ -105,7 +105,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="MAC地址(无线)"
+            android:text="@string/device_info_mac_wifi"
             android:textSize="25sp"
             android:textColor="@color/white"
             android:layout_marginStart="200dp"/>
@@ -127,7 +127,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="MAC地址(蓝牙)"
+            android:text="@string/device_info_mac_bluetooth"
             android:textSize="25sp"
             android:textColor="@color/white"
             android:layout_marginStart="200dp"/>

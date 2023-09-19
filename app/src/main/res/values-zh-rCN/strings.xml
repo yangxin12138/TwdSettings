@@ -71,4 +71,13 @@
     <string name="dialog_changeLanguage_message">切换语言设置需要重启应用后生效,是否切换?</string>
     <string name="dialog_changeLanguage_btConfirm">确认</string>
     <string name="dialog_changeLanguage_btCancel">取消</string>
+    <!--Device-->
+    <string name="device_index_title_tv">关于设备</string>
+    <string name="device_index_info_tv">本机信息</string>
+    <string name="device_index_storage_tv">设备存储</string>
+    <string name="device_info_deviceNo">设备号</string>
+    <string name="device_info_androidVersion">Android版本</string>
+    <string name="device_info_softwareVersion">软件号</string>
+    <string name="device_info_mac_wifi">MAC地址(无线)</string>
+    <string name="device_info_mac_bluetooth">MAC地址(蓝牙)</string>
 </resources>

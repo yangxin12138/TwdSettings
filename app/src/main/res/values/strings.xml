@@ -71,4 +71,13 @@
     <string name="dialog_changeLanguage_message">Switching languages will take effect only after restarting the application. Do you want to switch?</string>
     <string name="dialog_changeLanguage_btConfirm">Confirm</string>
     <string name="dialog_changeLanguage_btCancel">Cancel</string>
+    <!--Device-->
+    <string name="device_index_title_tv">About Device</string>
+    <string name="device_index_info_tv">Device Info</string>
+    <string name="device_index_storage_tv">Device Storage</string>
+    <string name="device_info_deviceNo">Device NO</string>
+    <string name="device_info_androidVersion">Android Version</string>
+    <string name="device_info_softwareVersion">Software Version</string>
+    <string name="device_info_mac_wifi">MAC Address(Wifi)</string>
+    <string name="device_info_mac_bluetooth">MAC Address(Bluetooth)</string>
 </resources>
