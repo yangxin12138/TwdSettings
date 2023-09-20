@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="background_color" format="color"/>
+    <attr name="textColor" format="color"/>
+    <attr name="arrowSrc" format="reference"/>
+    <attr name="main_projection_src" format="reference"/>
+    <attr name="main_internet_src" format="reference"/>
+    <attr name="main_bluetooth_src" format="reference"/>
+    <attr name="main_universal_src" format="reference"/>
+    <attr name="main_device_src" format="reference"/>
+    <attr name="btnBg" format="reference"/>
+    <attr name="arrowBack_src" format="reference"/>
+
+    <attr name="projection_double_src" format="reference"/>
+    <attr name="projection_single_src" format="reference"/>
+    <attr name="projection_size_src" format="reference"/>
+    <attr name="projection_method_src" format="reference"/>
+    <attr name="projection_bg" format="reference"/>
+    <attr name="arrow_vertical" format="reference"/>
+    <attr name="arrow_horizontal" format="reference"/>
+    <attr name="trape_dots" format="reference"/>
+    <attr name="icon_projection_selected" format="reference"/>
+    <attr name="projection_method_pos_pos_bg" format="reference"/>
+    <attr name="projection_method_pos_neg_bg" format="reference"/>
+    <attr name="projection_method_neg_pos_bg" format="reference"/>
+    <attr name="projection_method_neg_neg_bg" format="reference"/>
+</resources>

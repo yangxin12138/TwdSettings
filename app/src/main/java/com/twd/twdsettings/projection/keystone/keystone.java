@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import com.twd.twdsettings.SystemPropertiesUtils;
+
 public abstract class keystone {
     private static final String TAG = "keystone";
     public static final String PROP_LT_ORIGIN = "ro.sys.keystone.lt";

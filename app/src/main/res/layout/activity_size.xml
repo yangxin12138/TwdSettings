@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?background_color">
 
     <!--提示图片 居中显示-->
     <ImageView
@@ -32,6 +33,7 @@
         android:textSize="@dimen/size_textLevel_textSize"
         android:textStyle="bold"
         android:layout_below="@+id/seekbar_level"
+        android:textColor="?textColor"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/size_textLevel_marginTop" />
     <TextView
@@ -41,5 +43,6 @@
         android:layout_below="@+id/text_level"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
+        android:textColor="?textColor"
         android:textSize="@dimen/size_text_textSize"/>
 </RelativeLayout>

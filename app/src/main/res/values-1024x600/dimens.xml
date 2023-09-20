@@ -104,7 +104,7 @@
     <dimen name="index_title_marginStart">150dp</dimen>
     <dimen name="index_LL_marginStart">180dp</dimen>
     <dimen name="index_LL_width">550dp</dimen>
-    <dimen name="index_LL_height">100dp</dimen>
+    <dimen name="index_LL_height">80dp</dimen>
     <dimen name="index_iv_marginStart">250dp</dimen>
     <dimen name="index_iv_width">30dp</dimen>
     <dimen name="index_iv_height">30dp</dimen>

@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".projection.ProjectionSettingsActivity"
-    android:background="#FFFFFF">
+    android:background="?background_color">
 
     <ImageView
         android:layout_width="@dimen/main_title_arrow_width"
         android:layout_height="@dimen/main_title_arrow_height"
-        android:src="@drawable/arrow_back"
+        android:src="?attr/arrowBack_src"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/main_title_arrow_marginStart"
         android:layout_marginTop="@dimen/main_title_arrow_marginTop"
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/projection_index_title_text"
-        android:textColor="@color/black"
+        android:textColor="?textColor"
         android:textSize="@dimen/main_title_textSize"
         android:textStyle="normal"
         android:layout_marginStart="@dimen/main_title_marginStart"
@@ -45,176 +45,179 @@
         app:layout_constraintTop_toBottomOf="@+id/tvtitle">
 
         <!--两点梯形校正-->
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/trapezoidal_double_point"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/main_RL_height"
-            android:background="@drawable/test"
+            android:background="?btnBg"
             android:paddingEnd="@dimen/main_RL_paddingEnd"
             android:focusable="true"
             android:gravity="center_vertical">
 
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/iv_trapezoidal_double_point"
-                android:layout_width="@dimen/main_iv_width"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:layout_height="@dimen/main_iv_height"
-                android:scaleType="fitCenter"
-                android:layout_marginTop="@dimen/main_iv_marginTop"
                 android:padding="@dimen/main_iv_padding"
-                android:src="@drawable/icon_trapezoidal_double_point"/>
+                android:src="?projection_double_src"/>
 
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/tv_trapezoidal_double_point"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="7"
                 android:layout_height="@dimen/main_tv_height"
-                android:layout_toRightOf="@+id/iv_trapezoidal_double_point"
                 android:gravity="center_vertical"
                 android:text="@string/projection_index_double_point"
-                android:textColor="@color/black"
+                android:textColor="?textColor"
                 android:textSize="@dimen/main_tv_textSize"
                 android:textStyle="normal"/>
             
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/arrow_trapezoidal_double_point"
-                android:layout_width="@dimen/main_arrow_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/main_arrow_height"
-                android:layout_marginStart="@dimen/main_arrow_marginStart"
-                android:layout_marginTop="@dimen/main_arrow_marginTop"
-                android:src="@drawable/arrow_big"/>
-        </RelativeLayout>
+                android:src="?arrowSrc"/>
+        </LinearLayout>
 
         <!--四点梯形校正-->
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/trapezoidal_single_point"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/main_RL_height"
-            android:background="@drawable/test"
+            android:background="?btnBg"
             android:focusable="true"
             android:paddingEnd="@dimen/main_RL_paddingEnd"
             android:gravity="center_vertical"
             android:layout_marginTop="@dimen/main_RL_marginTop">
 
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/iv_trapezoidal_single_point"
-                android:layout_width="@dimen/main_iv_width"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:layout_height="@dimen/main_iv_height"
-                android:layout_marginTop="@dimen/main_iv_marginTop"
                 android:padding="@dimen/main_iv_padding"
-                android:src="@drawable/icon_trapezoidal_single_point" />
+                android:src="?projection_single_src" />
 
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/tv_trapezoidal_single_point"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="7"
                 android:layout_height="@dimen/main_tv_height"
-                android:layout_toRightOf="@+id/iv_trapezoidal_single_point"
                 android:gravity="center_vertical"
                 android:text="@string/projection_index_single_point"
-                android:textColor="@color/black"
+                android:textColor="?textColor"
                 android:textSize="@dimen/main_tv_textSize"
                 android:textStyle="normal" />
 
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/arrow_trapezoidal_single_point"
-                android:layout_width="@dimen/main_arrow_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/main_arrow_height"
-                android:layout_marginStart="@dimen/main_arrow_marginStart"
-                android:layout_marginTop="@dimen/main_arrow_marginTop"
-                android:src="@drawable/arrow_big" />
-        </RelativeLayout>
+                android:src="?arrowSrc" />
+        </LinearLayout>
 
         <!--尺寸调节-->
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/size"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/main_RL_height"
-            android:background="@drawable/test"
+            android:background="?btnBg"
             android:focusable="true"
             android:paddingEnd="@dimen/main_RL_paddingEnd"
             android:gravity="center_vertical"
             android:layout_marginTop="@dimen/main_RL_marginTop">
 
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/iv_size"
-                android:layout_width="@dimen/main_iv_width"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:layout_height="@dimen/main_iv_height"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="@dimen/main_iv_marginTop"
                 android:padding="@dimen/main_iv_padding"
-                android:src="@drawable/icon_size_color" />
+                android:src="?projection_size_src" />
 
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/tv_size"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="7"
                 android:layout_height="@dimen/main_tv_height"
-                android:layout_toRightOf="@+id/iv_size"
                 android:gravity="center_vertical"
                 android:text="@string/projection_index_size"
-                android:textColor="@color/black"
+                android:textColor="?textColor"
                 android:textSize="@dimen/main_tv_textSize"
                 android:textStyle="normal" />
 
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/arrow_size"
-                android:layout_width="@dimen/main_arrow_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/main_arrow_height"
-                android:layout_marginStart="@dimen/main_arrow_marginStart"
-                android:layout_marginTop="@dimen/main_arrow_marginTop"
-                android:src="@drawable/arrow_big" />
-        </RelativeLayout>
+                android:src="?arrowSrc" />
+        </LinearLayout>
 
         <!--投影方式-->
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/projection"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/main_RL_height"
             android:layout_marginTop="@dimen/main_RL_marginTop"
-            android:background="@drawable/test"
+            android:background="?btnBg"
             android:focusable="true"
             android:gravity="center_vertical"
             android:paddingEnd="@dimen/main_RL_paddingEnd">
 
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/iv_projection"
-                android:layout_width="@dimen/main_iv_width"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:layout_height="@dimen/main_iv_height"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="@dimen/main_iv_marginTop"
                 android:padding="@dimen/main_iv_padding"
-                android:src="@drawable/icon_projection_color" />
+                android:src="?projection_method_src" />
 
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/tv_projection"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="4"
                 android:layout_height="@dimen/main_tv_height"
-                android:layout_toRightOf="@+id/iv_projection"
                 android:gravity="center_vertical"
                 android:text="@string/projection_index_projection_method"
-                android:textColor="@color/black"
+                android:textColor="?textColor"
                 android:textSize="@dimen/main_tv_textSize"
                 android:textStyle="normal" />
 
        <TextView
+           android:duplicateParentState="true"
                 android:id="@+id/tv_projection_small"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="@dimen/main_tv_height"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/projection_tv_marginEnd"
                 android:paddingTop="@dimen/main_tv_paddingTop"
-                android:textColor="@color/grey"
+                android:text=""
+                android:textColor="?textColor"
                 android:textSize="@dimen/main_tv_textSize_small"
                 android:textStyle="normal" />
 
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/arrow_projection"
-                android:layout_width="@dimen/main_arrow_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/main_arrow_height"
-                android:layout_marginStart="@dimen/main_arrow_marginStart"
-                android:layout_marginTop="@dimen/main_arrow_marginTop"
-                android:src="@drawable/arrow_big"
-                 />
-
-
-        </RelativeLayout>
+                android:src="?arrowSrc" />
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

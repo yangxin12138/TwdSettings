@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/trape_background">
+    android:background="?projection_bg">
 
     <!--提示图片 居中显示-->
     <ImageView
@@ -31,7 +31,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/arrow_vertical"
+            android:src="?arrow_vertical"
             android:paddingTop="@dimen/double_vertical_paddingTop" />
 
         <TextView
@@ -42,6 +42,7 @@
             android:paddingTop="@dimen/double_tv_vertical_paddingTop"
             android:text="0,0"
             android:textSize="@dimen/size_textLevel_textSize"
+            android:textColor="?textColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -51,7 +52,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/double_horizontal_paddingStart"
             android:paddingTop="@dimen/double_horizontal_paddingTop"
-            android:src="@mipmap/arrow_horizont" />
+            android:src="?arrow_horizontal" />
 
         <TextView
             android:id="@+id/tv_horizontal"
@@ -60,6 +61,7 @@
             android:paddingStart="@dimen/double_tv_horizontal_paddingStart"
             android:paddingTop="@dimen/double_tv_horizontal_paddingTop"
             android:text="0,0"
+            android:textColor="?textColor"
             android:textSize="@dimen/size_textLevel_textSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/iv_arrow_horizontal" />

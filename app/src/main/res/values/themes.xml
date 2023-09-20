@@ -6,4 +6,83 @@
     </style>
 
     <style name="Theme.TwdSettings" parent="Base.Theme.TwdSettings" />
+    <!--冰只因蓝-->
+    <style name="Theme.IceBlue" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="background_color">@color/background_color</item>
+        <item name="textColor">@color/selector_iceblue_textcolor</item>
+        <item name="arrowSrc">@drawable/selector_iceblue_arrow</item>
+        <item name="main_projection_src">@drawable/selector_iceblue_projection</item>
+        <item name="main_internet_src">@drawable/selector_iceblue_internet</item>
+        <item name="main_bluetooth_src">@drawable/selector_iceblue_bluetooth</item>
+        <item name="main_universal_src">@drawable/selector_iceblue_universal</item>
+        <item name="main_device_src">@drawable/selector_iceblue_device</item>
+        <item name="btnBg">@drawable/selector_iceblue_btnbg</item>
+        <item name="arrowBack_src">@drawable/arrow_back_white</item>
+        <item name="projection_double_src">@drawable/selector_iceblue_double</item>
+        <item name="projection_single_src">@drawable/selector_iceblue_single</item>
+        <item name="projection_size_src">@drawable/selector_iceblue_size</item>
+        <item name="projection_method_src">@drawable/selector_iceblue_method</item>
+        <item name="projection_bg">@drawable/trape_background_iceblue</item>
+        <item name="arrow_horizontal">@mipmap/arrow_horizont_white</item>
+        <item name="arrow_vertical">@mipmap/arrow_vertical_white</item>
+        <item name="trape_dots">@drawable/trape_dot_white</item>
+        <item name="icon_projection_selected">@drawable/selector_iceblue_icon_projection_selected</item>
+        <item name="projection_method_pos_pos_bg">@drawable/bg_pos_pos_iceblue</item>
+        <item name="projection_method_pos_neg_bg">@drawable/bg_pos_neg_iceblue</item>
+        <item name="projection_method_neg_pos_bg">@drawable/bg_neg_pos_iceblue</item>
+        <item name="projection_method_neg_neg_bg">@drawable/bg_neg_neg_iceblue</item>
+    </style>
+
+    <!--木棉白-->
+    <style name="Theme.KapokWhite" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="background_color">@color/white</item>
+        <item name="textColor">@color/selector_kapokwhite_textcolor</item>
+        <item name="arrowSrc">@drawable/selector_kapokwhite_arrow</item>
+        <item name="main_projection_src">@drawable/selector_kapokwhite_projection</item>
+        <item name="main_internet_src">@drawable/selector_kapokwhite_internet</item>
+        <item name="main_bluetooth_src">@drawable/selector_kapokwhite_bluetooth</item>
+        <item name="main_universal_src">@drawable/selector_kapokwhite_universal</item>
+        <item name="main_device_src">@drawable/selector_kapokwhite_device</item>
+        <item name="btnBg">@drawable/selector_kapokwhite_btnbg</item>
+        <item name="arrowBack_src">@drawable/arrow_back</item>
+        <item name="projection_double_src">@drawable/selector_kapokwhite_double</item>
+        <item name="projection_single_src">@drawable/selector_kapokwhite_single</item>
+        <item name="projection_size_src">@drawable/selector_kapokwhite_size</item>
+        <item name="projection_method_src">@drawable/selector_kapokwhite_method</item>
+        <item name="projection_bg">@drawable/trape_background</item>
+        <item name="arrow_horizontal">@mipmap/arrow_horizont</item>
+        <item name="arrow_vertical">@mipmap/arrow_vertical</item>
+        <item name="trape_dots">@drawable/trape_dot</item>
+        <item name="icon_projection_selected">@drawable/selector_kapokwhite_icon_projection_selected</item>
+        <item name="projection_method_pos_pos_bg">@drawable/bg_pos_pos</item>
+        <item name="projection_method_pos_neg_bg">@drawable/bg_pos_neg</item>
+        <item name="projection_method_neg_pos_bg">@drawable/bg_neg_pos</item>
+        <item name="projection_method_neg_neg_bg">@drawable/bg_neg_neg</item>
+    </style>
+
+    <style name="Theme.StarBlue" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="background_color">@color/customStarBlue</item>
+        <item name="textColor">@color/customWhite</item>
+        <item name="arrowSrc">@drawable/selector_starblue_arrow</item>
+        <item name="main_projection_src">@drawable/projection</item>
+        <item name="main_internet_src">@drawable/wifi</item>
+        <item name="main_bluetooth_src">@drawable/bluetooth</item>
+        <item name="main_universal_src">@drawable/setup</item>
+        <item name="main_device_src">@drawable/about</item>
+        <item name="btnBg">@drawable/selector_starblue_btnbg</item>
+        <item name="arrowBack_src">@drawable/arrow_back_white</item>
+        <item name="projection_double_src">@drawable/selector_starblue_double</item>
+        <item name="projection_single_src">@drawable/selector_starblue_single</item>
+        <item name="projection_size_src">@drawable/selector_starblue_size</item>
+        <item name="projection_method_src">@drawable/selector_starblue_method</item>
+        <item name="projection_bg">@drawable/trape_background_starblue</item>
+        <item name="arrow_horizontal">@mipmap/arrow_horizont_white</item>
+        <item name="arrow_vertical">@mipmap/arrow_vertical_white</item>
+        <item name="trape_dots">@drawable/trape_dot_white</item>
+        <item name="icon_projection_selected">@drawable/selector_starblue_icon_projection_selected</item>
+        <item name="projection_method_pos_pos_bg">@drawable/bg_pos_pos_starblue</item>
+        <item name="projection_method_pos_neg_bg">@drawable/bg_pos_neg_starblue</item>
+        <item name="projection_method_neg_pos_bg">@drawable/bg_neg_pos_starblue</item>
+        <item name="projection_method_neg_neg_bg">@drawable/bg_neg_neg_starblue</item>
+    </style>
 </resources>

@@ -2,6 +2,8 @@ package com.twd.twdsettings.projection;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.twd.twdsettings.R;
+import com.twd.twdsettings.SystemPropertiesUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,7 +27,7 @@ import java.io.PrintStream;
  * 投影方式 二级菜单
  * 四个方式单选 选中项显示在上层菜单中
  */
-public class ProjectionMethodActivity extends AppCompatActivity implements View.OnClickListener {
+public class ProjectionMethodActivity extends AppCompatActivity implements View.OnClickListener , View.OnFocusChangeListener {
 
     private static final String TAG = "ProjectionActivity";
     private static final String PATH_CONTROL_MIPI = "/sys/ir/control_mipi";
@@ -63,13 +66,34 @@ public class ProjectionMethodActivity extends AppCompatActivity implements View.
     public static boolean neg_pos_check;
     public static boolean neg_neg_check;
 
+    String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
+    TypedArray typedArray;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        switch (theme_code){
+            case "0": //冰激蓝
+                this.setTheme(R.style.Theme_IceBlue);
+                break;
+            case "1": //木棉白
+                this.setTheme(R.style.Theme_KapokWhite);
+                break;
+            case "2": //星空蓝
+                this.setTheme(R.style.Theme_StarBlue);
+                break;
+        }
+        typedArray = obtainStyledAttributes(new int[]{
+            R.attr.icon_projection_selected,
+                R.attr.projection_method_pos_pos_bg,
+                R.attr.projection_method_pos_neg_bg,
+                R.attr.projection_method_neg_pos_bg,
+                R.attr.projection_method_neg_neg_bg
+        });
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_projection_method);
         initView();
     }
     /*页面初始化*/
+    @SuppressLint("ResourceType")
     private void initView(){
         pos_pos = (RelativeLayout) findViewById(R.id.pro_pos_pos);
         pos_neg = (RelativeLayout) findViewById(R.id.pro_pos_neg);
@@ -91,24 +115,38 @@ public class ProjectionMethodActivity extends AppCompatActivity implements View.
         int mode = readProjectionValue(PATH_DEV_PRO_INFO);
         Log.i("yangxin","mode="+mode);
         if (mode == VALUE_POSITIVE_DRESS) {
-            sel_pos_pos.setImageResource(R.drawable.selected);
+            sel_pos_pos.setVisibility(View.VISIBLE);
         } else if (mode == VALUE_DRESSING_REAR) {
-            sel_pos_neg.setImageResource(R.drawable.selected);
+            sel_pos_neg.setVisibility(View.VISIBLE);
         } else if (mode == VALUE_HOISTING_FRONT) {
-            sel_neg_pos.setImageResource(R.drawable.selected);
+            sel_neg_pos.setVisibility(View.VISIBLE);
         } else if (mode == VALUE_HOISTING_REAR) {
-            sel_neg_neg.setImageResource(R.drawable.selected);
+            sel_neg_neg.setVisibility(View.VISIBLE);
+        } else {
+            sel_pos_pos.setVisibility(View.VISIBLE);
         }
 
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
         boolean pos_pos_isChecked = prefs.getBoolean(POS_POS,false);
-        if (pos_pos_isChecked) sel_pos_pos.setImageResource(R.drawable.selected); else sel_pos_pos.setImageResource(R.drawable.unselected);
+        if (pos_pos_isChecked) {
+            sel_pos_pos.setImageDrawable(typedArray.getDrawable(0));
+            background.setBackground(typedArray.getDrawable(1));
+        } else sel_pos_pos.setImageDrawable(getDrawable(R.drawable.unselected));
         boolean pos_neg_isChecked = prefs.getBoolean(POS_NEG,false);
-        if (pos_neg_isChecked) sel_pos_neg.setImageResource(R.drawable.selected); else sel_pos_neg.setImageResource(R.drawable.unselected);
+        if (pos_neg_isChecked) {
+            sel_pos_neg.setImageDrawable(typedArray.getDrawable(0));
+            background.setBackground(typedArray.getDrawable(2));
+        } else sel_pos_neg.setImageDrawable(getDrawable(R.drawable.unselected));
         boolean neg_pos_isChecked = prefs.getBoolean(NEG_POS,false);
-        if (neg_pos_isChecked) sel_neg_pos.setImageResource(R.drawable.selected); else sel_neg_pos.setImageResource(R.drawable.unselected);
+        if (neg_pos_isChecked) {
+            sel_neg_pos.setImageDrawable(typedArray.getDrawable(0));
+            background.setBackground(typedArray.getDrawable(3));
+        } else sel_neg_pos.setImageDrawable(getDrawable(R.drawable.unselected));
         boolean neg_neg_isChecked = prefs.getBoolean(NEG_NEG,false);
-        if (neg_neg_isChecked) sel_neg_neg.setImageResource(R.drawable.selected); else sel_neg_neg.setImageResource(R.drawable.unselected);
+        if (neg_neg_isChecked) {
+            sel_neg_neg.setImageDrawable(typedArray.getDrawable(0));
+            background.setBackground(typedArray.getDrawable(4));
+        } else sel_neg_neg.setImageDrawable(getDrawable(R.drawable.unselected));
 
         /* 设置监听 */
         pos_pos.setOnClickListener(this);
@@ -116,51 +154,27 @@ public class ProjectionMethodActivity extends AppCompatActivity implements View.
         neg_pos.setOnClickListener(this);
         neg_neg.setOnClickListener(this);
 
-        pos_pos.setOnFocusChangeListener(new View.OnFocusChangeListener(){
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    v.setBackgroundResource(R.drawable.test_red);
-                    background.setBackgroundResource(R.drawable.bg_pos_pos);
-                } else {
-                    v.setBackgroundResource(R.drawable.test);
-                }
-            }
-        });
-        pos_neg.setOnFocusChangeListener(new View.OnFocusChangeListener(){
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    v.setBackgroundResource(R.drawable.test_red);
-                    background.setBackgroundResource(R.drawable.bg_pos_neg);
-                } else {
-                    v.setBackgroundResource(R.drawable.test);
-                }
-            }
-        });
-        neg_pos.setOnFocusChangeListener(new View.OnFocusChangeListener(){
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    v.setBackgroundResource(R.drawable.test_red);
-                    background.setBackgroundResource(R.drawable.bg_neg_pos);
-                } else {
-                    v.setBackgroundResource(R.drawable.test);
-                }
-            }
-        });
-        neg_neg.setOnFocusChangeListener(new View.OnFocusChangeListener(){
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    v.setBackgroundResource(R.drawable.test_red);
-                    background.setBackgroundResource(R.drawable.bg_neg_neg);
-                } else {
-                    v.setBackgroundResource(R.drawable.test);
-                }
-            }
-        });
+        pos_pos.setOnFocusChangeListener(this);
+        pos_neg.setOnFocusChangeListener(this);
+        neg_pos.setOnFocusChangeListener(this);
+        neg_neg.setOnFocusChangeListener(this);
 
+    }
+
+    @SuppressLint("ResourceType")
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus){
+            if (v.getId() == R.id.pro_pos_pos){
+                background.setBackground(typedArray.getDrawable(1));
+            } else if (v.getId() == R.id.pro_pos_neg) {
+                background.setBackground(typedArray.getDrawable(2));
+            } else if (v.getId() == R.id.pro_neg_pos) {
+                background.setBackground(typedArray.getDrawable(3));
+            } else if (v.getId() == R.id.pro_neg_neg) {
+                background.setBackground(typedArray.getDrawable(4));
+            }
+        }
     }
 
     /**
@@ -183,7 +197,7 @@ public class ProjectionMethodActivity extends AppCompatActivity implements View.
         boolean[] isChecked = new boolean[4];
         int id = v.getId();
         if (id == R.id.pro_pos_pos) {
-            setSelImageSource(R.drawable.selected, R.drawable.unselected, R.drawable.unselected, R.drawable.unselected);
+            setSelImageSource(typedArray.getDrawable(0), getDrawable(R.drawable.unselected), getDrawable(R.drawable.unselected), getDrawable(R.drawable.unselected));
             isChecked[0] = true;
             isChecked[1] = false;
             isChecked[2] = false;
@@ -192,7 +206,7 @@ public class ProjectionMethodActivity extends AppCompatActivity implements View.
             setItemsBoolean(true, false, false, false);
             setProjectionMode(VALUE_POSITIVE_DRESS);
         } else if (id == R.id.pro_pos_neg) {
-            setSelImageSource(R.drawable.unselected, R.drawable.selected, R.drawable.unselected, R.drawable.unselected);
+            setSelImageSource(getDrawable(R.drawable.unselected), typedArray.getDrawable(0), getDrawable(R.drawable.unselected), getDrawable(R.drawable.unselected));
             isChecked[0] = false;
             isChecked[1] = true;
             isChecked[2] = false;
@@ -201,7 +215,7 @@ public class ProjectionMethodActivity extends AppCompatActivity implements View.
             setItemsBoolean(false, true, false, false);
             setProjectionMode(VALUE_DRESSING_REAR);
         } else if (id == R.id.pro_neg_pos) {
-            setSelImageSource(R.drawable.unselected, R.drawable.unselected, R.drawable.selected, R.drawable.unselected);
+            setSelImageSource(getDrawable(R.drawable.unselected), getDrawable(R.drawable.unselected), typedArray.getDrawable(0), getDrawable(R.drawable.unselected));
             isChecked[0] = false;
             isChecked[1] = false;
             isChecked[2] = true;
@@ -210,7 +224,7 @@ public class ProjectionMethodActivity extends AppCompatActivity implements View.
             setItemsBoolean(false, false, true, false);
             setProjectionMode(VALUE_HOISTING_FRONT);
         } else if (id == R.id.pro_neg_neg) {
-            setSelImageSource(R.drawable.unselected, R.drawable.unselected, R.drawable.unselected, R.drawable.selected);
+            setSelImageSource(getDrawable(R.drawable.unselected), getDrawable(R.drawable.unselected), getDrawable(R.drawable.unselected), typedArray.getDrawable(0));
             isChecked[0] = false;
             isChecked[1] = false;
             isChecked[2] = false;
@@ -302,11 +316,11 @@ public class ProjectionMethodActivity extends AppCompatActivity implements View.
      * @param neg_pos
      * @param neg_neg
      */
-    private void setSelImageSource(int pos_pos,int pos_neg,int neg_pos,int neg_neg){
-        sel_pos_pos.setImageResource(pos_pos);
-        sel_pos_neg.setImageResource(pos_neg);
-        sel_neg_pos.setImageResource(neg_pos);
-        sel_neg_neg.setImageResource(neg_neg);
+    private void setSelImageSource(Drawable pos_pos, Drawable pos_neg, Drawable neg_pos, Drawable neg_neg){
+        sel_pos_pos.setImageDrawable(pos_pos);
+        sel_pos_neg.setImageDrawable(pos_neg);
+        sel_neg_pos.setImageDrawable(neg_pos);
+        sel_neg_neg.setImageDrawable(neg_neg);
     }
 
     /**
@@ -322,4 +336,5 @@ public class ProjectionMethodActivity extends AppCompatActivity implements View.
         neg_pos_check = neg_pos;
         neg_neg_check = neg_neg;
     }
+
 }

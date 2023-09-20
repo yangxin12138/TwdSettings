@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="@dimen/projection_title_arrow_width"
         android:layout_height="@dimen/projection_title_arrow_height"
-        android:src="@drawable/arrow_back"
+        android:src="?arrowBack_src"
         android:layout_marginStart="@dimen/projection_title_arrow_marginStart"
         android:layout_marginTop="@dimen/projection_title_arrow_marginTop" />
 
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/projection_title_marginTop"
         android:text="@string/projection_method_title_text"
-        android:textColor="@color/black"
+        android:textColor="?textColor"
         android:layout_marginStart="@dimen/projection_title_marginStart"
         android:textSize="@dimen/projection_title_textSize"
         android:textStyle="normal" />
@@ -37,25 +37,28 @@
             android:id="@+id/pro_pos_pos"
             android:layout_width="@dimen/projection_RL_width"
             android:layout_height="@dimen/projection_RL_height"
-            android:background="@drawable/test"
+            android:background="?btnBg"
             android:focusable="true">
 
             <!--正装正投-->
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/tv_pos_pos"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/projection_tv_height"
                 android:paddingTop="@dimen/projection_tv_paddingTop"
                 android:layout_marginLeft="@dimen/projection_tv_marginLeft"
                 android:text="@string/projection_method_pos_pos"
-                android:textColor="@color/black"
+                android:textColor="?textColor"
                 android:textSize="@dimen/projection_tv_textSize"
                 android:textStyle="normal" />
 
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/sel_pos_pos"
                 android:layout_width="@dimen/projection_iv_width"
                 android:layout_height="@dimen/projection_iv_height"
+                android:src="?icon_projection_selected"
                 android:layout_marginStart="@dimen/projection_iv_marginStart"
                 android:layout_marginTop="@dimen/projection_iv_marginTop" />
         </RelativeLayout>
@@ -65,25 +68,28 @@
             android:id="@+id/pro_pos_neg"
             android:layout_width="@dimen/projection_RL_width"
             android:layout_height="@dimen/projection_RL_height"
-            android:background="@drawable/test"
+            android:background="?btnBg"
             android:focusable="true"
             android:layout_marginTop="@dimen/projection_RL_marginTop">
 
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/tv_pos_neg"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/projection_tv_height"
                 android:paddingTop="@dimen/projection_tv_paddingTop"
                 android:layout_marginLeft="@dimen/projection_tv_marginLeft"
                 android:text="@string/projection_method_pos_neg"
-                android:textColor="@color/black"
+                android:textColor="?textColor"
                 android:textSize="@dimen/projection_tv_textSize"
                 android:textStyle="normal" />
 
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/sel_pos_neg"
                 android:layout_width="@dimen/projection_iv_width"
                 android:layout_height="@dimen/projection_iv_height"
+                android:src="?icon_projection_selected"
                 android:layout_marginStart="@dimen/projection_iv_marginStart"
                 android:layout_marginTop="@dimen/projection_iv_marginTop" />
         </RelativeLayout>
@@ -93,25 +99,28 @@
             android:id="@+id/pro_neg_pos"
             android:layout_width="@dimen/projection_RL_width"
             android:layout_height="@dimen/projection_RL_height"
-            android:background="@drawable/test"
+            android:background="?btnBg"
             android:focusable="true"
             android:layout_marginTop="@dimen/projection_RL_marginTop">
 
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/tv_neg_pos"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/projection_tv_height"
                 android:paddingTop="@dimen/projection_tv_paddingTop"
                 android:layout_marginLeft="@dimen/projection_tv_marginLeft"
                 android:text="@string/projection_method_neg_pos"
-                android:textColor="@color/black"
+                android:textColor="?textColor"
                 android:textSize="@dimen/projection_tv_textSize"
                 android:textStyle="normal" />
 
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/sel_neg_pos"
                 android:layout_width="@dimen/projection_iv_width"
                 android:layout_height="@dimen/projection_iv_height"
+                android:src="?icon_projection_selected"
                 android:layout_marginStart="@dimen/projection_iv_marginStart"
                 android:layout_marginTop="@dimen/projection_iv_marginTop" />
         </RelativeLayout>
@@ -121,25 +130,28 @@
             android:id="@+id/pro_neg_neg"
             android:layout_width="@dimen/projection_RL_width"
             android:layout_height="@dimen/projection_RL_height"
-            android:background="@drawable/test"
+            android:background="?btnBg"
             android:focusable="true"
             android:layout_marginTop="@dimen/projection_RL_marginTop">
 
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/tv_neg_neg"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/projection_tv_height"
                 android:paddingTop="@dimen/projection_tv_paddingTop"
                 android:layout_marginLeft="@dimen/projection_tv_marginLeft"
                 android:text="@string/projection_method_neg_neg"
-                android:textColor="@color/black"
+                android:textColor="?textColor"
                 android:textSize="@dimen/projection_tv_textSize"
                 android:textStyle="normal" />
 
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/sel_neg_neg"
                 android:layout_width="@dimen/projection_iv_width"
                 android:layout_height="@dimen/projection_iv_height"
+                android:src="?icon_projection_selected"
                 android:layout_marginStart="@dimen/projection_iv_marginStart"
                 android:layout_marginTop="@dimen/projection_iv_marginTop" />
         </RelativeLayout>

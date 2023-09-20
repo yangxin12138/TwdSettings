@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,16 +15,29 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.twd.twdsettings.R;
+import com.twd.twdsettings.SystemPropertiesUtils;
 
 /**
  * 投影设置主页
  */
-public class ProjectionSettingsActivity extends AppCompatActivity implements View.OnClickListener,View.OnFocusChangeListener {
+public class ProjectionSettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private SharedPreferences mSharedPreferences;
+    String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        switch (theme_code){
+            case "0": //冰激蓝
+                this.setTheme(R.style.Theme_IceBlue);
+                break;
+            case "1": //木棉白
+                this.setTheme(R.style.Theme_KapokWhite);
+                break;
+            case "2": //星空蓝
+                this.setTheme(R.style.Theme_StarBlue);
+                break;
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_projection_settings);
         initView();
@@ -37,20 +51,10 @@ public class ProjectionSettingsActivity extends AppCompatActivity implements Vie
 
     /*页面初始化*/
     private void initView(){
-        RelativeLayout double_TrapezoidalRL = findViewById(R.id.trapezoidal_double_point);
-        RelativeLayout single_TrapezoidalRL = findViewById(R.id.trapezoidal_single_point);
-        RelativeLayout sizeRl = findViewById(R.id.size);
-        RelativeLayout projectionRL = findViewById(R.id.projection);
-
-        ImageView iv_trapezoidal_double_point = findViewById(R.id.iv_trapezoidal_double_point);
-        ImageView iv_trapezoidal_single_point =  findViewById(R.id.iv_trapezoidal_single_point);
-        ImageView iv_size =  findViewById(R.id.iv_size);
-        ImageView iv_projection =  findViewById(R.id.iv_projection);
-
-        TextView tv_trapezoidal_double_point =  findViewById(R.id.tv_trapezoidal_double_point);
-        TextView tv_trapezoidal_single_point =  findViewById(R.id.tv_trapezoidal_single_point);
-        TextView tv_size =  findViewById(R.id.tv_size);
-        TextView tv_projection =  findViewById(R.id.tv_projection);
+        LinearLayout double_TrapezoidalLL = findViewById(R.id.trapezoidal_double_point);
+        LinearLayout single_TrapezoidalLL = findViewById(R.id.trapezoidal_single_point);
+        LinearLayout sizeLL = findViewById(R.id.size);
+        LinearLayout projectionLL = findViewById(R.id.projection);
 
         mSharedPreferences = getSharedPreferences("MyPrefsFile",MODE_PRIVATE);
         boolean pos_pos_check = mSharedPreferences.getBoolean("pos_pos",false);
@@ -66,15 +70,10 @@ public class ProjectionSettingsActivity extends AppCompatActivity implements Vie
         if (neg_pos_check) tv_projection_small.setText(R.string.projection_method_neg_pos);
         if (neg_neg_check) tv_projection_small.setText(R.string.projection_method_neg_neg);
         /* 设置监听器 */
-        double_TrapezoidalRL.setOnClickListener(this);
-        single_TrapezoidalRL.setOnClickListener(this);
-        sizeRl.setOnClickListener(this);
-        projectionRL.setOnClickListener(this);
-
-        double_TrapezoidalRL.setOnFocusChangeListener(this);
-        single_TrapezoidalRL.setOnFocusChangeListener(this);
-        sizeRl.setOnFocusChangeListener(this);
-        projectionRL.setOnFocusChangeListener(this);
+        double_TrapezoidalLL.setOnClickListener(this);
+        single_TrapezoidalLL.setOnClickListener(this);
+        sizeLL.setOnClickListener(this);
+        projectionLL.setOnClickListener(this);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -94,16 +93,6 @@ public class ProjectionSettingsActivity extends AppCompatActivity implements Vie
         } else if (v.getId() == R.id.projection) {
             intent = new Intent(this,ProjectionMethodActivity.class);
             startActivity(intent);
-        }
-    }
-
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-            v.setBackgroundResource(R.drawable.test_red);
-        } else {
-            v.setBackgroundResource(R.drawable.test);
         }
     }
 }

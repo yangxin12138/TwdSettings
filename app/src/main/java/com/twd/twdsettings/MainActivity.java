@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,8 +18,8 @@ import com.twd.twdsettings.network.NetworkActivity;
 import com.twd.twdsettings.projection.ProjectionSettingsActivity;
 import com.twd.twdsettings.universal.UniversalActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnFocusChangeListener , View.OnClickListener {
-
+public class MainActivity extends AppCompatActivity implements View.OnFocusChangeListener, View.OnClickListener {
+    String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
     private LinearLayout index_LLProjection;
     private LinearLayout index_LLWifi;
     private LinearLayout index_LLBluetooth;
@@ -45,9 +46,29 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
 
     private ImageView displayPic;
     private TextView displayText;
+    TypedArray tyar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        switch (theme_code){
+            case "0": //冰激蓝
+                this.setTheme(R.style.Theme_IceBlue);
+                break;
+            case "1": //木棉白
+                this.setTheme(R.style.Theme_KapokWhite);
+                break;
+            case "2": //星空蓝
+                this.setTheme(R.style.Theme_StarBlue);
+                break;
+        }
+        tyar= obtainStyledAttributes(new int[]{
+                R.attr.main_projection_src, //0
+                R.attr.main_internet_src,   //1
+                R.attr.main_bluetooth_src,  //2
+                R.attr.main_universal_src,  //3
+                R.attr.main_device_src  //4
+        });
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
@@ -95,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         index_LLProjection.setOnFocusChangeListener(this);
         index_LLWifi.setOnFocusChangeListener(this);
         index_LLBluetooth.setOnFocusChangeListener(this);
-        index_LLBluetooth.setOnFocusChangeListener(this);
         index_LLUniversal.setOnFocusChangeListener(this);
         index_LLAbout.setOnFocusChangeListener(this);
 
@@ -105,89 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         index_LLUniversal.setOnClickListener(this);
         index_LLAbout.setOnClickListener(this);
     }
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus){
-            changeItem(v);
-        }else {
-            resetItem(v);
-        }
-    }
 
-    private void changeItem(View view){
-        view.setBackgroundResource(R.drawable.bg_sel);
-        changeItemColor(view.getId());
-
-        if (view.getId() == R.id.LL_index_projection){
-            displayPic.setImageResource(R.drawable.projection);
-            displayText.setText(TV_projection.getText().toString());
-        } else if (view.getId() == R.id.LL_index_wifi) {
-            displayPic.setImageResource(R.drawable.wifi);
-            displayText.setText(TV_wifi.getText().toString());
-        } else if (view.getId() == R.id.LL_index_bluetooth) {
-            displayPic.setImageResource(R.drawable.bluetooth);
-            displayText.setText(TV_bluetooth.getText().toString());
-        } else if (view.getId() == R.id.LL_index_setup) {
-            displayPic.setImageResource(R.drawable.setup);
-            displayText.setText(TV_universal.getText().toString());
-        } else if (view.getId() == R.id.LL_index_about) {
-            displayPic.setImageResource(R.drawable.about);
-            displayText.setText(TV_about.getText().toString());
-        }
-    }
-
-    private void resetItem(View view){
-        view.setBackgroundColor(getResources().getColor(R.color.background_color));
-        resetItemColor(view.getId());
-    }
-
-    private void changeItemColor(int ViewId){
-        if (ViewId == R.id.LL_index_projection) {
-            IV_projection.setImageResource(R.drawable.projection_sel);
-            TV_projection.setTextColor(getResources().getColor(R.color.sel_blue));
-            arrow_projection.setImageResource(R.drawable.arrow_sel);
-        } else if (ViewId == R.id.LL_index_wifi) {
-            IV_wifi.setImageResource(R.drawable.wifi_sel);
-            TV_wifi.setTextColor(getResources().getColor(R.color.sel_blue));
-            arrow_wifi.setImageResource(R.drawable.arrow_sel);
-        } else if (ViewId == R.id.LL_index_bluetooth) {
-            IV_bluetooth.setImageResource(R.drawable.bluetooth_sel);
-            TV_bluetooth.setTextColor(getResources().getColor(R.color.sel_blue));
-            arrow_bluetooth.setImageResource(R.drawable.arrow_sel);
-        } else if (ViewId == R.id.LL_index_setup) {
-            IV_universal.setImageResource(R.drawable.setup_sel);
-            TV_universal.setTextColor(getResources().getColor(R.color.sel_blue));
-            arrow_universal.setImageResource(R.drawable.arrow_sel);
-        } else if (ViewId == R.id.LL_index_about) {
-            IV_about.setImageResource(R.drawable.about_sel);
-            TV_about.setTextColor(getResources().getColor(R.color.sel_blue));
-            arrow_about.setImageResource(R.drawable.arrow_sel);
-        }
-    }
-    
-    private void resetItemColor(int ViewId){
-        if (ViewId == R.id.LL_index_projection){
-            IV_projection.setImageResource(R.drawable.projection);
-            TV_projection.setTextColor(getResources().getColor(R.color.white));
-            arrow_projection.setImageResource(R.drawable.arrow);
-        } else if (ViewId == R.id.LL_index_wifi) {
-            IV_wifi.setImageResource(R.drawable.wifi);
-            TV_wifi.setTextColor(getResources().getColor(R.color.white));
-            arrow_wifi.setImageResource(R.drawable.arrow);
-        } else if (ViewId == R.id.LL_index_bluetooth) {
-            IV_bluetooth.setImageResource(R.drawable.bluetooth);
-            TV_bluetooth.setTextColor(getResources().getColor(R.color.white));
-            arrow_bluetooth.setImageResource(R.drawable.arrow);
-        } else if (ViewId == R.id.LL_index_setup) {
-            IV_universal.setImageResource(R.drawable.setup);
-            TV_universal.setTextColor(getResources().getColor(R.color.white));
-            arrow_universal.setImageResource(R.drawable.arrow);
-        } else if (ViewId == R.id.LL_index_about) {
-            IV_about.setImageResource(R.drawable.about);
-            TV_about.setTextColor(getResources().getColor(R.color.white));
-            arrow_about.setImageResource(R.drawable.arrow);
-        }
-    }
 
     @Override
     public void onClick(View v) {
@@ -207,6 +145,29 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
         } else if (v.getId() == R.id.LL_index_about) {
             intent = new Intent(this, DeviceActivity.class);
             startActivity(intent);
+        }
+    }
+
+    @SuppressLint("ResourceType")
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus){
+            if (v.getId() == R.id.LL_index_projection){
+                displayPic.setImageDrawable(tyar.getDrawable(0));
+                displayText.setText(getString(R.string.main_projection_text));
+            } else if (v.getId() == R.id.LL_index_wifi) {
+                displayPic.setImageDrawable(tyar.getDrawable(1));
+                displayText.setText(getString(R.string.main_wifi_text));
+            } else if (v.getId() == R.id.LL_index_bluetooth) {
+                displayPic.setImageDrawable(tyar.getDrawable(2));
+                displayText.setText(getString(R.string.main_bluetooth_text));
+            } else if (v.getId() == R.id.LL_index_setup) {
+                displayPic.setImageDrawable(tyar.getDrawable(3));
+                displayText.setText(getString(R.string.main_Universal_text));
+            } else if (v.getId() == R.id.LL_index_about) {
+                displayPic.setImageDrawable(tyar.getDrawable(4));
+                displayText.setText(getString(R.string.main_aboutDevice_text));
+            }
         }
     }
 }

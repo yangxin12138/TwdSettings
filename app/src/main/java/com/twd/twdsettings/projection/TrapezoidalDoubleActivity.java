@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.twd.twdsettings.R;
+import com.twd.twdsettings.SystemPropertiesUtils;
 import com.twd.twdsettings.projection.keystone.keystoneTwoPoint;
 
 /**
@@ -25,9 +26,21 @@ public class TrapezoidalDoubleActivity extends AppCompatActivity {
     private TextView mTextX;//
 
     protected static SharedPreferences prefsTextValue;
+    String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        switch (theme_code){
+            case "0": //冰激蓝
+                this.setTheme(R.style.Theme_IceBlue);
+                break;
+            case "1": //木棉白
+                this.setTheme(R.style.Theme_KapokWhite);
+                break;
+            case "2": //星空蓝
+                this.setTheme(R.style.Theme_StarBlue);
+                break;
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trapezoidal_double_point);
         initView();

@@ -3,6 +3,8 @@ package com.twd.twdsettings.projection;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -14,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.twd.twdsettings.R;
+import com.twd.twdsettings.SystemPropertiesUtils;
 import com.twd.twdsettings.projection.keystone.keystoneOnePoint;
 
 public class TrapezoidalSingleActivity extends AppCompatActivity implements View.OnFocusChangeListener,View.OnKeyListener{
@@ -34,9 +37,25 @@ public class TrapezoidalSingleActivity extends AppCompatActivity implements View
     private static int nowPoint = 0;
 
     protected static SharedPreferences prefsDotValue;
+    TypedArray typedArray;
+    String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        switch (theme_code){
+            case "0": //冰激蓝
+                this.setTheme(R.style.Theme_IceBlue);
+                break;
+            case "1": //木棉白
+                this.setTheme(R.style.Theme_KapokWhite);
+                break;
+            case "2": //星空蓝
+                this.setTheme(R.style.Theme_StarBlue);
+                break;
+        }
+        typedArray  = obtainStyledAttributes(new int[]{
+                R.attr.trape_dots
+        });
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trapeaoidal_single_point);
         initView();
@@ -108,11 +127,11 @@ public class TrapezoidalSingleActivity extends AppCompatActivity implements View
      * @param left_down
      * @param right_down
      */
-    private void setImageResource(int left_up,int right_up,int left_down,int right_down){
-        single_left_up.setImageResource(left_up);
-        single_right_up.setImageResource(right_up);
-        single_left_down.setImageResource(left_down);
-        single_right_down.setImageResource(right_down);
+    private void setImageResource(Drawable left_up, Drawable right_up, Drawable left_down, Drawable right_down){
+        single_left_up.setImageDrawable(left_up);
+        single_right_up.setImageDrawable(right_up);
+        single_left_down.setImageDrawable(left_down);
+        single_right_down.setImageDrawable(right_down);
     }
 
     private void setTextVisible(int luVisible,int ruVisible,int ldVisible,int rdVisible){
@@ -127,16 +146,20 @@ public class TrapezoidalSingleActivity extends AppCompatActivity implements View
         if (hasFocus){
             int id = v.getId();
             if (id == R.id.iv_single_left_up) {//焦点在左上
-                setImageResource(R.drawable.trape_dot, R.drawable.unselected, R.drawable.unselected, R.drawable.unselected);
+                setImageResource(typedArray.getDrawable(0), getDrawable(R.drawable.unselected)
+                        , getDrawable(R.drawable.unselected), getDrawable(R.drawable.unselected));
                 setTextVisible(View.VISIBLE, View.GONE, View.GONE, View.GONE);
             } else if (id == R.id.iv_single_right_up) {//焦点在右上
-                setImageResource(R.drawable.unselected, R.drawable.trape_dot, R.drawable.unselected, R.drawable.unselected);
+                setImageResource(getDrawable(R.drawable.unselected), typedArray.getDrawable(0)
+                        , getDrawable(R.drawable.unselected), getDrawable(R.drawable.unselected));
                 setTextVisible(View.GONE, View.VISIBLE, View.GONE, View.GONE);
             } else if (id == R.id.iv_single_left_down) {//焦点在左下
-                setImageResource(R.drawable.unselected, R.drawable.unselected, R.drawable.trape_dot, R.drawable.unselected);
+                setImageResource(getDrawable(R.drawable.unselected), getDrawable(R.drawable.unselected)
+                        , typedArray.getDrawable(0), getDrawable(R.drawable.unselected));
                 setTextVisible(View.GONE, View.GONE, View.VISIBLE, View.GONE);
             } else if (id == R.id.iv_single_right_down) {//焦点在右下
-                setImageResource(R.drawable.unselected, R.drawable.unselected, R.drawable.unselected, R.drawable.trape_dot);
+                setImageResource(getDrawable(R.drawable.unselected), getDrawable(R.drawable.unselected)
+                        , getDrawable(R.drawable.unselected), typedArray.getDrawable(0));
                 setTextVisible(View.GONE, View.GONE, View.GONE, View.VISIBLE);
             }
         }
@@ -153,19 +176,6 @@ public class TrapezoidalSingleActivity extends AppCompatActivity implements View
         if ( currentFocus != null){
             String name = String.valueOf(id);
             Log.i("TAG","---------"+name);
-//            if (id == R.id.iv_single_left_up){
-//                Log.i("左上","-------------左上----------");
-//                text_left_up.setText(mKeystone.getOnePointInfo(nowPoint));
-//            } else if (id == R.id.iv_single_right_up) {
-//                Log.i("右上","-------------右上----------");
-//                text_right_up.setText(mKeystone.getOnePointInfo(nowPoint));
-//            } else if (id == R.id.tv_single_left_down) {
-//                Log.i("左下","-------------左下----------");
-//                text_left_down.setText(mKeystone.getOnePointInfo(nowPoint));
-//            } else if (id == R.id.tv_single_right_down) {
-//                Log.i("右下","------------右下-----------------");
-//                text_right_down.setText(mKeystone.getOnePointInfo(nowPoint));
-//            }
             if (id == R.id.iv_single_left_up) {
                 Log.i("左上", "-------------左上----------");
                 text_left_up.setText(mKeystone.getOnePointInfo(nowPoint));

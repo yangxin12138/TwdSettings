@@ -5,15 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/background_color"
-    android:orientation="vertical">
+    android:background="?background_color"
+    android:orientation="vertical"
+    android:id="@+id/main_background">
 
     <TextView
         android:id="@+id/index_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/main_index_title_text"
-        android:textColor="@color/white"
+        android:textColor="?textColor"
         android:textSize="@dimen/index_title_textSize"
         android:textStyle="bold"
         android:layout_marginTop="@dimen/index_title_marginTop0"
@@ -31,27 +32,31 @@
             android:layout_marginStart="@dimen/index_LL_marginStart"
             android:layout_width="@dimen/index_LL_width"
             android:layout_height="@dimen/index_LL_height"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:background="?btnBg">
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/im_projection"
-                android:layout_width="@dimen/index_ivFront_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/index_ivFront_height"
-                android:layout_marginStart="@dimen/index_ivFront_marginStart"
-                android:src="@drawable/projection"/>
+                android:src="?main_projection_src"/>
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/projection_text"
-                android:layout_width="@dimen/index_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:text="@string/main_projection_text"
-                android:textColor="@color/white"
-                android:textSize="@dimen/index_tv_textSize"
-                android:layout_marginStart="@dimen/index_tv_marginStart"/>
+                android:textColor="?textColor"
+                android:textSize="@dimen/index_tv_textSize" />
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/indexArrow_projection"
-                android:layout_width="@dimen/index_iv_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/index_iv_height"
-                android:layout_marginStart="@dimen/index_iv_marginStart"
-                android:src="@drawable/arrow"/>
+                android:src="?arrowSrc"/>
         </LinearLayout>
         <LinearLayout
             android:layout_below="@+id/LL_index_projection"
@@ -59,27 +64,32 @@
             android:layout_marginStart="@dimen/index_LL_marginStart"
             android:layout_width="@dimen/index_LL_width"
             android:layout_height="@dimen/index_LL_height"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:background="?btnBg"
+            android:layout_marginTop="20dp">
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/im_wifi"
-                android:layout_width="@dimen/index_ivFront_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/index_ivFront_height"
-                android:layout_marginStart="@dimen/index_ivFront_marginStart"
-                android:src="@drawable/wifi"/>
+                android:src="?main_internet_src"/>
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/wifi_text"
-                android:layout_width="@dimen/index_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:text="@string/main_wifi_text"
-                android:textColor="@color/white"
-                android:textSize="@dimen/index_tv_textSize"
-                android:layout_marginStart="@dimen/index_tv_marginStart"/>
+                android:textColor="?textColor"
+                android:textSize="@dimen/index_tv_textSize" />
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/indexArrow_wifi"
-                android:layout_width="@dimen/index_iv_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/index_iv_height"
-                android:layout_marginStart="@dimen/index_iv_marginStart"
-                android:src="@drawable/arrow"/>
+                android:src="?arrowSrc"/>
         </LinearLayout>
         <LinearLayout
             android:layout_below="@+id/LL_index_wifi"
@@ -87,27 +97,32 @@
             android:layout_marginStart="@dimen/index_LL_marginStart"
             android:layout_width="@dimen/index_LL_width"
             android:layout_height="@dimen/index_LL_height"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:background="?btnBg"
+            android:layout_marginTop="20dp">
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/im_bluetooth"
-                android:layout_width="@dimen/index_ivFront_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/index_ivFront_height"
-                android:layout_marginStart="@dimen/index_ivFront_marginStart"
-                android:src="@drawable/bluetooth"/>
+                android:src="?main_bluetooth_src"/>
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/bluetooth_text"
-                android:layout_width="@dimen/index_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:text="@string/main_bluetooth_text"
-                android:textColor="@color/white"
-                android:textSize="@dimen/index_tv_textSize"
-                android:layout_marginStart="@dimen/index_tv_marginStart"/>
+                android:textColor="?textColor"
+                android:textSize="@dimen/index_tv_textSize" />
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/indexArrow_bluetooth"
-                android:layout_width="@dimen/index_iv_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/index_iv_height"
-                android:layout_marginStart="@dimen/index_iv_marginStart"
-                android:src="@drawable/arrow"/>
+                android:src="?arrowSrc"/>
         </LinearLayout>
         <LinearLayout
             android:layout_below="@+id/LL_index_bluetooth"
@@ -115,27 +130,32 @@
             android:layout_marginStart="@dimen/index_LL_marginStart"
             android:layout_width="@dimen/index_LL_width"
             android:layout_height="@dimen/index_LL_height"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:background="?btnBg"
+            android:layout_marginTop="20dp">
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/im_setup"
-                android:layout_width="@dimen/index_ivFront_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/index_ivFront_height"
-                android:layout_marginStart="@dimen/index_ivFront_marginStart"
-                android:src="@drawable/setup"/>
+                android:src="?main_universal_src"/>
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/setup_text"
-                android:layout_width="@dimen/index_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:text="@string/main_Universal_text"
-                android:textColor="@color/white"
-                android:textSize="@dimen/index_tv_textSize"
-                android:layout_marginStart="@dimen/index_tv_marginStart"/>
+                android:textColor="?textColor"
+                android:textSize="@dimen/index_tv_textSize" />
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/indexArrow_setup"
-                android:layout_width="@dimen/index_iv_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/index_iv_height"
-                android:layout_marginStart="@dimen/index_iv_marginStart"
-                android:src="@drawable/arrow"/>
+                android:src="?arrowSrc"/>
         </LinearLayout>
         <LinearLayout
             android:layout_below="@+id/LL_index_setup"
@@ -143,27 +163,32 @@
             android:layout_marginStart="@dimen/index_LL_marginStart"
             android:layout_width="@dimen/index_LL_width"
             android:layout_height="@dimen/index_LL_height"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:background="?btnBg"
+            android:layout_marginTop="20dp">
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/im_about"
-                android:layout_width="@dimen/index_ivFront_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/index_ivFront_height"
-                android:layout_marginStart="@dimen/index_ivFront_marginStart"
-                android:src="@drawable/about"/>
+                android:src="?main_device_src"/>
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/about_text"
-                android:layout_width="@dimen/index_tv_width"
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:text="@string/main_aboutDevice_text"
-                android:textColor="@color/white"
-                android:textSize="@dimen/index_tv_textSize"
-                android:layout_marginStart="@dimen/index_tv_marginStart"/>
+                android:textColor="?textColor"
+                android:textSize="@dimen/index_tv_textSize" />
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/indexArrow_about"
-                android:layout_width="@dimen/index_iv_width"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/index_iv_height"
-                android:layout_marginStart="@dimen/index_iv_marginStart"
-                android:src="@drawable/arrow"/>
+                android:src="?arrowSrc"/>
         </LinearLayout>
 
         <LinearLayout
@@ -175,13 +200,12 @@
             >
             <ImageView
                 android:id="@+id/display_pic"
-                android:src="@drawable/about"
                 android:layout_width="@dimen/index_display_iv_width"
                 android:layout_height="@dimen/index_display_iv_height"/>
             <TextView
                 android:id="@+id/display_text"
                 android:gravity="center"
-                android:textColor="@color/white"
+                android:textColor="?textColor"
                 android:text="@string/main_aboutDevice_text"
                 android:textSize="@dimen/index_display_tv_textSize"
                 android:layout_marginTop="@dimen/index_display_tv_marginTop"

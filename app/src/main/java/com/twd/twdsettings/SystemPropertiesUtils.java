@@ -1,4 +1,4 @@
-package com.twd.twdsettings.projection.keystone;
+package com.twd.twdsettings;
 
 import java.lang.reflect.Method;
 
@@ -24,6 +24,19 @@ public class SystemPropertiesUtils {
             set.invoke(c,key,value);
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public static String getPropertyColor(String key,String defaultValue){
+        String value = defaultValue;
+        try{
+            Class<?> c = Class.forName(CLASS_NAME);
+            Method get = c.getMethod("get",String.class,String.class);
+            value = (String) (get.invoke(c,key,defaultValue));
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            return value;
         }
     }
 }

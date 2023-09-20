@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 
 import com.twd.twdsettings.R;
+import com.twd.twdsettings.SystemPropertiesUtils;
 import com.twd.twdsettings.projection.keystone.keystone;
 import com.twd.twdsettings.projection.keystone.keystoneOnePoint;
 import com.twd.twdsettings.projection.keystone.keystoneTwoPoint;
@@ -27,9 +28,21 @@ public class SizeActivity extends AppCompatActivity implements View.OnFocusChang
     private TextView textView_level;
     private keystone mKeystone;
     protected static SharedPreferences prefs;
+    String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        switch (theme_code){
+            case "0": //冰激蓝
+                this.setTheme(R.style.Theme_IceBlue);
+                break;
+            case "1": //木棉白
+                this.setTheme(R.style.Theme_KapokWhite);
+                break;
+            case "2": //星空蓝
+                this.setTheme(R.style.Theme_StarBlue);
+                break;
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_size);
         initView();
