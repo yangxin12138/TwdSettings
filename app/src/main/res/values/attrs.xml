@@ -24,4 +24,6 @@
     <attr name="projection_method_pos_neg_bg" format="reference"/>
     <attr name="projection_method_neg_pos_bg" format="reference"/>
     <attr name="projection_method_neg_neg_bg" format="reference"/>
+
+    <attr name="bluetooth_icon" format="reference"/>
 </resources>

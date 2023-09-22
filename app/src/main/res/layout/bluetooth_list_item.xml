@@ -6,21 +6,21 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:paddingEnd="@dimen/blu_item_iv_marginStart"
-    android:background="@color/background_color">
+    android:background="?bBg">
 
     <ImageView
         android:id="@+id/icon_bluetooth"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="@dimen/wifi_list_item_signal_width_height"
-        android:src="@drawable/icon_bluetooth_item"
+        android:src="?bluetooth_icon"
         android:layout_marginStart="@dimen/blu_item_iv_marginStart"
         android:layout_gravity="center_vertical"/>
     <TextView
         android:id="@+id/bluetooth_name"
         android:text=""
         android:textSize="@dimen/wifi_list_item_ssid_textSize"
-        android:textColor="@color/white"
+        android:textColor="?textColor"
         android:layout_width="0dp"
         android:layout_weight="7"
         android:layout_height="@dimen/wifi_list_item_ssid_height"
@@ -31,7 +31,7 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="?textColor"
         android:layout_gravity="center_vertical"
         android:textSize="@dimen/wifi_list_item_isChecked_textSize"/>
 

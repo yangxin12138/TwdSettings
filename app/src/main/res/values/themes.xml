@@ -31,6 +31,7 @@
         <item name="projection_method_pos_neg_bg">@drawable/bg_pos_neg_iceblue</item>
         <item name="projection_method_neg_pos_bg">@drawable/bg_neg_pos_iceblue</item>
         <item name="projection_method_neg_neg_bg">@drawable/bg_neg_neg_iceblue</item>
+        <item name="bluetooth_icon">@drawable/select_bluetooth_icon_iceblue</item>
     </style>
 
     <!--木棉白-->
@@ -58,6 +59,7 @@
         <item name="projection_method_pos_neg_bg">@drawable/bg_pos_neg</item>
         <item name="projection_method_neg_pos_bg">@drawable/bg_neg_pos</item>
         <item name="projection_method_neg_neg_bg">@drawable/bg_neg_neg</item>
+        <item name="bluetooth_icon">@drawable/selector_bluetooth_icon_kapokwhite</item>
     </style>
 
     <style name="Theme.StarBlue" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -84,5 +86,6 @@
         <item name="projection_method_pos_neg_bg">@drawable/bg_pos_neg_starblue</item>
         <item name="projection_method_neg_pos_bg">@drawable/bg_neg_pos_starblue</item>
         <item name="projection_method_neg_neg_bg">@drawable/bg_neg_neg_starblue</item>
+        <item name="bluetooth_icon">@drawable/selector_bluetooth_icon_starblue</item>
     </style>
 </resources>

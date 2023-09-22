@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -36,6 +38,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.twd.twdsettings.R;
+import com.twd.twdsettings.SystemPropertiesUtils;
 import com.twd.twdsettings.bean.BluetoothItem;
 
 import java.io.IOException;
@@ -61,9 +64,21 @@ public class BluetoothActivity extends AppCompatActivity {
     private List<BluetoothDevice> pairedDevicesList = new ArrayList<>();//保存已配对的设备
 
     private Context mContext = this;
+    String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        switch (theme_code){
+            case "0": //冰激蓝
+                this.setTheme(R.style.Theme_IceBlue);
+                break;
+            case "1": //木棉白
+                this.setTheme(R.style.Theme_KapokWhite);
+                break;
+            case "2": //星空蓝
+                this.setTheme(R.style.Theme_StarBlue);
+                break;
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth);
 
@@ -104,7 +119,7 @@ public class BluetoothActivity extends AppCompatActivity {
             bluetooth_tv_search.setVisibility(View.VISIBLE);
         }
 
-        bluetooth_LL_bt.setFocusable(true);
+        //bluetooth_LL_bt.setFocusable(true);
         bluetooth_LL_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,9 +154,9 @@ public class BluetoothActivity extends AppCompatActivity {
                 }
             }
         });
-        bluetooth_LL_search.setFocusable(true);
+        //bluetooth_LL_search.setFocusable(true);
 
-        bluetooth_LL_bt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+/*        bluetooth_LL_bt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
@@ -161,7 +176,7 @@ public class BluetoothActivity extends AppCompatActivity {
                     resetItem(v);
                 }
             }
-        });
+        });*/
 
         //初始化ListView和适配器
         recyclerView = findViewById(R.id.bluetooth_recyclerview);
@@ -227,7 +242,7 @@ public class BluetoothActivity extends AppCompatActivity {
         }
     }
 
-    private void changeItem(View view) {
+   /* private void changeItem(View view) {
         view.setBackgroundResource(R.drawable.bg_sel);
         if (view.getId() == R.id.bluetooth_LL_bt) {
             bluetooth_tv_bt.setTextColor(getResources().getColor(R.color.sel_blue));
@@ -243,7 +258,7 @@ public class BluetoothActivity extends AppCompatActivity {
         } else if (view.getId() == R.id.bluetooth_LL_search) {
             bluetooth_tv_search.setTextColor(getResources().getColor(R.color.white));
         }
-    }
+    }*/
 
     private Handler handler = new Handler();
 
@@ -387,14 +402,14 @@ public class BluetoothActivity extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogView = inflater.inflate(R.layout.bluetooth_pairtodevice, null);
         pairDialog.setContentView(dialogView);
-        dialogView.setPadding(100,0,100,100);
+        dialogView.setPadding(100,0,100,50);
 
         final TextView PairTitle = dialogView.findViewById(R.id.pair_title);
-        final Button PairButton = dialogView.findViewById(R.id.pair_btn);
-        final Button PairCancelButton = dialogView.findViewById(R.id.pair_cancel_btn);
+        final LinearLayout PairLL = dialogView.findViewById(R.id.pair_btn);
+        final LinearLayout PairCancelLL = dialogView.findViewById(R.id.pair_cancel_btn);
         PairTitle.setText(item.getDeviceName() + getString(R.string.bluetooth_index_piarTodevice_title));
         pairDialog.show();
-        PairButton.setOnClickListener(new View.OnClickListener() {
+        PairLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pairToDevice(item);
@@ -402,7 +417,7 @@ public class BluetoothActivity extends AppCompatActivity {
             }
         });
 
-        PairCancelButton.setOnClickListener(new View.OnClickListener() {
+        PairCancelLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pairDialog.dismiss();
@@ -451,24 +466,52 @@ public class BluetoothActivity extends AppCompatActivity {
         public class ViewHolder extends RecyclerView.ViewHolder {
             public TextView deviceNameTextView;
             public TextView deviceStatusTextView;
+            public ImageView icon_bluetooth;
             BluetoothItem bluetoothItem;
+            int iconResIdSel = 0; int iconResIdUnSel = 0;
+            int textViewResIdSel = 0; int textViewResIdUnSel = 0;
+            int backgroundResIdSel = 0; int backgroundResIdUnSel = 0;
 
             public ViewHolder(View itemView) {
                 super(itemView);
+                icon_bluetooth = itemView.findViewById(R.id.icon_bluetooth);
                 deviceNameTextView = itemView.findViewById(R.id.bluetooth_name);
                 deviceStatusTextView = itemView.findViewById(R.id.bluetooth_status);
+
+                switch (String.valueOf(theme_code)){
+                    case "0":
+                        iconResIdSel = R.drawable.icon_bluetooth_iceblue_sel;
+                        iconResIdUnSel = R.drawable.icon_bluetooth_iceblue_unsel;
+                        textViewResIdSel = R.color.sel_blue; textViewResIdUnSel = R.color.white;
+                        backgroundResIdSel = R.color.customWhite; backgroundResIdUnSel = Color.TRANSPARENT;
+                        break;
+                    case "1":
+                        iconResIdSel = R.drawable.icon_bluetooth_kapokwhite_sel;
+                        iconResIdUnSel = R.drawable.icon_bluetooth_starblue;
+                        textViewResIdSel = R.color.text_red_new; textViewResIdUnSel =R.color.black;
+                        backgroundResIdSel = R.drawable.red_border; backgroundResIdUnSel = R.drawable.black_border;
+                        break;
+                    case "2":
+                        iconResIdSel = R.drawable.icon_bluetooth_starblue;
+                        iconResIdUnSel = R.drawable.icon_bluetooth_starblue;
+                        textViewResIdSel = R.color.customWhite; textViewResIdUnSel =R.color.customWhite;
+                        backgroundResIdSel = R.color.text_red_new; backgroundResIdUnSel = Color.TRANSPARENT;
+                        break;
+                }
 
                 itemView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                     @Override
                     public void onFocusChange(View v, boolean hasFocus) {
                         if (hasFocus) {
-                            v.setBackgroundResource(R.drawable.bg_sel);
-                            deviceNameTextView.setTextColor(ContextCompat.getColor(context, R.color.sel_blue));
-                            deviceStatusTextView.setTextColor(ContextCompat.getColor(context, R.color.sel_blue));
+                            v.setBackgroundResource(backgroundResIdSel);
+                            icon_bluetooth.setImageResource(iconResIdSel);
+                            deviceNameTextView.setTextColor(ContextCompat.getColor(context, textViewResIdSel));
+                            deviceStatusTextView.setTextColor(ContextCompat.getColor(context, textViewResIdSel));
                         } else {
-                            v.setBackgroundColor(ContextCompat.getColor(context, R.color.background_color));
-                            deviceNameTextView.setTextColor(ContextCompat.getColor(context, R.color.white));
-                            deviceStatusTextView.setTextColor(ContextCompat.getColor(context, R.color.white));
+                            v.setBackgroundResource(backgroundResIdUnSel);
+                            icon_bluetooth.setImageResource(iconResIdUnSel);
+                            deviceNameTextView.setTextColor(ContextCompat.getColor(context, textViewResIdUnSel));
+                            deviceStatusTextView.setTextColor(ContextCompat.getColor(context, textViewResIdUnSel));
                         }
                     }
                 });
@@ -580,27 +623,27 @@ public class BluetoothActivity extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogView = inflater.inflate(R.layout.bluetooth_conectodevice, null);
         conDialog.setContentView(dialogView);
-        dialogView.setPadding(100, 0, 100, 100);
+        dialogView.setPadding(100, 0, 100, 50);
 
         final TextView ConTitle = dialogView.findViewById(R.id.bt_connect_title);
-        final Button ConConnectButton = dialogView.findViewById(R.id.bt_connect_btn);
-        final Button ConCancelButton = dialogView.findViewById(R.id.bt_cancel_btn);
-        final Button ConIgnoreButton = dialogView.findViewById(R.id.ignore_bt_btn);
+        final LinearLayout ConConnectLL = dialogView.findViewById(R.id.bt_connect_btn);
+        final LinearLayout ConCancelLL = dialogView.findViewById(R.id.bt_cancel_btn);
+        final LinearLayout ConIgnoreLL = dialogView.findViewById(R.id.ignore_bt_btn);
 
         if (flag == 0){
             ConTitle.setText(getString(R.string.bluetooth_index_Connectdialog_flag_0));
-            ConCancelButton.setVisibility(View.GONE);
-            ConConnectButton.setVisibility(View.VISIBLE);
+            ConCancelLL.setVisibility(View.GONE);
+            ConConnectLL.setVisibility(View.VISIBLE);
         } else if (flag == 1) {
             ConTitle.setText(getString(R.string.bluetooth_index_Connectdialog_flag_1));
-            ConCancelButton.setVisibility(View.VISIBLE);
-            ConConnectButton.setVisibility(View.GONE);
+            ConCancelLL.setVisibility(View.VISIBLE);
+            ConConnectLL.setVisibility(View.GONE);
         }
 
         conDialog.show();
         String deviceAddress = item.getDeviceAddress();
         BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);
-        ConIgnoreButton.setOnClickListener(new View.OnClickListener() {
+        ConIgnoreLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //showToast("点击了忽略");
@@ -609,7 +652,7 @@ public class BluetoothActivity extends AppCompatActivity {
                 deviceAdapter.notifyDataSetChanged();
             }
         });
-        ConConnectButton.setOnClickListener(new View.OnClickListener() {
+        ConConnectLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //showToast("点击了连接");
@@ -621,7 +664,7 @@ public class BluetoothActivity extends AppCompatActivity {
             }
         });
 
-        ConCancelButton.setOnClickListener(new View.OnClickListener() {
+        ConCancelLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 conDialog.dismiss();

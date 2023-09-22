@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="?background_color"
     tools:context=".bluetooth.BluetoothActivity">
 
     <LinearLayout
@@ -16,12 +16,12 @@
         <ImageView
             android:layout_width="@dimen/blu_title_iv_width"
             android:layout_height="@dimen/blu_title_iv_height"
-            android:src="@drawable/arrow_back_white"
+            android:src="?arrowBack_src"
             android:layout_marginStart="@dimen/blu_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
             android:text="@string/bluetooth_index_title_text"
-            android:textColor="@color/white"
+            android:textColor="?textColor"
             android:textSize="@dimen/blu_title_tv_textSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,12 +40,15 @@
             android:id="@+id/bluetooth_LL_bt"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/blu_content_LL_height">
+            android:layout_height="@dimen/blu_content_LL_height"
+            android:focusable="true"
+            android:background="?bBg">
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/bluetooth_tv_bt"
                 android:text="@string/bluetooth_index_bt_tv"
                 android:textSize="@dimen/blu_bluetooth_tv_textSize"
-                android:textColor="@color/white"
+                android:textColor="?textColor"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
@@ -68,19 +71,22 @@
             android:id="@+id/tv_search_devices"
             android:text="@string/bluetooth_index_search_title_tv"
             android:textSize="@dimen/blu_tv_search_devices_textSize"
-            android:textColor="@color/white"
+            android:textColor="?textColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <LinearLayout
             android:id="@+id/bluetooth_LL_search"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/blu_content_LL_height">
+            android:layout_height="@dimen/blu_content_LL_height"
+            android:focusable="true"
+            android:background="?bBg">
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/bluetooth_tv_search"
                 android:text="@string/bluetooth_index_search_tv"
                 android:textSize="@dimen/blu_search_tv_textSize"
-                android:textColor="@color/white"
+                android:textColor="?textColor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -89,6 +95,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bluetooth_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
 </LinearLayout>

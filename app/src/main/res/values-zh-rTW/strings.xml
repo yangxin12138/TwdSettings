@@ -60,7 +60,7 @@
     <string name="bluetooth_index_close">斷開成功</string>
     <string name="bluetooth_dialog_connect">連接</string>
     <string name="bluetooth_dialog_cancel">取消</string>
-    <string name="bluetooth_dialog_clear">忽略此網絡</string>
+    <string name="bluetooth_dialog_clear">確認</string>
     <string name="bluetooth_dialog_pair">配對</string>
     <!--Universal-->
     <string name="universal_index_title_tv">通用</string>
