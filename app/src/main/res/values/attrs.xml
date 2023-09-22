@@ -8,7 +8,7 @@
     <attr name="main_bluetooth_src" format="reference"/>
     <attr name="main_universal_src" format="reference"/>
     <attr name="main_device_src" format="reference"/>
-    <attr name="btnBg" format="reference"/>
+    <attr name="bBg" format="reference"/>
     <attr name="arrowBack_src" format="reference"/>
 
     <attr name="projection_double_src" format="reference"/>

@@ -16,7 +16,7 @@
         <item name="main_bluetooth_src">@drawable/selector_iceblue_bluetooth</item>
         <item name="main_universal_src">@drawable/selector_iceblue_universal</item>
         <item name="main_device_src">@drawable/selector_iceblue_device</item>
-        <item name="btnBg">@drawable/selector_iceblue_btnbg</item>
+        <item name="bBg">@drawable/selector_iceblue_btnbg</item>
         <item name="arrowBack_src">@drawable/arrow_back_white</item>
         <item name="projection_double_src">@drawable/selector_iceblue_double</item>
         <item name="projection_single_src">@drawable/selector_iceblue_single</item>
@@ -43,7 +43,7 @@
         <item name="main_bluetooth_src">@drawable/selector_kapokwhite_bluetooth</item>
         <item name="main_universal_src">@drawable/selector_kapokwhite_universal</item>
         <item name="main_device_src">@drawable/selector_kapokwhite_device</item>
-        <item name="btnBg">@drawable/selector_kapokwhite_btnbg</item>
+        <item name="bBg">@drawable/selector_kapokwhite_btnbg</item>
         <item name="arrowBack_src">@drawable/arrow_back</item>
         <item name="projection_double_src">@drawable/selector_kapokwhite_double</item>
         <item name="projection_single_src">@drawable/selector_kapokwhite_single</item>
@@ -69,7 +69,7 @@
         <item name="main_bluetooth_src">@drawable/bluetooth</item>
         <item name="main_universal_src">@drawable/setup</item>
         <item name="main_device_src">@drawable/about</item>
-        <item name="btnBg">@drawable/selector_starblue_btnbg</item>
+        <item name="bBg">@drawable/selector_starblue_btnbg</item>
         <item name="arrowBack_src">@drawable/arrow_back_white</item>
         <item name="projection_double_src">@drawable/selector_starblue_double</item>
         <item name="projection_single_src">@drawable/selector_starblue_single</item>

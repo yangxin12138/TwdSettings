@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color">
+    android:background="?background_color">
 
     <LinearLayout
         android:layout_marginTop="@dimen/net_title_marginTop"
@@ -13,12 +13,12 @@
         <ImageView
             android:layout_width="@dimen/net_title_iv_width"
             android:layout_height="@dimen/net_title_iv_height"
-            android:src="@drawable/arrow_back_white"
+            android:src="?arrowBack_src"
             android:layout_marginStart="@dimen/net_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
             android:text="@string/net_index_available_tv"
-            android:textColor="@color/white"
+            android:textColor="?textColor"
             android:textSize="@dimen/net_title_tv_textSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

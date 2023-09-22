@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_color"
+    android:background="?background_color"
     tools:context=".network.NetworkActivity">
 
     <LinearLayout
@@ -16,12 +16,12 @@
         <ImageView
             android:layout_width="@dimen/net_title_iv_width"
             android:layout_height="@dimen/net_title_iv_height"
-            android:src="@drawable/arrow_back_white"
+            android:src="?arrowBack_src"
             android:layout_marginStart="@dimen/net_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
             android:text="@string/net_index_title_text"
-            android:textColor="@color/white"
+            android:textColor="?textColor"
             android:textSize="@dimen/net_title_tv_textSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,19 +39,22 @@
         <TextView
             android:text="@string/net_index_wifi_tv"
             android:textSize="@dimen/net_content_tv_textSize"
-            android:textColor="@color/white"
+            android:textColor="?textColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <LinearLayout
             android:id="@+id/net_LL_wlan"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/net_content_LL_height">
+            android:layout_height="@dimen/net_content_LL_height"
+            android:focusable="true"
+            android:background="?bBg">
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/net_tv_wlan"
                 android:text="@string/net_index_wifi_tv"
                 android:textSize="@dimen/net_tv_textSize"
-                android:textColor="@color/white"
+                android:textColor="?textColor"
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:layout_height="wrap_content"
@@ -75,56 +78,39 @@
             android:id="@+id/net_LL_wlanAble"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/net_content_LL_height">
+            android:layout_height="@dimen/net_content_LL_height"
+            android:layout_marginTop="10dp"
+            android:focusable="true"
+            android:background="?bBg">
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/net_tv_wlanAble"
                 android:text="@string/net_index_available_tv"
                 android:textSize="@dimen/net_tv_textSize"
-                android:textColor="@color/white"
+                android:textColor="?textColor"
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/net_tv_marginStart"/>
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/net_tv_ssidcurrent"
                 android:text=""
                 android:textSize="@dimen/net_tv_textSize"
-                android:textColor="@color/white"
+                android:textColor="?textColor"
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_gravity="center_vertical" />
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/arrow_wlanAble"
-                android:src="@drawable/arrow"
+                android:src="?arrowSrc"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="@dimen/net_arrow_wlanAble_height"
-                android:layout_gravity="center_vertical"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/net_LL_speed"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/net_content_LL_height"
-            android:visibility="gone">
-            <TextView
-                android:id="@+id/net_tv_speed"
-                android:text="网络测速"
-                android:textSize="@dimen/net_tv_speed_textSize"
-                android:textColor="@color/white"
-                android:layout_width="@dimen/net_tv_speed_width"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/net_tv_speed_marginStart"/>
-            <ImageView
-                android:id="@+id/arrow_speed"
-                android:src="@drawable/arrow"
-                android:layout_marginStart="@dimen/net_arrow_spped_marginStart"
-                android:layout_width="@dimen/net_arrow_speed_width"
-                android:layout_height="@dimen/net_arrow_speed_height"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
     </LinearLayout>

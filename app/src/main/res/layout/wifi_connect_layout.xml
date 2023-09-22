@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/sel_blue">
+    android:background="?background_color">
 
     <TextView
         android:id="@+id/password_title"
@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:text="123123"
-        android:textColor="@color/white"
+        android:textColor="?textColor"
         android:textSize="25dp"/>
     <EditText
         android:layout_marginTop="100dp"
@@ -23,20 +23,28 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:gravity="center"
-        android:textColor="@drawable/wificonnect_editext_textcolor"
-        android:background="@drawable/password_et_unfocus"/>
+        android:textColor="?textColor"
+        android:background="?bBg"/>
 
-    <Button
+    <LinearLayout
         android:id="@+id/password_btn"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:text="@string/net_connect_dialog_ok_button"
-        android:textSize="20sp"
         android:focusable="false"
         android:focusableInTouchMode="true"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
-        android:background="@drawable/button_focus"/>
+        android:background="?bBg"
+        android:orientation="horizontal">
+        <TextView
+            android:duplicateParentState="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/net_connect_dialog_ok_button"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="?textColor"/>
+    </LinearLayout>
 </LinearLayout>

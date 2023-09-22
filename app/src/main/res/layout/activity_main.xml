@@ -33,7 +33,7 @@
             android:layout_width="@dimen/index_LL_width"
             android:layout_height="@dimen/index_LL_height"
             android:gravity="center_vertical"
-            android:background="?btnBg">
+            android:background="?bBg">
             <ImageView
                 android:duplicateParentState="true"
                 android:id="@+id/im_projection"
@@ -65,7 +65,7 @@
             android:layout_width="@dimen/index_LL_width"
             android:layout_height="@dimen/index_LL_height"
             android:gravity="center_vertical"
-            android:background="?btnBg"
+            android:background="?bBg"
             android:layout_marginTop="20dp">
             <ImageView
                 android:duplicateParentState="true"
@@ -98,7 +98,7 @@
             android:layout_width="@dimen/index_LL_width"
             android:layout_height="@dimen/index_LL_height"
             android:gravity="center_vertical"
-            android:background="?btnBg"
+            android:background="?bBg"
             android:layout_marginTop="20dp">
             <ImageView
                 android:duplicateParentState="true"
@@ -131,7 +131,7 @@
             android:layout_width="@dimen/index_LL_width"
             android:layout_height="@dimen/index_LL_height"
             android:gravity="center_vertical"
-            android:background="?btnBg"
+            android:background="?bBg"
             android:layout_marginTop="20dp">
             <ImageView
                 android:duplicateParentState="true"
@@ -164,7 +164,7 @@
             android:layout_width="@dimen/index_LL_width"
             android:layout_height="@dimen/index_LL_height"
             android:gravity="center_vertical"
-            android:background="?btnBg"
+            android:background="?bBg"
             android:layout_marginTop="20dp">
             <ImageView
                 android:duplicateParentState="true"

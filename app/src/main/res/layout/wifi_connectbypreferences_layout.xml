@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color">
+    android:background="?background_color">
 
     <TextView
         android:id="@+id/connect_title"
@@ -12,8 +12,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="25dp"/>
+        android:textColor="?textColor"
+        android:textSize="25sp"/>
 
     <LinearLayout
         android:layout_marginTop="30dp"
@@ -23,29 +23,46 @@
         android:gravity="center"
         android:paddingStart="20dp"
         android:paddingEnd="20dp">
-        <Button
+        <LinearLayout
             android:id="@+id/connect_btn"
             android:layout_gravity="center_horizontal"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="50dp"
-            android:text="@string/net_connectbypreference_dialog_ok_button"
-            android:textSize="20sp"
+            android:layout_marginStart="200dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:background="@drawable/button_focus"/>
-        <Button
+            android:background="?bBg"
+            android:orientation="horizontal">
+            <TextView
+                android:duplicateParentState="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/net_connectbypreference_dialog_ok_button"
+                android:textSize="20sp"
+                android:textColor="?textColor"
+                android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/ignore_network_btn"
             android:layout_gravity="center_horizontal"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="50dp"
             android:layout_marginStart="70dp"
-            android:text="@string/net_connectbypreference_dialog_ignore_button"
-            android:textSize="20sp"
+            android:layout_marginEnd="100dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:background="@drawable/button_focus"/>
+            android:background="?bBg">
+            <TextView
+                android:duplicateParentState="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/net_connectbypreference_dialog_ignore_button"
+                android:textSize="20sp"
+                android:textColor="?textColor"
+                android:gravity="center"/>
+        </LinearLayout>
     </LinearLayout>
 
 

@@ -1,6 +1,7 @@
 package com.twd.twdsettings.network;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.net.wifi.ScanResult;
 import android.net.wifi.SupplicantState;
@@ -30,6 +32,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +45,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.twd.twdsettings.R;
+import com.twd.twdsettings.SystemPropertiesUtils;
 import com.twd.twdsettings.bean.WifiItem;
 
 import java.util.ArrayList;
@@ -63,9 +67,20 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
     private SharedPreferences wifi_infoPreferences;
 
     WifiAdapter adapter;
-
+    String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        switch (theme_code){
+            case "0": //冰激蓝
+                this.setTheme(R.style.Theme_IceBlue);
+                break;
+            case "1": //木棉白
+                this.setTheme(R.style.Theme_KapokWhite);
+                break;
+            case "2": //星空蓝
+                this.setTheme(R.style.Theme_StarBlue);
+                break;
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_netlist);
         initListView();
@@ -167,7 +182,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
         Window window = connectedDialog.getWindow();
         if (window != null){
             WindowManager.LayoutParams layoutParams = window.getAttributes();
-            layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
+            layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
             layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
             window.setAttributes(layoutParams);
         }
@@ -175,14 +190,14 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
 
 
         final TextView connectTitle = dialogView.findViewById(R.id.connect_title);
-        final Button connectButton = dialogView.findViewById(R.id.connect_btn);
-        final Button ignoreNetworkButton = dialogView.findViewById(R.id.ignore_network_btn);
+        final LinearLayout connectLL = dialogView.findViewById(R.id.connect_btn);
+        final LinearLayout ignoreNetworkLL = dialogView.findViewById(R.id.ignore_network_btn);
 
         connectTitle.setText(getString(R.string.net_wifiList_connectbypreference_title_tv));
         connectedDialog.show();
         SharedPreferences connectPreferences = getSharedPreferences("wifi_password",MODE_PRIVATE);
         String password  = connectPreferences.getString(wifi.SSID,"");
-        connectButton.setOnClickListener(new View.OnClickListener() {
+        connectLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 connectToWifi(wifi,password);
@@ -191,7 +206,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             }
         });
 
-        ignoreNetworkButton.setOnClickListener(new View.OnClickListener() {
+        ignoreNetworkLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -254,7 +269,8 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
         //设置底部空间
         dialogView.setPadding(0,0,0,50);
         passwordDialog.show();
-        Button connectButton = dialogView.findViewById(R.id.password_btn);
+        LinearLayout connectLL = dialogView.findViewById(R.id.password_btn);
+        connectLL.setFocusable(false);
         //设置文本输入框的输入类型
         passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         //创建一个TextWatcher来监听EditText中的文本变化
@@ -273,13 +289,14 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             public void afterTextChanged(Editable s) {
                 String password = s.toString();
                 Log.i("yang","字符长度："+password.length());
-                connectButton.setFocusable(password.length() >= 8);
+                connectLL.setFocusable(password.length() >= 8);
+                System.out.println(password.length());
             }
         };
         //将TextWatcher添加到EditText中
         passwordEditText.addTextChangedListener(textWatcher);
         //设置连接按钮的点击事件
-        connectButton.setOnClickListener(new View.OnClickListener() {
+        connectLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String password = passwordEditText.getText().toString();
@@ -359,6 +376,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                 notifyDataSetChanged();
         }
 
+        @SuppressLint("ResourceType")
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -386,6 +404,48 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             } else {
                 isCheckedText.setText("");
             }
+            int btnBgResId_sel = 0; int textColor_sel = 0;
+            int btnBgResId = 0; int textColor = 0;
+            int wifiSignal_full_sel = 0; int wifiSignal_medium_sel = 0; int wifiSignal_low_sel = 0;
+            int wifiSignal_full = 0; int wifiSignal_medium = 0; int wifiSignal_low = 0;
+            switch (String.valueOf(theme_code)){
+                case "0": //IceBlue
+                    btnBgResId_sel = R.color.customWhite;
+                    textColor_sel = R.color.sel_blue;
+                    btnBgResId = Color.TRANSPARENT;
+                    textColor = R.color.customWhite;
+                    wifiSignal_full_sel = R.drawable.wifisignal_sel_3;
+                    wifiSignal_medium_sel = R.drawable.wifisignal_sel_2;
+                    wifiSignal_low_sel = R.drawable.wifisignal_sel_1;
+                    wifiSignal_full = R.drawable.wifisignal_unsel_3;
+                    wifiSignal_medium = R.drawable.wifisignal_unsel_2;
+                    wifiSignal_low = R.drawable.wifisignal_unsel_1;
+                    break;
+                case "1": //KapokWhite
+                    btnBgResId_sel = R.drawable.red_border;
+                    textColor_sel = R.color.text_red;
+                    btnBgResId = Color.TRANSPARENT;
+                    textColor = R.color.black;
+                    wifiSignal_full_sel = R.drawable.wifi_red;
+                    wifiSignal_medium_sel = R.drawable.wifisignal_red_medium;
+                    wifiSignal_low_sel = R.drawable.wifisignal_red_low;
+                    wifiSignal_full = R.drawable.wifi_black;
+                    wifiSignal_medium = R.drawable.wifisignal_black_medium;
+                    wifiSignal_low = R.drawable.wifisignal_black_low;
+                    break;
+                case "2": //StarBlue
+                    btnBgResId_sel = R.color.text_red;
+                    textColor_sel = R.color.customWhite;
+                    btnBgResId = Color.TRANSPARENT;
+                    textColor = R.color.customWhite;
+                    wifiSignal_full_sel = R.drawable.wifisignal_unsel_3;
+                    wifiSignal_medium_sel = R.drawable.wifisignal_unsel_2;
+                    wifiSignal_low_sel = R.drawable.wifisignal_unsel_1;
+                    wifiSignal_full = R.drawable.wifisignal_unsel_3;
+                    wifiSignal_medium = R.drawable.wifisignal_unsel_2;
+                    wifiSignal_low = R.drawable.wifisignal_unsel_1;
+                    break;
+            }
 
             WifiItem wifiItem = getItem(position);
             if (wifiItem != null){
@@ -396,36 +456,36 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                 }
                  signalStrength= wifiItem.getSignalStrength();
                 if (signalStrength >= -50){
-                    wifiSignalImageView.setImageResource(R.drawable.wifisignal_unsel_3); //full
+                    wifiSignalImageView.setImageResource(wifiSignal_full); //full
                 } else if (signalStrength >= -70) {
-                    wifiSignalImageView.setImageResource(R.drawable.wifisignal_unsel_2); //medium
+                    wifiSignalImageView.setImageResource(wifiSignal_medium); //medium
                 } else  {
-                    wifiSignalImageView.setImageResource(R.drawable.wifisignal_unsel_1); //low
+                    wifiSignalImageView.setImageResource(wifiSignal_low); //low
                 }
             }
 
             //设置聚焦效果
             if (position == focusedItem){
-                itemView.setBackgroundResource(R.drawable.bg_sel);
-                wifiNameTextView.setTextColor(getResources().getColor(R.color.sel_blue));
-                isCheckedText.setTextColor(getResources().getColor(R.color.sel_blue));
+                itemView.setBackgroundResource(btnBgResId_sel);
+                wifiNameTextView.setTextColor(getResources().getColor(textColor_sel));
+                isCheckedText.setTextColor(getResources().getColor(textColor_sel));
                 if (signalStrength >= -50){
-                    wifiSignalImageView.setImageResource(R.drawable.wifisignal_sel_3);
+                    wifiSignalImageView.setImageResource(wifiSignal_full_sel);
                 } else if (signalStrength >= -70) {
-                    wifiSignalImageView.setImageResource(R.drawable.wifisignal_sel_2);
+                    wifiSignalImageView.setImageResource(wifiSignal_medium_sel);
                 } else {
-                    wifiSignalImageView.setImageResource(R.drawable.wifisignal_sel_1);
+                    wifiSignalImageView.setImageResource(wifiSignal_low_sel);
                 }
             }else {
-                itemView.setBackgroundColor(Color.TRANSPARENT);
-                wifiNameTextView.setTextColor(getResources().getColor(R.color.white));
-                isCheckedText.setTextColor(getResources().getColor(R.color.white));
+                itemView.setBackgroundResource(btnBgResId);
+                wifiNameTextView.setTextColor(getResources().getColor(textColor));
+                isCheckedText.setTextColor(getResources().getColor(textColor));
                 if (signalStrength >= -50){
-                    wifiSignalImageView.setImageResource(R.drawable.wifisignal_unsel_3);
+                    wifiSignalImageView.setImageResource(wifiSignal_full);
                 } else if (signalStrength >= -70) {
-                    wifiSignalImageView.setImageResource(R.drawable.wifisignal_unsel_2);
+                    wifiSignalImageView.setImageResource(wifiSignal_medium);
                 } else {
-                    wifiSignalImageView.setImageResource(R.drawable.wifisignal_unsel_1);
+                    wifiSignalImageView.setImageResource(wifiSignal_low);
                 }
             }
             Log.i("yang","Color = "+itemView.getBackground()+"icon = "+wifiSignalImageView.getDrawable());

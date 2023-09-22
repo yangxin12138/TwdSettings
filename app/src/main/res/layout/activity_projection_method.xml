@@ -37,7 +37,7 @@
             android:id="@+id/pro_pos_pos"
             android:layout_width="@dimen/projection_RL_width"
             android:layout_height="@dimen/projection_RL_height"
-            android:background="?btnBg"
+            android:background="?bBg"
             android:focusable="true">
 
             <!--正装正投-->
@@ -68,7 +68,7 @@
             android:id="@+id/pro_pos_neg"
             android:layout_width="@dimen/projection_RL_width"
             android:layout_height="@dimen/projection_RL_height"
-            android:background="?btnBg"
+            android:background="?bBg"
             android:focusable="true"
             android:layout_marginTop="@dimen/projection_RL_marginTop">
 
@@ -99,7 +99,7 @@
             android:id="@+id/pro_neg_pos"
             android:layout_width="@dimen/projection_RL_width"
             android:layout_height="@dimen/projection_RL_height"
-            android:background="?btnBg"
+            android:background="?bBg"
             android:focusable="true"
             android:layout_marginTop="@dimen/projection_RL_marginTop">
 
@@ -130,7 +130,7 @@
             android:id="@+id/pro_neg_neg"
             android:layout_width="@dimen/projection_RL_width"
             android:layout_height="@dimen/projection_RL_height"
-            android:background="?btnBg"
+            android:background="?bBg"
             android:focusable="true"
             android:layout_marginTop="@dimen/projection_RL_marginTop">
 
