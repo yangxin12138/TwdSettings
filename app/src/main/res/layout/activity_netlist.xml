@@ -32,5 +32,7 @@
         android:layout_height="@dimen/wifiListView_height"
         android:paddingStart="@dimen/wifiListView_paddingStart"
         android:paddingEnd="@dimen/wifiListView_paddingEnd"
-        android:paddingTop="@dimen/wifiListView_paddingTop"/>
+        android:paddingTop="@dimen/wifiListView_paddingTop"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp"/>
 </LinearLayout>

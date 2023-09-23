@@ -71,6 +71,9 @@
     <string name="dialog_changeLanguage_message">切换语言设置需要重启应用后生效,是否切换?</string>
     <string name="dialog_changeLanguage_btConfirm">确认</string>
     <string name="dialog_changeLanguage_btCancel">取消</string>
+    <string name="inputMethod_value_sougou">搜狗输入法</string>
+    <string name="inputMethod_value_google">谷歌拼音输入法</string>
+    <string name="inputMethod_value_Aosp">Android 键盘</string>
     <!--Device-->
     <string name="device_index_title_tv">关于设备</string>
     <string name="device_index_info_tv">本机信息</string>

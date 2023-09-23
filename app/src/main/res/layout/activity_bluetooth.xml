@@ -73,7 +73,9 @@
             android:textSize="@dimen/blu_tv_search_devices_textSize"
             android:textColor="?textColor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
         <LinearLayout
             android:id="@+id/bluetooth_LL_search"
             android:orientation="horizontal"
@@ -96,6 +98,6 @@
             android:id="@+id/bluetooth_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp" />
     </LinearLayout>
 </LinearLayout>

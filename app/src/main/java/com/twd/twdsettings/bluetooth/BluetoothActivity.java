@@ -119,7 +119,6 @@ public class BluetoothActivity extends AppCompatActivity {
             bluetooth_tv_search.setVisibility(View.VISIBLE);
         }
 
-        //bluetooth_LL_bt.setFocusable(true);
         bluetooth_LL_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,32 +153,11 @@ public class BluetoothActivity extends AppCompatActivity {
                 }
             }
         });
-        //bluetooth_LL_search.setFocusable(true);
-
-/*        bluetooth_LL_bt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    changeItem(v);
-                } else {
-                    resetItem(v);
-                }
-            }
-        });
-
-        bluetooth_LL_search.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    changeItem(v);
-                } else {
-                    resetItem(v);
-                }
-            }
-        });*/
 
         //初始化ListView和适配器
         recyclerView = findViewById(R.id.bluetooth_recyclerview);
+        int spacing = 10;
+        recyclerView.addItemDecoration(new LinearSpacingItemDecoration(this,spacing));
         bluetoothDevices = new ArrayList<>();
         deviceAdapter = new BluetoothDeviceAdapter(this, bluetoothDevices, pairedDevicesList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -241,24 +219,6 @@ public class BluetoothActivity extends AppCompatActivity {
             stopBluetoothScan();
         }
     }
-
-   /* private void changeItem(View view) {
-        view.setBackgroundResource(R.drawable.bg_sel);
-        if (view.getId() == R.id.bluetooth_LL_bt) {
-            bluetooth_tv_bt.setTextColor(getResources().getColor(R.color.sel_blue));
-        } else if (view.getId() == R.id.bluetooth_LL_search) {
-            bluetooth_tv_search.setTextColor(getResources().getColor(R.color.sel_blue));
-        }
-    }
-
-    private void resetItem(View view) {
-        view.setBackgroundColor(getResources().getColor(R.color.background_color));
-        if (view.getId() == R.id.bluetooth_LL_bt) {
-            bluetooth_tv_bt.setTextColor(getResources().getColor(R.color.white));
-        } else if (view.getId() == R.id.bluetooth_LL_search) {
-            bluetooth_tv_search.setTextColor(getResources().getColor(R.color.white));
-        }
-    }*/
 
     private Handler handler = new Handler();
 

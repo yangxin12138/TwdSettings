@@ -209,7 +209,7 @@
     <dimen name="blu_content_LL_paddingStart">150dp</dimen>
     <dimen name="blu_content_LL_paddingTop">50dp</dimen>
     <dimen name="blu_content_LL_paddingEnd">150dp</dimen>
-    <dimen name="blu_content_LL_height">50dp</dimen>
+    <dimen name="blu_content_LL_height">55dp</dimen>
     <dimen name="blu_bluetooth_tv_textSize">25sp</dimen>
     <dimen name="blu_bluetooth_tv_width">100dp</dimen>
     <dimen name="blu_bluetooth_tv_marginStart">30dp</dimen>
@@ -217,7 +217,7 @@
     <dimen name="blu_switch_thumbPadding">2dp</dimen>
     <dimen name="blu_switch_switchMinWidth">60dp</dimen>
     <dimen name="blu_tv_search_devices_textSize">20sp</dimen>
-    <dimen name="blu_search_tv_textSize">25sp</dimen>
+    <dimen name="blu_search_tv_textSize">20sp</dimen>
     <dimen name="blu_search_tv_width">100dp</dimen>
     <dimen name="blu_search_tv_marginStart">30dp</dimen>
 </resources>

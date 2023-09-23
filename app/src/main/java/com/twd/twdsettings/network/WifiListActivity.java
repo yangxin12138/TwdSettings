@@ -410,16 +410,10 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             int wifiSignal_full = 0; int wifiSignal_medium = 0; int wifiSignal_low = 0;
             switch (String.valueOf(theme_code)){
                 case "0": //IceBlue
-                    btnBgResId_sel = R.color.customWhite;
-                    textColor_sel = R.color.sel_blue;
-                    btnBgResId = Color.TRANSPARENT;
-                    textColor = R.color.customWhite;
-                    wifiSignal_full_sel = R.drawable.wifisignal_sel_3;
-                    wifiSignal_medium_sel = R.drawable.wifisignal_sel_2;
-                    wifiSignal_low_sel = R.drawable.wifisignal_sel_1;
-                    wifiSignal_full = R.drawable.wifisignal_unsel_3;
-                    wifiSignal_medium = R.drawable.wifisignal_unsel_2;
-                    wifiSignal_low = R.drawable.wifisignal_unsel_1;
+                    btnBgResId_sel = R.color.customWhite; btnBgResId = Color.TRANSPARENT;
+                    textColor_sel = R.color.sel_blue; textColor = R.color.customWhite;
+                    wifiSignal_full_sel = R.drawable.wifisignal_sel_3; wifiSignal_medium_sel = R.drawable.wifisignal_sel_2; wifiSignal_low_sel = R.drawable.wifisignal_sel_1;
+                    wifiSignal_full = R.drawable.wifisignal_unsel_3; wifiSignal_medium = R.drawable.wifisignal_unsel_2; wifiSignal_low = R.drawable.wifisignal_unsel_1;
                     break;
                 case "1": //KapokWhite
                     btnBgResId_sel = R.drawable.red_border;

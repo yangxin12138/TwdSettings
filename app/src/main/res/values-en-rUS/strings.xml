@@ -71,6 +71,9 @@
     <string name="dialog_changeLanguage_message">Switching languages will take effect only after restarting the application. Do you want to switch?</string>
     <string name="dialog_changeLanguage_btConfirm">Confirm</string>
     <string name="dialog_changeLanguage_btCancel">Cancel</string>
+    <string name="inputMethod_value_sougou">Sogou Pinyin</string>
+    <string name="inputMethod_value_google">Google Pinyin</string>
+    <string name="inputMethod_value_Aosp">Android Keyboard</string>
     <!--Device-->
     <string name="device_index_title_tv">About Device</string>
     <string name="device_index_info_tv">Device Info</string>

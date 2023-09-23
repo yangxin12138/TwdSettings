@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_color"
+    android:background="?background_color"
     tools:context=".universal.UniversalLanguageActivity">
 
     <LinearLayout
@@ -16,12 +16,12 @@
         <ImageView
             android:layout_width="@dimen/universal_title_iv_width"
             android:layout_height="@dimen/universal_title_iv_height"
-            android:src="@drawable/arrow_back_white"
+            android:src="?arrowBack_src"
             android:layout_marginStart="@dimen/universal_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
             android:text="@string/title_language"
-            android:textColor="@color/white"
+            android:textColor="?textColor"
             android:textSize="@dimen/universal_title_tv_textSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,6 +39,8 @@
         <ListView
             android:id="@+id/universal_language_listView"
             android:layout_width="match_parent"
-            android:layout_height="350dp"/>
+            android:layout_height="350dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="20dp"/>
     </LinearLayout>
 </LinearLayout>

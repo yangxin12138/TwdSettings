@@ -1,7 +1,9 @@
 package com.twd.twdsettings.universal;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.graphics.Color;
@@ -25,6 +27,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.twd.twdsettings.R;
+import com.twd.twdsettings.SystemPropertiesUtils;
 import com.twd.twdsettings.bean.InputItem;
 
 import java.util.ArrayList;
@@ -38,8 +41,20 @@ public class UniversalInputActivity extends AppCompatActivity implements Adapter
     InputItemAdapter adapter;
 
     private final Context context = this;
+    String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        switch (theme_code){
+            case "0": //冰激蓝
+                this.setTheme(R.style.Theme_IceBlue);
+                break;
+            case "1": //木棉白
+                this.setTheme(R.style.Theme_KapokWhite);
+                break;
+            case "2": //星空蓝
+                this.setTheme(R.style.Theme_StarBlue);
+                break;
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_universal_input);
         initView();
@@ -58,17 +73,17 @@ public class UniversalInputActivity extends AppCompatActivity implements Adapter
             String packageName = inputMethod.getPackageName();
             String inputMethodID = inputMethod.getId();
             if (packageName.contains("sogou")){
-                 inputItem = new InputItem("搜狗输入法",inputMethodID,false);
+                 inputItem = new InputItem(getString(R.string.inputMethod_value_sougou),inputMethodID,false);
                 if (inputMethodID.equals(selectedInputMethodId)){
                     inputItem.setSelected(true);
                 }
             } else if (packageName.contains("inputmethod.latin")) {
-                 inputItem = new InputItem("Android键盘(AOSP)",inputMethodID,false);
+                 inputItem = new InputItem(getString(R.string.inputMethod_value_Aosp),inputMethodID,false);
                 if (inputMethodID.equals(selectedInputMethodId)){
                     inputItem.setSelected(true);
                 }
             } else if (packageName.contains("inputmethod.pinyin")) {
-                 inputItem = new InputItem("谷歌拼音输入法",inputMethodID,false);
+                 inputItem = new InputItem(getString(R.string.inputMethod_value_google),inputMethodID,false);
                 if (inputMethodID.equals(selectedInputMethodId)){
                     inputItem.setSelected(true);
                 }
@@ -130,6 +145,7 @@ public class UniversalInputActivity extends AppCompatActivity implements Adapter
             notifyDataSetChanged();
         }
 
+        @SuppressLint("ResourceType")
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View itemView = convertView;
@@ -137,34 +153,53 @@ public class UniversalInputActivity extends AppCompatActivity implements Adapter
                itemView = inflater.inflate(R.layout.universal_input_list_item,parent,false);
             }
 
+            int bgResIdSel = 0; int bgResIdUnSel = 0;
+            int textColorSel = 0; int textColorUnSel = 0;
+            int IVSelectedSel = 0; int IVSelectedUnSel = 0;
             TextView inputNameTV = itemView.findViewById(R.id.inputName);
             ImageView inputSelectIV = itemView.findViewById(R.id.iv_inputSelect);
+            switch (String.valueOf(theme_code)){
+                case "0": //iceBlue
+                    bgResIdSel = R.color.customWhite; bgResIdUnSel = Color.TRANSPARENT;
+                    textColorSel = R.color.sel_blue; textColorUnSel = R.color.customWhite;
+                    IVSelectedSel = R.drawable.input_selected_iceblue_sel; IVSelectedUnSel = R.drawable.input_selected_iceblue_unsel;
+                break;
+                case "1"://kapokWhite
+                    bgResIdSel = R.drawable.red_border; bgResIdUnSel = R.drawable.black_border;
+                    textColorSel = R.color.text_red_new; textColorUnSel = R.color.black;
+                    IVSelectedSel = R.drawable.input_selected_kapokwhite_sel;IVSelectedUnSel = R.drawable.input_selected_kapokwhite_unsel;
+                    break;
+                case "2":
+                    bgResIdSel = R.color.text_red_new;bgResIdUnSel = Color.TRANSPARENT;
+                    textColorSel = R.color.customWhite;textColorUnSel = R.color.customWhite;
+                    IVSelectedSel = R.drawable.input_selected_iceblue_unsel;IVSelectedUnSel = R.drawable.input_selected_iceblue_unsel;
+            }
 
             InputItem inputItem = inputItems.get(position);
             if (inputItem != null){
                 inputNameTV.setText(inputItem.getInputName());
                 isSelected = inputItem.isSelected();
                 if (isSelected) {
-                    inputSelectIV.setImageResource(R.drawable.input_selected_white);
+                    inputSelectIV.setImageResource(IVSelectedSel);
                 }else {
-                    inputSelectIV.setImageResource(R.drawable.unselected);
+                    inputSelectIV.setImageResource(IVSelectedUnSel);
                 }
             }
 
             //设置聚焦效果
             if (position == focusedItem){
-                itemView.setBackgroundResource(R.drawable.bg_sel);
-                inputNameTV.setTextColor(getResources().getColor(R.color.sel_blue));
+                itemView.setBackgroundResource(bgResIdSel);
+                inputNameTV.setTextColor(ContextCompat.getColor(context, textColorSel));
                 if (inputItem.isSelected()){
-                    inputSelectIV.setImageResource(R.drawable.input_selected_blue);
+                    inputSelectIV.setImageResource(IVSelectedSel);
                 } else {
                     inputSelectIV.setImageResource(R.drawable.unselected);
                 }
             }else {
-                itemView.setBackgroundColor(Color.TRANSPARENT);
-                inputNameTV.setTextColor(getResources().getColor(R.color.white));
+                itemView.setBackgroundResource(bgResIdUnSel);
+                inputNameTV.setTextColor(ContextCompat.getColor(context,textColorUnSel));
                 if (inputItem.isSelected()){
-                    inputSelectIV.setImageResource(R.drawable.input_selected_white);
+                    inputSelectIV.setImageResource(IVSelectedUnSel);
                 } else {
                     inputSelectIV.setImageResource(R.drawable.unselected);
                 }

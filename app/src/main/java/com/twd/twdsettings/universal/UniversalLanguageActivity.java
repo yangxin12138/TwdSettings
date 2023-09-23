@@ -3,7 +3,9 @@ package com.twd.twdsettings.universal;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -27,6 +29,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.twd.twdsettings.R;
+import com.twd.twdsettings.SystemPropertiesUtils;
 import com.twd.twdsettings.bean.LanguageBean;
 
 import java.lang.reflect.Method;
@@ -42,8 +45,20 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
     private final Context context = this;
 
     LanguageItemAdapter languageItemAdapter ;
+    String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        switch (theme_code){
+            case "0": //冰激蓝
+                this.setTheme(R.style.Theme_IceBlue);
+                break;
+            case "1": //木棉白
+                this.setTheme(R.style.Theme_KapokWhite);
+                break;
+            case "2": //星空蓝
+                this.setTheme(R.style.Theme_StarBlue);
+                break;
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_universal_language);
         initView();
@@ -221,6 +236,7 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
             notifyDataSetChanged();
         }
 
+        @SuppressLint("ResourceType")
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -233,14 +249,33 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
             //绑定自定义布局中的控件
             TextView languageNameTV = itemView.findViewById(R.id.languageName);
             ImageView languageSelectIV = itemView.findViewById(R.id.iv_languageSelect);
-
+            int bgResIdSel = 0; int bgResIdUnSel = 0;
+            int nameTvSel = 0; int nameTvUnSel = 0;
+            int IVSelectSel = 0; int IVSelectUnSel = 0;
+            switch (theme_code){
+                case "0":
+                    bgResIdSel = R.color.customWhite; bgResIdUnSel = Color.TRANSPARENT;
+                    nameTvSel = R.color.sel_blue; nameTvUnSel = R.color.customWhite;
+                    IVSelectSel = R.drawable.input_selected_iceblue_sel;IVSelectUnSel = R.drawable.input_selected_iceblue_unsel;
+                    break;
+                case "1":
+                    bgResIdSel = R.drawable.red_border; bgResIdUnSel = R.drawable.black_border;
+                    nameTvSel = R.color.text_red_new; nameTvUnSel = R.color.black;
+                    IVSelectSel = R.drawable.input_selected_kapokwhite_sel;IVSelectUnSel = R.drawable.input_selected_kapokwhite_unsel;
+                    break;
+                case "2":
+                    bgResIdSel = R.color.text_red_new;bgResIdUnSel = Color.TRANSPARENT;
+                    nameTvSel = R.color.customWhite;nameTvUnSel = R.color.customWhite;
+                    IVSelectSel = R.drawable.input_selected_iceblue_unsel;IVSelectUnSel = R.drawable.input_selected_iceblue_unsel;
+                    break;
+            }
             //给控件赋值
             LanguageBean languageBean = getItem(position);
             if (languageBean != null){
                 languageNameTV.setText(languageBean.getLanguageName());
                 isSelected = languageBean.isSelect();
                 if (isSelected){
-                    languageSelectIV.setImageResource(R.drawable.input_selected_white);
+                    languageSelectIV.setImageResource(IVSelectSel);
                 }else {
                     languageSelectIV.setImageResource(R.drawable.unselected);
                 }
@@ -248,18 +283,18 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
 
             //设置聚焦效果
             if (position == focusedItem){
-                itemView.setBackgroundResource(R.drawable.bg_sel);
-                languageNameTV.setTextColor(getResources().getColor(R.color.sel_blue));
+                itemView.setBackgroundResource(bgResIdSel);
+                languageNameTV.setTextColor(ContextCompat.getColor(context,nameTvSel));
                 if (languageBean.isSelect()){
-                    languageSelectIV.setImageResource(R.drawable.input_selected_blue);
+                    languageSelectIV.setImageResource(IVSelectSel);
                 }else {
                     languageSelectIV.setImageResource(R.drawable.unselected);
                 }
             }else {
-                itemView.setBackgroundColor(Color.TRANSPARENT);
-                languageNameTV.setTextColor(getResources().getColor(R.color.white));
+                itemView.setBackgroundResource(bgResIdUnSel);
+                languageNameTV.setTextColor(ContextCompat.getColor(context,nameTvUnSel));
                 if (languageBean.isSelect()){
-                    languageSelectIV.setImageResource(R.drawable.input_selected_white);
+                    languageSelectIV.setImageResource(IVSelectUnSel);
                 }else {
                     languageSelectIV.setImageResource(R.drawable.unselected);
                 }

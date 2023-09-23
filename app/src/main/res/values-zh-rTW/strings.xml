@@ -71,6 +71,9 @@
     <string name="dialog_changeLanguage_message">切換語言設置需要重啟設備後生效,是否切換?</string>
     <string name="dialog_changeLanguage_btConfirm">確認</string>
     <string name="dialog_changeLanguage_btCancel">取消</string>
+    <string name="inputMethod_value_sougou">搜狗輸入法</string>
+    <string name="inputMethod_value_google">谷歌拼音輸入法</string>
+    <string name="inputMethod_value_Aosp">安卓鍵盤</string>
     <!--Device-->
     <string name="device_index_title_tv">關於設備</string>
     <string name="device_index_info_tv">本機資訊</string>

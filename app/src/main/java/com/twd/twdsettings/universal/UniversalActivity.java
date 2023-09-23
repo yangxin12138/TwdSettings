@@ -14,11 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.twd.twdsettings.R;
+import com.twd.twdsettings.SystemPropertiesUtils;
 import com.twd.twdsettings.bean.InputItem;
 
 import java.util.Locale;
 
-public class UniversalActivity extends AppCompatActivity implements View.OnFocusChangeListener, View.OnClickListener {
+public class UniversalActivity extends AppCompatActivity implements  View.OnClickListener {
 
     private LinearLayout LL_input;
     private LinearLayout LL_language;
@@ -29,10 +30,22 @@ public class UniversalActivity extends AppCompatActivity implements View.OnFocus
 
     private ImageView arrow_input;
     private ImageView arrow_language;
+    String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        switch (theme_code){
+            case "0": //冰激蓝
+                this.setTheme(R.style.Theme_IceBlue);
+                break;
+            case "1": //木棉白
+                this.setTheme(R.style.Theme_KapokWhite);
+                break;
+            case "2": //星空蓝
+                this.setTheme(R.style.Theme_StarBlue);
+                break;
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_universal);
     }
@@ -44,11 +57,11 @@ public class UniversalActivity extends AppCompatActivity implements View.OnFocus
         //当前输入法
         String selectedInputMethodId = Settings.Secure.getString(getContentResolver(),Settings.Secure.DEFAULT_INPUT_METHOD);
         if (selectedInputMethodId.contains("sogou")){
-            tv_inputCurrent.setText("搜狗输入法");
+            tv_inputCurrent.setText(getString(R.string.inputMethod_value_sougou));
         } else if (selectedInputMethodId.contains("inputmethod.pinyin")) {
-            tv_inputCurrent.setText("谷歌拼音输入法");
+            tv_inputCurrent.setText(getString(R.string.inputMethod_value_google));
         } else if (selectedInputMethodId.contains("inputmethod.latin")) {
-            tv_inputCurrent.setText("Android键盘(AOSP)");
+            tv_inputCurrent.setText(getString(R.string.inputMethod_value_Aosp));
         }
 
         //当前语言
@@ -78,14 +91,6 @@ public class UniversalActivity extends AppCompatActivity implements View.OnFocus
         arrow_input = findViewById(R.id.arrow_input);
         arrow_language = findViewById(R.id.arrow_language);
 
-        LL_input.setFocusable(true);
-        LL_input.setFocusableInTouchMode(true);
-        LL_language.setFocusable(true);
-        LL_language.setFocusableInTouchMode(true);
-
-        LL_input.setOnFocusChangeListener(this);
-        LL_language.setOnFocusChangeListener(this);
-
         LL_input.setOnClickListener(this);
         LL_language.setOnClickListener(this);
 
@@ -101,41 +106,6 @@ public class UniversalActivity extends AppCompatActivity implements View.OnFocus
         }else {
             intent = new Intent(this,UniversalLanguageActivity.class);
             startActivity(intent);
-        }
-    }
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus){
-           changeItem(v);
-        }else {
-            resetItem(v);
-        }
-    }
-
-    private void changeItem(View view){
-        view.setBackgroundResource(R.drawable.bg_sel);
-        if (view.getId() == R.id.universal_LL_input){
-            tv_input.setTextColor(getResources().getColor(R.color.sel_blue));
-            tv_inputCurrent.setTextColor(getResources().getColor(R.color.sel_blue));
-            arrow_input.setImageResource(R.drawable.arrow_sel);
-        } else if (view.getId() == R.id.universal_LL_language) {
-            tv_language.setTextColor(getResources().getColor(R.color.sel_blue));
-            tv_languageCurrent.setTextColor(getResources().getColor(R.color.sel_blue));
-            arrow_language.setImageResource(R.drawable.arrow_sel);
-        }
-    }
-
-    private void resetItem(View view){
-        view.setBackgroundColor(getResources().getColor(R.color.background_color));
-        if (view.getId() == R.id.universal_LL_input){
-            tv_input.setTextColor(getResources().getColor(R.color.white));
-            tv_inputCurrent.setTextColor(getResources().getColor(R.color.white));
-            arrow_input.setImageResource(R.drawable.arrow);
-        } else if (view.getId() == R.id.universal_LL_language) {
-            tv_language.setTextColor(getResources().getColor(R.color.white));
-            tv_languageCurrent.setTextColor(getResources().getColor(R.color.white));
-            arrow_language.setImageResource(R.drawable.arrow);
         }
     }
 }
