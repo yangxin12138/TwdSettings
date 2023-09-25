@@ -12,6 +12,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.twd.twdsettings.R;
+import com.twd.twdsettings.SystemPropertiesUtils;
 
 public class DeviceInfoActivity extends AppCompatActivity {
 
@@ -22,9 +23,21 @@ public class DeviceInfoActivity extends AppCompatActivity {
     private TextView tv_macAddressBluetooth_value;
     private static final String TAG = DeviceInfoActivity.class.getName();
     private Context context = this;
+    String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        switch (theme_code){
+            case "0": //冰激蓝
+                this.setTheme(R.style.Theme_IceBlue);
+                break;
+            case "1": //木棉白
+                this.setTheme(R.style.Theme_KapokWhite);
+                break;
+            case "2": //星空蓝
+                this.setTheme(R.style.Theme_StarBlue);
+                break;
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_info);
     }

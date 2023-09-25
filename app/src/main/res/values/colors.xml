@@ -17,4 +17,22 @@
     <color name="customBlue">#103AE9</color>
     <color name="customWhite">#E8E8E8</color>
     <color name="customStarBlue">#00072C</color>
+
+    <color name="storage_charts_iceblue_total">#4bcffa</color>
+    <color name="storage_charts_iceblue_available">#fd79a8</color>
+    <color name="storage_charts_iceblue_system">#1abc9c</color>
+    <color name="storage_charts_iceblue_app">#ffdd59</color>
+    <color name="storage_charts_iceblue_other">#d2dae2</color>
+
+    <color name="storage_charts_kapokwhite_total">#ef5777</color>
+    <color name="storage_charts_kapokwhite_available">#575fcf</color>
+    <color name="storage_charts_kapokwhite_system">#f8a5c2</color>
+    <color name="storage_charts_kapokwhite_app">#cf6a87</color>
+    <color name="storage_charts_kapokwhite_other">#63cdda</color>
+
+    <color name="storage_charts_starblue_total">#7d5fff</color>
+    <color name="storage_charts_starblue_available">#18dcff</color>
+    <color name="storage_charts_starblue_system">#32ff7e</color>
+    <color name="storage_charts_starblue_app">#c56cf0</color>
+    <color name="storage_charts_starblue_other">#ffb8b8</color>
 </resources>

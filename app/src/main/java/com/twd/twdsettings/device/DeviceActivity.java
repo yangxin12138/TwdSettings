@@ -10,8 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.twd.twdsettings.R;
+import com.twd.twdsettings.SystemPropertiesUtils;
 
-public class DeviceActivity extends AppCompatActivity implements View.OnFocusChangeListener, View.OnClickListener {
+public class DeviceActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final static String TAG = DeviceActivity.class.getName();
     private LinearLayout LL_info;
@@ -20,9 +21,21 @@ public class DeviceActivity extends AppCompatActivity implements View.OnFocusCha
     private TextView tv_storage;
     private ImageView arrow_info;
     private ImageView arrow_storage;
+    String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        switch (theme_code){
+            case "0": //冰激蓝
+                this.setTheme(R.style.Theme_IceBlue);
+                break;
+            case "1": //木棉白
+                this.setTheme(R.style.Theme_KapokWhite);
+                break;
+            case "2": //星空蓝
+                this.setTheme(R.style.Theme_StarBlue);
+                break;
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device);
     }
@@ -41,14 +54,6 @@ public class DeviceActivity extends AppCompatActivity implements View.OnFocusCha
         arrow_info = findViewById(R.id.arrow_info);
         arrow_storage = findViewById(R.id.arrow_storage);
 
-        LL_info.setFocusable(true);
-        LL_info.setFocusableInTouchMode(true);
-        LL_storage.setFocusable(true);
-        LL_storage.setFocusableInTouchMode(true);
-
-        LL_info.setOnFocusChangeListener(this::onFocusChange);
-        LL_storage.setOnFocusChangeListener(this::onFocusChange);
-
         LL_info.setOnClickListener(this::onClick);
         LL_storage.setOnClickListener(this::onClick);
 
@@ -64,37 +69,6 @@ public class DeviceActivity extends AppCompatActivity implements View.OnFocusCha
         }else {
             intent = new Intent(this,DeviceStorageActivity.class);
             startActivity(intent);
-        }
-    }
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus){
-            changeItem(v);
-        }else {
-            resetItem(v);
-        }
-    }
-
-    private void changeItem(View view){
-        view.setBackgroundResource(R.drawable.bg_sel);
-        if (view.getId() == R.id.devices_LL_Info){
-            tv_info.setTextColor(getResources().getColor(R.color.sel_blue));
-            arrow_info.setImageResource(R.drawable.arrow_sel);
-        } else if (view.getId() == R.id.devices_LL_storage) {
-            tv_storage.setTextColor(getResources().getColor(R.color.sel_blue));
-            arrow_storage.setImageResource(R.drawable.arrow_sel);
-        }
-    }
-
-    private void resetItem(View view){
-        view.setBackgroundColor(getResources().getColor(R.color.background_color));
-        if (view.getId() == R.id.devices_LL_Info){
-            tv_info.setTextColor(getResources().getColor(R.color.white));
-            arrow_info.setImageResource(R.drawable.arrow);
-        } else if (view.getId() == R.id.devices_LL_storage) {
-            tv_storage.setTextColor(getResources().getColor(R.color.white));
-            arrow_storage.setImageResource(R.drawable.arrow);
         }
     }
 }

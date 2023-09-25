@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_color"
+    android:background="?background_color"
     tools:context=".device.DeviceActivity">
 
     <LinearLayout
@@ -16,12 +16,12 @@
         <ImageView
             android:layout_width="@dimen/devices_title_iv_width"
             android:layout_height="@dimen/devices_title_iv_height"
-            android:src="@drawable/arrow_back_white"
+            android:src="?arrowBack_src"
             android:layout_marginStart="@dimen/devices_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
             android:text="@string/device_index_title_tv"
-            android:textColor="@color/white"
+            android:textColor="?textColor"
             android:textSize="@dimen/devices_title_tv_textSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,20 +40,25 @@
             android:id="@+id/devices_LL_Info"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/devices_content_LL_height">
+            android:layout_height="@dimen/devices_content_LL_height"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="?bBg">
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/devices_tv_Info"
                 android:text="@string/device_index_info_tv"
                 android:textSize="@dimen/devices_info_tv_textSize"
-                android:textColor="@color/white"
+                android:textColor="?textColor"
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/devices_info_tv_marginStart"/>
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/arrow_info"
-                android:src="@drawable/arrow"
+                android:src="?arrowSrc"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="@dimen/devices_info_iv_height"
@@ -63,20 +68,26 @@
             android:id="@+id/devices_LL_storage"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/devices_content_LL_height">
+            android:layout_height="@dimen/devices_content_LL_height"
+            android:layout_marginTop="20dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="?bBg">
             <TextView
+                android:duplicateParentState="true"
                 android:id="@+id/devices_tv_storage"
                 android:text="@string/device_index_storage_tv"
                 android:textSize="@dimen/devices_storage_tv_textSize"
-                android:textColor="@color/white"
+                android:textColor="?textColor"
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/devices_storage_tv_marginStart"/>
             <ImageView
+                android:duplicateParentState="true"
                 android:id="@+id/arrow_storage"
-                android:src="@drawable/arrow"
+                android:src="?arrowSrc"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="@dimen/devices_storage_iv_height"

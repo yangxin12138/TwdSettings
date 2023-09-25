@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_color"
+    android:background="?background_color"
     tools:context=".device.DeviceInfoActivity">
 
     <LinearLayout
@@ -16,12 +16,12 @@
         <ImageView
             android:layout_width="@dimen/devices_title_iv_width"
             android:layout_height="@dimen/devices_title_iv_height"
-            android:src="@drawable/arrow_back_white"
+            android:src="?arrowBack_src"
             android:layout_marginStart="@dimen/devices_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
             android:text="@string/device_index_info_tv"
-            android:textColor="@color/white"
+            android:textColor="?textColor"
             android:textSize="@dimen/devices_title_tv_textSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:text="@string/device_info_deviceNo"
             android:textSize="25sp"
             android:layout_marginStart="200dp"
-            android:textColor="@color/white" />
+            android:textColor="?textColor" />
         <TextView
             android:id="@+id/devices_tv_machineNO_value"
             android:layout_width="0dp"
@@ -49,7 +49,7 @@
             android:text=""
             android:textSize="25sp"
             android:layout_weight="1"
-            android:textColor="@color/white"
+            android:textColor="?textColor"
             android:layout_gravity="end"/>
     </LinearLayout>
     <LinearLayout
@@ -63,7 +63,7 @@
             android:layout_weight="2"
             android:text="@string/device_info_androidVersion"
             android:textSize="25sp"
-            android:textColor="@color/white"
+            android:textColor="?textColor"
             android:layout_marginStart="200dp"/>
         <TextView
             android:id="@+id/devices_tv_androidVersion_value"
@@ -72,7 +72,7 @@
             android:layout_weight="1"
             android:text=""
             android:textSize="25sp"
-            android:textColor="@color/white" />
+            android:textColor="?textColor" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,7 +85,7 @@
             android:layout_weight="2"
             android:text="@string/device_info_softwareVersion"
             android:textSize="25sp"
-            android:textColor="@color/white"
+            android:textColor="?textColor"
             android:layout_marginStart="200dp"/>
         <TextView
             android:id="@+id/devices_tv_softwareNO_value"
@@ -94,7 +94,7 @@
             android:layout_weight="1"
             android:text=""
             android:textSize="25sp"
-            android:textColor="@color/white" />
+            android:textColor="?textColor" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -107,7 +107,7 @@
             android:layout_weight="2"
             android:text="@string/device_info_mac_wifi"
             android:textSize="25sp"
-            android:textColor="@color/white"
+            android:textColor="?textColor"
             android:layout_marginStart="200dp"/>
         <TextView
             android:id="@+id/devices_tv_macAddressWifi_value"
@@ -116,7 +116,7 @@
             android:layout_weight="1"
             android:text=""
             android:textSize="25sp"
-            android:textColor="@color/white" />
+            android:textColor="?textColor" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -129,7 +129,7 @@
             android:layout_weight="2"
             android:text="@string/device_info_mac_bluetooth"
             android:textSize="25sp"
-            android:textColor="@color/white"
+            android:textColor="?textColor"
             android:layout_marginStart="200dp"/>
         <TextView
             android:id="@+id/devices_tv_macAddressBluetooth_value"
@@ -138,6 +138,6 @@
             android:layout_weight="1"
             android:text=""
             android:textSize="25sp"
-            android:textColor="@color/white" />
+            android:textColor="?textColor" />
     </LinearLayout>
 </LinearLayout>

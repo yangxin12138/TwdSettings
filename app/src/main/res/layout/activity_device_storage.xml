@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="?background_color"
     tools:context=".device.DeviceStorageActivity">
 
     <LinearLayout
@@ -15,12 +16,12 @@
         <ImageView
             android:layout_width="@dimen/devices_title_iv_width"
             android:layout_height="@dimen/devices_title_iv_height"
-            android:src="@drawable/arrow_back"
+            android:src="?arrowBack_src"
             android:layout_marginStart="@dimen/devices_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
             android:text="存储详情"
-            android:textColor="@color/black"
+            android:textColor="?textColor"
             android:textSize="@dimen/devices_title_tv_textSize"
             android:layout_width="@dimen/devices_title_tv_width"
             android:layout_height="wrap_content"
@@ -28,93 +29,151 @@
             android:layout_gravity="center_vertical"/>
     </LinearLayout>
 
-    <TextView
-        android:text="内置存储"
-        android:textColor="@color/black"
-        android:textSize="35sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="50dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="总容量"
-        android:textSize="30sp"
-        android:layout_marginStart="150dp"/>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="150dp">
-        <TextView
-            android:id="@+id/storage_system"
-            android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="100dp">
+        <LinearLayout
+            android:layout_width="500dp"
             android:layout_height="wrap_content"
-            android:text="系统："
-            android:textSize="25sp"/>
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="10dp"
-            android:background="@color/black"
-            android:layout_toEndOf="@+id/storage_system"
-            android:layout_marginTop="15dp"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="150dp">
-        <TextView
-            android:id="@+id/storage_app"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="应用："
-            android:textSize="25sp"/>
-        <ImageView
-            android:layout_width="250dp"
-            android:layout_height="10dp"
-            android:background="@color/purple_200"
-            android:layout_toEndOf="@+id/storage_app"
-            android:layout_marginTop="15dp"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="150dp">
-        <TextView
-            android:id="@+id/storage_other"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="其他："
-            android:textSize="25sp"/>
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="10dp"
-            android:background="@color/teal_200"
-            android:layout_toEndOf="@+id/storage_other"
-            android:layout_marginTop="15dp"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="150dp">
-        <TextView
-            android:id="@+id/storage_available"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="可用："
-            android:textSize="25sp"/>
-        <ImageView
-            android:layout_width="280dp"
-            android:layout_height="10dp"
-            android:background="#2196F3"
-            android:layout_toEndOf="@+id/storage_available"
-            android:layout_marginTop="15dp"/>
-    </RelativeLayout>
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/title_IV"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="50dp"
+                    android:paddingTop="15dp"
+                    android:src="?storage_title_iv"/>
+                <TextView
+                    android:text="内置存储"
+                    android:textColor="?textColor"
+                    android:textSize="35sp"
+                    android:layout_width="0dp"
+                    android:layout_weight="8"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-    <com.twd.twdsettings.device.CustomProgressBar
-        android:id="@+id/customProgressBar"
-        android:layout_width="600dp"
-        android:layout_height="10dp"
-        android:layout_gravity="center_horizontal"/>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="90dp">
+                <ImageView
+                    android:id="@+id/storage_color_total"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="?storage_totalcolor"
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/storage_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="总容量"
+                    android:textColor="?textColor"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="90dp">
+                <ImageView
+                    android:id="@+id/storage_color_available"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="?storage_availablecolor"
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/storage_available"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="可用容量"
+                    android:textColor="?textColor"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="90dp">
+                <ImageView
+                    android:id="@+id/storage_color_system"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="?storage_systemcolor"
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/storage_system"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="系统占用"
+                    android:textColor="?textColor"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="90dp">
+                <ImageView
+                    android:id="@+id/storage_color_app"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="?storage_appcolor"
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/storage_app"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="应用数据"
+                    android:textColor="?textColor"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="90dp">
+                <ImageView
+                    android:id="@+id/storage_color_other"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="?storage_othercolor"
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/storage_other"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="其他占用"
+                    android:textColor="?textColor"
+                    android:textSize="30sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 </LinearLayout>

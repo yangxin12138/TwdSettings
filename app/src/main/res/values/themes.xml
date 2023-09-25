@@ -32,6 +32,12 @@
         <item name="projection_method_neg_pos_bg">@drawable/bg_neg_pos_iceblue</item>
         <item name="projection_method_neg_neg_bg">@drawable/bg_neg_neg_iceblue</item>
         <item name="bluetooth_icon">@drawable/select_bluetooth_icon_iceblue</item>
+        <item name="storage_title_iv">@drawable/storage_title_iv_white</item>
+        <item name="storage_totalcolor">@color/storage_charts_iceblue_total</item>
+        <item name="storage_availablecolor">@color/storage_charts_iceblue_available</item>
+        <item name="storage_systemcolor">@color/storage_charts_iceblue_system</item>
+        <item name="storage_appcolor">@color/storage_charts_iceblue_app</item>
+        <item name="storage_othercolor">@color/storage_charts_iceblue_other</item>
     </style>
 
     <!--木棉白-->
@@ -60,6 +66,12 @@
         <item name="projection_method_neg_pos_bg">@drawable/bg_neg_pos</item>
         <item name="projection_method_neg_neg_bg">@drawable/bg_neg_neg</item>
         <item name="bluetooth_icon">@drawable/selector_bluetooth_icon_kapokwhite</item>
+        <item name="storage_title_iv">@drawable/storage_title_iv_black</item>
+        <item name="storage_totalcolor">@color/storage_charts_kapokwhite_total</item>
+        <item name="storage_availablecolor">@color/storage_charts_kapokwhite_available</item>
+        <item name="storage_systemcolor">@color/storage_charts_kapokwhite_system</item>
+        <item name="storage_appcolor">@color/storage_charts_kapokwhite_app</item>
+        <item name="storage_othercolor">@color/storage_charts_kapokwhite_other</item>
     </style>
 
     <style name="Theme.StarBlue" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -87,5 +99,11 @@
         <item name="projection_method_neg_pos_bg">@drawable/bg_neg_pos_starblue</item>
         <item name="projection_method_neg_neg_bg">@drawable/bg_neg_neg_starblue</item>
         <item name="bluetooth_icon">@drawable/selector_bluetooth_icon_starblue</item>
+        <item name="storage_title_iv">@drawable/storage_title_iv_white</item>
+        <item name="storage_totalcolor">@color/storage_charts_starblue_total</item>
+        <item name="storage_availablecolor">@color/storage_charts_starblue_available</item>
+        <item name="storage_systemcolor">@color/storage_charts_starblue_system</item>
+        <item name="storage_appcolor">@color/storage_charts_starblue_app</item>
+        <item name="storage_othercolor">@color/storage_charts_starblue_other</item>
     </style>
 </resources>

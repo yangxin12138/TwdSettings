@@ -26,4 +26,11 @@
     <attr name="projection_method_neg_neg_bg" format="reference"/>
 
     <attr name="bluetooth_icon" format="reference"/>
+    <attr name="storage_title_iv" format="reference"/>
+
+    <attr name="storage_totalcolor" format="color"/>
+    <attr name="storage_availablecolor" format="color"/>
+    <attr name="storage_systemcolor" format="color"/>
+    <attr name="storage_appcolor" format="color"/>
+    <attr name="storage_othercolor" format="color"/>
 </resources>
