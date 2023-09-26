@@ -20,7 +20,7 @@
             android:layout_marginStart="@dimen/devices_title_iv_marginStart"
             android:layout_gravity="center_vertical"/>
         <TextView
-            android:text="存储详情"
+            android:text="@string/device_storage_title"
             android:textColor="?textColor"
             android:textSize="@dimen/devices_title_tv_textSize"
             android:layout_width="@dimen/devices_title_tv_width"
@@ -51,7 +51,7 @@
                     android:paddingTop="15dp"
                     android:src="?storage_title_iv"/>
                 <TextView
-                    android:text="内置存储"
+                    android:text="@string/device_storage_internal"
                     android:textColor="?textColor"
                     android:textSize="35sp"
                     android:layout_width="0dp"
@@ -76,7 +76,7 @@
                     android:id="@+id/storage_total"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="总容量"
+                    android:text="@string/device_storage_total"
                     android:textColor="?textColor"
                     android:textSize="30sp" />
             </LinearLayout>
@@ -98,7 +98,7 @@
                     android:id="@+id/storage_available"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="可用容量"
+                    android:text="@string/device_storage_available"
                     android:textColor="?textColor"
                     android:textSize="30sp" />
             </LinearLayout>
@@ -120,7 +120,7 @@
                     android:id="@+id/storage_system"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="系统占用"
+                    android:text="@string/device_storage_system"
                     android:textColor="?textColor"
                     android:textSize="30sp" />
             </LinearLayout>
@@ -142,7 +142,7 @@
                     android:id="@+id/storage_app"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="应用数据"
+                    android:text="@string/device_storage_app"
                     android:textColor="?textColor"
                     android:textSize="30sp" />
             </LinearLayout>
@@ -164,7 +164,7 @@
                     android:id="@+id/storage_other"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="其他占用"
+                    android:text="@string/device_storage_other"
                     android:textColor="?textColor"
                     android:textSize="30sp" />
             </LinearLayout>

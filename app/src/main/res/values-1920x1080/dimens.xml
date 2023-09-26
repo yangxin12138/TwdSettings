@@ -200,4 +200,7 @@
     <dimen name="blu_search_tv_textSize">25sp</dimen>
     <dimen name="blu_search_tv_width">100dp</dimen>
     <dimen name="blu_search_tv_marginStart">30dp</dimen>
+
+    <!--Device-->
+    <dimen name="device_charts_total_tvSize">20</dimen>
 </resources>

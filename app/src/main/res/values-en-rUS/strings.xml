@@ -83,4 +83,11 @@
     <string name="device_info_softwareVersion">Software Version</string>
     <string name="device_info_mac_wifi">MAC Address(Wifi)</string>
     <string name="device_info_mac_bluetooth">MAC Address(Bluetooth)</string>
+    <string name="device_storage_title">Storage</string>
+    <string name="device_storage_internal">Internal Storage</string>
+    <string name="device_storage_total">total</string>
+    <string name="device_storage_available">available</string>
+    <string name="device_storage_system">System</string>
+    <string name="device_storage_app">App data</string>
+    <string name="device_storage_other">Other data</string>
 </resources>

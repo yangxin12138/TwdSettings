@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -115,11 +116,11 @@ public class DeviceStorageActivity extends AppCompatActivity {
         String other = String.format("%.2f", otherRom);
         double other_Long = Double.parseDouble(other);
 
-         storage_total.setText("总容量: " + totalRom);
-         storage_available.setText("可用容量:" + availableRom);
-         storage_system.setText("系统占用:" + systemRom);
-         storage_app.setText("应用数据:" + appRom);
-         storage_other.setText("其他占用:" + other + "GB");
+         storage_total.setText(getString(R.string.device_storage_total)+" : " + totalRom);
+         storage_available.setText(getString(R.string.device_storage_available)+" : " + availableRom);
+         storage_system.setText(getString(R.string.device_storage_system)+" : " + systemRom);
+         storage_app.setText(getString(R.string.device_storage_app)+" : " + appRom);
+         storage_other.setText(getString(R.string.device_storage_other)+" : " + other + "GB");
 
          Draw_Charts(total_Long,available_Long,system_Long,app_Long,other_Long);
     }
@@ -250,11 +251,7 @@ public class DeviceStorageActivity extends AppCompatActivity {
 
         //设置柱状图的数据
         BarDataSet dataSet = new BarDataSet(entries,"Storage Data");
-        //设置X轴的标签
-        String[] labels = new String[]{"Total","Available","System","App","Other"};
-        XAxis xAxis = barChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextSize(40f);
+        dataSet.setValueTextSize(20f);
 
 
         switch (theme_code){
@@ -265,7 +262,7 @@ public class DeviceStorageActivity extends AppCompatActivity {
                         getResources().getColor(R.color.storage_charts_iceblue_app),
                         getResources().getColor(R.color.storage_charts_iceblue_other)});
                 dataSet.setValueTextColor(getResources().getColor(R.color.customWhite));
-                xAxis.setTextColor(getResources().getColor(R.color.customWhite));
+
                 break;
             case "1"://kapokwhite
                 dataSet.setColors(new int[] {getResources().getColor(R.color.storage_charts_kapokwhite_total),
@@ -274,7 +271,7 @@ public class DeviceStorageActivity extends AppCompatActivity {
                         getResources().getColor(R.color.storage_charts_kapokwhite_app),
                         getResources().getColor(R.color.storage_charts_kapokwhite_other)});
                 dataSet.setValueTextColor(getResources().getColor(R.color.black));
-                xAxis.setTextColor(getResources().getColor(R.color.black));
+
                 break;
             case "2": //starblue
                 dataSet.setColors(new int[] {getResources().getColor(R.color.storage_charts_starblue_total),
@@ -283,17 +280,12 @@ public class DeviceStorageActivity extends AppCompatActivity {
                         getResources().getColor(R.color.storage_charts_starblue_app),
                         getResources().getColor(R.color.storage_charts_starblue_other)});
                 dataSet.setValueTextColor(getResources().getColor(R.color.customWhite));
-                xAxis.setTextColor(getResources().getColor(R.color.customWhite));
+
                 break;
         }
 
         BarData barData = new BarData(dataSet);
-        xAxis.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                return labels[(int) value];
-            }
-        });
+
 
         //设置柱状图的其他属性
         barChart.setData(barData);//设置数据源
@@ -304,6 +296,7 @@ public class DeviceStorageActivity extends AppCompatActivity {
         barChart.getAxisRight().setDrawGridLines(false); // 去掉右侧Y轴网格线
         barChart.getAxisLeft().setEnabled(false); // 去掉左侧Y轴
         barChart.getAxisRight().setEnabled(false); // 去掉右侧Y轴
+        barChart.getXAxis().setDrawLabels(false);
 
         //刷新图表
         barChart.invalidate();

@@ -83,4 +83,11 @@
     <string name="device_info_softwareVersion">軟體號</string>
     <string name="device_info_mac_wifi">MAC地址(無線)</string>
     <string name="device_info_mac_bluetooth">MAC地址(藍牙)</string>
+    <string name="device_storage_title">儲存詳情</string>
+    <string name="device_storage_internal">內建儲存</string>
+    <string name="device_storage_total">總容量</string>
+    <string name="device_storage_available">可用容量</string>
+    <string name="device_storage_system">系統佔用</string>
+    <string name="device_storage_app">應用數據</string>
+    <string name="device_storage_other">其他數據</string>
 </resources>
