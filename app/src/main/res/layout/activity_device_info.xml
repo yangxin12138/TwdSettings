@@ -33,21 +33,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="@dimen/device_info_machineNo_marginTop">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="@string/device_info_deviceNo"
-            android:textSize="25sp"
-            android:layout_marginStart="200dp"
+            android:textSize="@dimen/device_info_textSize"
+            android:layout_marginStart="@dimen/device_info_marginStart"
             android:textColor="?textColor" />
         <TextView
             android:id="@+id/devices_tv_machineNO_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="25sp"
+            android:textSize="@dimen/device_info_textSize"
             android:layout_weight="1"
             android:textColor="?textColor"
             android:layout_gravity="end"/>
@@ -56,88 +56,88 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="@dimen/device_info_marginTop">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="@string/device_info_androidVersion"
-            android:textSize="25sp"
+            android:textSize="@dimen/device_info_textSize"
             android:textColor="?textColor"
-            android:layout_marginStart="200dp"/>
+            android:layout_marginStart="@dimen/device_info_marginStart"/>
         <TextView
             android:id="@+id/devices_tv_androidVersion_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text=""
-            android:textSize="25sp"
+            android:textSize="@dimen/device_info_textSize"
             android:textColor="?textColor" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="@dimen/device_info_marginTop">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="@string/device_info_softwareVersion"
-            android:textSize="25sp"
+            android:textSize="@dimen/device_info_textSize"
             android:textColor="?textColor"
-            android:layout_marginStart="200dp"/>
+            android:layout_marginStart="@dimen/device_info_marginStart"/>
         <TextView
             android:id="@+id/devices_tv_softwareNO_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text=""
-            android:textSize="25sp"
+            android:textSize="@dimen/device_info_textSize"
             android:textColor="?textColor" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="@dimen/device_info_marginTop">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="@string/device_info_mac_wifi"
-            android:textSize="25sp"
+            android:textSize="@dimen/device_info_textSize"
             android:textColor="?textColor"
-            android:layout_marginStart="200dp"/>
+            android:layout_marginStart="@dimen/device_info_marginStart"/>
         <TextView
             android:id="@+id/devices_tv_macAddressWifi_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text=""
-            android:textSize="25sp"
+            android:textSize="@dimen/device_info_textSize"
             android:textColor="?textColor" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="@dimen/device_info_marginTop">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="@string/device_info_mac_bluetooth"
-            android:textSize="25sp"
+            android:textSize="@dimen/device_info_textSize"
             android:textColor="?textColor"
-            android:layout_marginStart="200dp"/>
+            android:layout_marginStart="@dimen/device_info_marginStart"/>
         <TextView
             android:id="@+id/devices_tv_macAddressBluetooth_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text=""
-            android:textSize="25sp"
+            android:textSize="@dimen/device_info_textSize"
             android:textColor="?textColor" />
     </LinearLayout>
 </LinearLayout>

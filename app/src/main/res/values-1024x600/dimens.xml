@@ -166,6 +166,7 @@
     <dimen name="universal_content_LL_paddingEnd">200dp</dimen>
     <dimen name="universal_content_LL_height">80dp</dimen>
     <dimen name="universal_tv_textSize">25sp</dimen>
+    <dimen name="universal_input_list_name_height">80dp</dimen>
     <dimen name="universal_tv_width">200dp</dimen>
     <dimen name="universal_tv_marginStart">30dp</dimen>
     <dimen name="universal_current_tv_marginStart">300dp</dimen>
@@ -223,4 +224,8 @@
 
     <!--Device-->
     <dimen name="device_charts_total_tvSize">20</dimen>
+    <dimen name="device_info_machineNo_marginTop">50dp</dimen>
+    <dimen name="device_info_marginTop">10dp</dimen>
+    <dimen name="device_info_textSize">25sp</dimen>
+    <dimen name="device_info_marginStart">200dp</dimen>
 </resources>
