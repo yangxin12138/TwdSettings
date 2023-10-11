@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.LocaleList;
@@ -27,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.twd.twdsettings.R;
 import com.twd.twdsettings.SystemPropertiesUtils;
@@ -80,7 +82,6 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
         String currentLanguageCode = currentLocale.getLanguage()+"_"+currentLocale.getCountry();
 
         for (Locale locale : availableLocales) {
-           // String language = locale.getDisplayLanguage(locale)+"_"+locale.getLanguage()+"_"+locale.getCountry()+"_"+locale.getDisplayName();
             String language =locale.getDisplayName(locale)+"_"+locale.getLanguage()+"_"+locale.getCountry();
             String languageCode = locale.getLanguage()+"_"+locale.getCountry();
             if (!language.isEmpty() && !languageList.contains(language)) {
@@ -99,7 +100,7 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
                     languageBean.setSelect(true);
                 }
                 languageBeans.add(languageBean);
-            } else if (language.equals("English (United States)_en_US")) {
+            } else if (language.equals("English_en_")) {
                 languageBean = new LanguageBean("English",languageCode,false);
                 if (languageCode.equals(currentLanguageCode)){
                     languageBean.setSelect(true);
@@ -143,17 +144,15 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
                //进行切换和重启
                 LanguageBean languageBean = languageBeans.get(position);
                 String indexLanguage = languageBean.getLanguageCode(); // en_US ; zh_CN ; zh_TW
-                // changeSystemLanguage(indexLanguage);
-                // 创建一个立即触发的定时任务，用于重新启动应用程序
-               /* Intent intent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
-                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
-                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                if (alarmManager != null) {
-                    alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 1000, pendingIntent);
-                }*/
-
-                // 退出当前活动
-//                finish();
+                showToast(indexLanguage);
+                /*切换语言方法*/
+                if (indexLanguage.equals("zh_CN") ){
+                    changeSystemLanguage(Locale.SIMPLIFIED_CHINESE);
+                } else if (indexLanguage.equals("zh_TW") ) {
+                    changeSystemLanguage(Locale.TRADITIONAL_CHINESE);
+                } else if (indexLanguage.equals("en_")) {
+                    changeSystemLanguage(Locale.ENGLISH);
+                }
 
                 // 关闭当前应用程序
                 finish();
@@ -178,42 +177,43 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
         dialog.show();
 
     }
-
     /*
-    * 修改系统语言的方法
-    * 需要设置系统app获取系统权限才能执行*/
-    public void changeSystemLanguage(String language) { // "zh_CN"
-        if (language != null) {
+     * 修改系统语言的方法
+     * 需要设置系统app获取系统权限才能执行*/
+    public void changeSystemLanguage(Locale locale){
+        if (locale != null){
             try {
-                //final IActivityManager am = ActivityManagerNative.getDefault();
-                Class classActivityManagerNative = Class.forName("android.app.ActivityManagerNative");
-                Method getDefault = classActivityManagerNative.getDeclaredMethod("getDefault");
-                Object objIActivityManager = getDefault.invoke(classActivityManagerNative);
-
-                //final Configuration config = am.getConfiguration();
-                Class classIActivityManager = Class.forName("android.app.IActivityManager");
-                Method getConfiguration = classIActivityManager.getDeclaredMethod("getConfiguration");
-                Configuration config = (Configuration) getConfiguration.invoke(objIActivityManager);
-
-                //config.setLocales(locales);
-                config.setLocale(new Locale(language));
-
-                //config.userSetLocale = true;
+                Object objIActMag;
+                Class clzIActMag = Class.forName("android.app.IActivityManager");
+                Class clzActMagNative = Class
+                        .forName("android.app.ActivityManagerNative");
+                //amn = ActivityManagerNative.getDefault();
+                Method mtdActMagNative$getDefault = clzActMagNative
+                        .getDeclaredMethod("getDefault");
+                objIActMag = mtdActMagNative$getDefault.invoke(clzActMagNative);
+                // objIActMag = amn.getConfiguration();
+                Method mtdIActMag$getConfiguration = clzIActMag
+                        .getDeclaredMethod("getConfiguration");
+                Configuration config = (Configuration) mtdIActMag$getConfiguration
+                        .invoke(objIActMag);
+                // set the locale to the new value
+                config.locale = locale;
+                //持久化  config.userSetLocale = true;
                 Class clzConfig = Class
                         .forName("android.content.res.Configuration");
                 java.lang.reflect.Field userSetLocale = clzConfig
                         .getField("userSetLocale");
                 userSetLocale.set(config, true);
-
-                //am.updatePersistentConfiguration(config);
+                // 此处需要声明权限:android.permission.CHANGE_CONFIGURATION
+                // 会重新调用 onCreate();
                 Class[] clzParams = {Configuration.class};
-                Method updatePersistentConfiguration =
-                        classIActivityManager.getDeclaredMethod("updatePersistentConfiguration", clzParams);
-                updatePersistentConfiguration.invoke(objIActivityManager, config);
-
+                // objIActMag.updateConfiguration(config);
+                Method mtdIActMag$updateConfiguration = clzIActMag
+                        .getDeclaredMethod("updateConfiguration", clzParams);
+                mtdIActMag$updateConfiguration.invoke(objIActMag, config);
                 BackupManager.dataChanged("com.android.providers.settings");
-            } catch (Exception exception) {
-                exception.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -301,5 +301,16 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
             }
             return itemView;
         }
+    }
+
+    private void showToast(String text) {
+        LayoutInflater inflater = getLayoutInflater();
+        View customToastView = inflater.inflate(R.layout.custom_toast, null);
+        TextView textView = customToastView.findViewById(R.id.toast_text);
+        textView.setText(text);
+        Toast customToast = new Toast(getApplicationContext());
+        customToast.setView(customToastView);
+        customToast.setDuration(Toast.LENGTH_SHORT);
+        customToast.show();
     }
 }

@@ -113,8 +113,8 @@ public class UniversalInputActivity extends AppCompatActivity implements Adapter
         /*
         * 设置启用输入法需要系统app权限，第三方app无法操作这个权限*/
         //设置当前选中的输入法为启用的输入法
-      /*  InputItem selectedInputItem = inputItems.get(position);
-        Settings.Secure.putString(getContentResolver(),Settings.Secure.DEFAULT_INPUT_METHOD,selectedInputItem.getInputId());*/
+        InputItem selectedInputItem = inputItems.get(position);
+        Settings.Secure.putString(getContentResolver(),Settings.Secure.DEFAULT_INPUT_METHOD,selectedInputItem.getInputId());
 
         simulateBackKeyPress();
         Log.i(TAG, "onItemClick: -------点击事件--------");

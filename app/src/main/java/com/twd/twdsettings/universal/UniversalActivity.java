@@ -70,12 +70,13 @@ public class UniversalActivity extends AppCompatActivity implements  View.OnClic
         configuration.setLocale(currentLocale);
         String name = configuration.locale.getDisplayName(currentLocale);
         String currentLanguage = name+"_"+currentLocale.getLanguage()+"_"+currentLocale.getCountry();
+        Log.i("Language", "onResume: currentLanguage = " + currentLanguage);
 
         if (currentLanguage.contains("zh_CN")){
             tv_languageCurrent.setText("简体中文");
         } else if (currentLanguage.contains("zh_TW")) {
             tv_languageCurrent.setText("繁體中文");
-        } else if (currentLanguage.equals("English (United States)_en_US")) {
+        } else  if(currentLanguage.equals("English_en_")){
             tv_languageCurrent.setText("English");
         }
 
