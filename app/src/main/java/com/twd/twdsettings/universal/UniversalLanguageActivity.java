@@ -106,6 +106,84 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
                     languageBean.setSelect(true);
                 }
                 languageBeans.add(languageBean);
+            } else if (language.contains("ja_JP")) {
+                languageBean = new LanguageBean("日本語",languageCode,false);
+                if (languageCode.equals(currentLanguageCode)){
+                    languageBean.setSelect(true);
+                }
+                languageBeans.add(languageBean);
+            } else if (language.contains("ko_KR")) {
+                languageBean = new LanguageBean("한국어",languageCode,false);
+                if (languageCode.equals(currentLanguageCode)){
+                    languageBean.setSelect(true);
+                }
+                languageBeans.add(languageBean);
+            } else if (language.contains("th_TH")) {
+                languageBean = new LanguageBean("ไทย (ไทย)",languageCode,false);
+                if (languageCode.equals(currentLanguageCode)){
+                    languageBean.setSelect(true);
+                }
+                languageBeans.add(languageBean);
+            } else if (language.contains("hi_IN")) {
+                languageBean = new LanguageBean("हिन्दी (भारत)",languageCode,false);
+                if (languageCode.equals(currentLanguageCode)){
+                    languageBean.setSelect(true);
+                }
+                languageBeans.add(languageBean);
+            } else if (language.contains("fr_FR")) {
+                languageBean = new LanguageBean("français (France)",languageCode,false);
+                if (languageCode.equals(currentLanguageCode)){
+                    languageBean.setSelect(true);
+                }
+                languageBeans.add(languageBean);
+            } else if (language.contains("de_DE")) {
+                languageBean = new LanguageBean("Deutsch (Deutschland)",languageCode,false);
+                if (languageCode.equals(currentLanguageCode)){
+                    languageBean.setSelect(true);
+                }
+                languageBeans.add(languageBean);
+            } else if (language.contains("it_IT")) {
+                languageBean = new LanguageBean("italiano (Italia)",languageCode,false);
+                if (languageCode.equals(currentLanguageCode)){
+                    languageBean.setSelect(true);
+                }
+                languageBeans.add(languageBean);
+            } else if (language.contains("ru_RU")) {
+                languageBean = new LanguageBean("русский (Россия)",languageCode,false);
+                if (languageCode.equals(currentLanguageCode)){
+                    languageBean.setSelect(true);
+                }
+                languageBeans.add(languageBean);
+            } else if (language.contains("es_ES")) {
+                languageBean = new LanguageBean("español (España)",languageCode,false);
+                if (languageCode.equals(currentLanguageCode)){
+                    languageBean.setSelect(true);
+                }
+                languageBeans.add(languageBean);
+            } else if (language.contains("pt_PT")) {
+                languageBean = new LanguageBean("português (Portugal)",languageCode,false);
+                if (languageCode.equals(currentLanguageCode)){
+                    languageBean.setSelect(true);
+                }
+                languageBeans.add(languageBean);
+            } else if (language.contains("ar_SA")) {
+                languageBean = new LanguageBean("العربية (المملكة العربية السعودية)",languageCode,false);
+                if (languageCode.equals(currentLanguageCode)){
+                    languageBean.setSelect(true);
+                }
+                languageBeans.add(languageBean);
+            } else if (language.contains("fa_IR")) {
+                languageBean = new LanguageBean("فارسی (ایران)",languageCode,false);
+                if (languageCode.equals(currentLanguageCode)){
+                    languageBean.setSelect(true);
+                }
+                languageBeans.add(languageBean);
+            } else if (language.contains("tr_TR")) {
+                languageBean = new LanguageBean("Türkçe (Türkiye)",languageCode,false);
+                if (languageCode.equals(currentLanguageCode)){
+                    languageBean.setSelect(true);
+                }
+                languageBeans.add(languageBean);
             }
         }
         //添加语言
@@ -152,6 +230,8 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
                     changeSystemLanguage(Locale.TRADITIONAL_CHINESE);
                 } else if (indexLanguage.equals("en_")) {
                     changeSystemLanguage(Locale.ENGLISH);
+                } else if (indexLanguage.equals("ja_JP")) {
+                    changeSystemLanguage(Locale.JAPAN);
                 }
 
                 // 关闭当前应用程序

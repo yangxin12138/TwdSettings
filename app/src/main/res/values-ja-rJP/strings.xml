@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">設定</string>
+    <!--Index-->
+    <string name="main_index_title_text">設定</string>
+    <string name="main_projection_text">投影設定</string>
+    <string name="main_wifi_text">ネットワーク設定</string>
+    <string name="main_bluetooth_text">ブルートゥース</string>
+    <string name="main_Universal_text">ユニバーサル</string>
+    <string name="main_aboutDevice_text">デバイスについて</string>
+    <!--Projection-->
+    <string name="projection_index_title_text">投影</string>
+    <string name="projection_index_double_point">2点台形補正</string>
+    <string name="projection_index_single_point">4点台形補正</string>
+    <string name="projection_index_size">サイズ調整</string>
+    <string name="projection_index_projection_method">投影法</string>
+    <string name="projection_size_level_text">左右のキーでズームインおよびズームアウトします</string>
+    <string name="projection_method_title_text">投影法</string>
+    <string name="projection_method_pos_pos">フォーマルウェア</string>
+    <string name="projection_method_pos_neg">正式な背面投影</string>
+    <string name="projection_method_neg_pos">フロントプロジェクションの巻き上げ</string>
+    <string name="projection_method_neg_neg">天井背面投影</string>
+    <!--Internet-->
+    <string name="net_index_title_text">通信網</string>
+    <string name="net_index_wifi_tv">無線ネットワーク</string>
+    <string name="net_index_available_tv">利用可能なネットワーク</string>
+    <string name="net_connect_dialog_ok_button">確認する</string>
+    <string name="net_connectbypreference_dialog_ok_button">接続する</string>
+    <string name="net_connectbypreference_dialog_ignore_button">このネットワークを無視する</string>
+    <string name="net_wifiList_scanToast_tv">スキャン中です、お待ちください...</string>
+    <string name="net_wifiList_connectbypreference_title_tv">
+        このネットワークは保存されました。直接接続しますか?</string>
+    <string name="net_wifiList_connectbypreference_ignoreTitle_tv">
+        このネットワークを無視してもよろしいですか?</string>
+    <string name="net_wifiList_connectbypreference_ignoreConfirm_tv">確認する</string>
+    <string name="net_wifiList_connectbypreference_ignoreCancel_tv">キャンセル</string>
+    <string name="net_wifiList_connecttoWifi_title_tv">接続中です、お待ちください...</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_true">接続に成功しました</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_false">
+        接続に失敗しました。もう一度お試しください</string>
+    <string name="net_wifiList_isCheckedText_saved">保存されました</string>
+    <!--Bluetooth-->
+    <string name="bluetooth_index_title_text">ブルートゥース</string>
+    <string name="bluetooth_index_bt_tv">Bluetoothスイッチ</string>
+    <string name="bluetooth_index_search_title_tv">デバイスが見つかりました</string>
+    <string name="bluetooth_index_search_tv">検索中</string>
+    <string name="bluetooth_index_NotSupport">このデバイスは Bluetooth をサポートしていません</string>
+    <string name="bluetooth_index_search_again_tv">もう一度検索</string>
+    <string name="bluetooth_index_search_finish">Bluetoothスキャンが完了しました</string>
+    <string name="bluetooth_index_deviceStatus_Bonded">ペアリング済み</string>
+    <string name="bluetooth_index_deviceStatus_Bonding">ペアリング</string>
+    <string name="bluetooth_index_deviceStatus_Connected">接続されています</string>
+    <string name="bluetooth_index_deviceStatus_BondFiled">" : ペアリングに失敗しました"</string>
+    <string name="bluetooth_index_piarTodevice_title">Bluetooth ペアリング要求</string>
+    <string name="bluetooth_index_Connectdialog_flag_0">
+        このデバイスはペアリングされています。直接接続しますか?</string>
+    <string name="bluetooth_index_Connectdialog_flag_1">
+        このデバイスは接続されています。切断してもよろしいですか？</string>
+    <string name="bluetooth_index_connect_succese">接続に成功しました</string>
+    <string name="bluetooth_index_connect_failed">接続に失敗しました</string>
+    <string name="bluetooth_index_close">正常に切断されました</string>
+    <string name="bluetooth_dialog_connect">接続する</string>
+    <string name="bluetooth_dialog_cancel">キャンセル</string>
+    <string name="bluetooth_dialog_clear">確認する</string>
+    <string name="bluetooth_dialog_pair">ペア</string>
+    <!--Universal-->
+    <string name="universal_index_title_tv">ユニバーサル</string>
+    <string name="universal_index_input_tv">入力</string>
+    <string name="universal_index_language_tv">言語</string>
+    <string name="title_language">言語</string>
+    <string name="dialog_changeLanguage_title">ヒント</string>
+    <string name="dialog_changeLanguage_message">言語設定を切り替えるには、アプリを再起動する必要があります。切り替えますか?</string>
+    <string name="dialog_changeLanguage_btConfirm">確認する</string>
+    <string name="dialog_changeLanguage_btCancel">キャンセル</string>
+    <string name="inputMethod_value_sougou">sogou入力方式</string>
+    <string name="inputMethod_value_google">Googleピンイン入力方式</string>
+    <string name="inputMethod_value_Aosp">Androidキーボード</string>
+    <!--Device-->
+    <string name="device_index_title_tv">デバイスについて</string>
+    <string name="device_index_info_tv">地元の情報</string>
+    <string name="device_index_storage_tv">デバイスストレージ</string>
+    <string name="device_info_deviceNo">デバイス番号</string>
+    <string name="device_info_androidVersion">Android版</string>
+    <string name="device_info_softwareVersion">ソフトウェア番号</string>
+    <string name="device_info_mac_wifi">MACアドレス（無線）</string>
+    <string name="device_info_mac_bluetooth">MACアドレス（Bluetooth）</string>
+    <string name="device_storage_title">ストレージの詳細</string>
+    <string name="device_storage_internal">内蔵ストレージ</string>
+    <string name="device_storage_total">総容量</string>
+    <string name="device_storage_available">利用可能な容量</string>
+    <string name="device_storage_system">システム占有率</string>
+    <string name="device_storage_app">アプリケーションデータ</string>
+    <string name="device_storage_other">その他のデータ</string>
+</resources>
