@@ -67,8 +67,9 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.settings.SETTINGS"/>
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".projection.ProjectionSettingsActivity" />
@@ -76,12 +77,25 @@
         <activity android:name=".projection.TrapezoidalSingleActivity" />
         <activity android:name=".projection.SizeActivity" />
         <activity android:name=".projection.ProjectionMethodActivity" />
-        <activity android:name=".network.WifiListActivity" />
+        <activity android:name=".network.WifiListActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.settings.WIFI_SETTINGS"/>
+                <action android:name="android.settings.NETWORK_SETTINGS"/>
+                <action android:name="android.settings.WIFI_IP_SETTINGS"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".network.NetworkActivity"
             android:exported="false" />
         <activity android:name=".network.NetSpeedActivity" />
-        <activity android:name=".bluetooth.BluetoothActivity" />
+        <activity android:name=".bluetooth.BluetoothActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.settings.BLUETOOTH_SETTINGS"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".universal.UniversalActivity" />
 
         <receiver

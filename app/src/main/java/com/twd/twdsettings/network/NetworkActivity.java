@@ -101,9 +101,12 @@ public class NetworkActivity extends AppCompatActivity implements  View.OnClickL
         net_tv_wlanAble = findViewById(R.id.net_tv_wlanAble);
         net_arrow_wlanAble = findViewById(R.id.arrow_wlanAble);
         mSwitch = findViewById(R.id.net_switch);
+        //读取系统wifi开关状态并设置
         SharedPreferences preferences = getSharedPreferences("Switch_Checked",MODE_PRIVATE);
-        boolean check = preferences.getBoolean("isChecked",false);
-        Log.i("yang","mSwitch = "+check);
+        SharedPreferences.Editor editor = preferences.edit();
+        boolean sysCheck = isWifiEnabled(this);
+        editor.putBoolean("isChecked",sysCheck);
+        editor.apply();
         mSwitch.setChecked(preferences.getBoolean("isChecked",false));
 
         if (!mSwitch.isChecked()){
@@ -156,6 +159,10 @@ public class NetworkActivity extends AppCompatActivity implements  View.OnClickL
     }
 
 
+    private boolean isWifiEnabled(Context context){
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        return wifiManager.isWifiEnabled();
+    }
     private String updateWifiInfo(){
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();

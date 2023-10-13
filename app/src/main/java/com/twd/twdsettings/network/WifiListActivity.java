@@ -395,15 +395,6 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             WifiInfo wifiInfo = wifiManager.getConnectionInfo();
             String connectedSsid = wifiInfo.getSSID();
 
-            wifi_infoPreferences = getSharedPreferences("wifi_password",MODE_PRIVATE);
-            // 获取展示的网络的SSID
-            String displayedSsid = wifiNameTextView.getText().toString();
-            // 判断当前连接的网络和展示的网络是否相同
-            if (!wifi_infoPreferences.getString(displayedSsid, "").equals("")){
-                isCheckedText.setText(getString(R.string.net_wifiList_isCheckedText_saved));
-            } else {
-                isCheckedText.setText("");
-            }
             int btnBgResId_sel = 0; int textColor_sel = 0;
             int btnBgResId = 0; int textColor = 0;
             int wifiSignal_full_sel = 0; int wifiSignal_medium_sel = 0; int wifiSignal_low_sel = 0;
@@ -456,6 +447,21 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                 } else  {
                     wifiSignalImageView.setImageResource(wifiSignal_low); //low
                 }
+            }
+
+            wifi_infoPreferences = getSharedPreferences("wifi_password",MODE_PRIVATE);
+            // 获取展示的网络的SSID
+            String displayedSsid = wifiNameTextView.getText().toString();
+            Log.i("yang1", "getView: 当前展示的网络SSID = " + displayedSsid + " , 当前连接的网络的SSID = " + connectedSsid);
+            if (!wifi_infoPreferences.getString(displayedSsid, "").equals("")){
+                isCheckedText.setText(getString(R.string.net_wifiList_isCheckedText_saved));
+            } else {
+                isCheckedText.setText("");
+            }
+            // 判断当前连接的网络和展示的网络是否相同
+            String displayedSsidFormat = "\"" + displayedSsid + "\"";
+            if (displayedSsidFormat.equals(connectedSsid)){
+                isCheckedText.setText("已连接");
             }
 
             //设置聚焦效果
