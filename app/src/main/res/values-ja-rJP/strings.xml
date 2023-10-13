@@ -38,6 +38,7 @@
     <string name="net_wifiList_connecttoWifi_isConnected_false">
         接続に失敗しました。もう一度お試しください</string>
     <string name="net_wifiList_isCheckedText_saved">保存されました</string>
+    <string name="net_wifiList_isCheckedText_connected">接続済み</string>
     <!--Bluetooth-->
     <string name="bluetooth_index_title_text">ブルートゥース</string>
     <string name="bluetooth_index_bt_tv">Bluetoothスイッチ</string>

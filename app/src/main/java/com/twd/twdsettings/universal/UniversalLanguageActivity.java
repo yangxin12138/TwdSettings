@@ -36,8 +36,11 @@ import com.twd.twdsettings.bean.LanguageBean;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class UniversalLanguageActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private static final String TAG = UniversalLanguageActivity.class.getName();
@@ -88,102 +91,36 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
                 languageList.add(language);
             }
             LanguageBean languageBean = null;
-            if (language.contains("zh_CN")){
-                languageBean = new LanguageBean("简体中文",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
+            Map<String,String> languageMap = new HashMap<>();
+            languageMap.put("zh_CN","简体中文"); //简体中文
+            languageMap.put("zh_TW","繁體中文"); //繁体中文
+            languageMap.put("en_","English"); //英语
+            languageMap.put("ja_JP","日本語"); //日语
+            languageMap.put("ko_KR","한국어"); //韩语-韩国
+            languageMap.put("th_TH","ไทย (ไทย)"); //泰语-泰国
+            languageMap.put("hi_IN","हिन्दी (भारत)"); //印地语-印度
+            languageMap.put("fr_FR","français (France)"); //法语-法国
+            languageMap.put("de_DE","Deutsch (Deutschland)"); //德语-德国
+            languageMap.put("it_IT","italiano (Italia)"); //意大利语-意大利
+            languageMap.put("ru_RU","русский (Россия)"); //俄语-俄罗斯
+            languageMap.put("es_ES","español (España)"); //西班牙语-西班牙
+            languageMap.put("pt_PT","português (Portugal)"); //葡萄牙语-葡萄牙
+            languageMap.put("ar_SA","العربية (المملكة العربية السعودية)");//阿拉伯语-沙特阿拉伯
+            languageMap.put("fa_IR","فارسی (ایران)");//波斯语-伊朗
+            languageMap.put("tr_TR","Türkçe (Türkiye)");//土耳其语-土耳其
+
+            List<String> supportedLanguages = Arrays.asList("zh_CN","zh_TW","en_","ja_JP"
+                                                    ,"ko_KR","th_TH","hi_IN","fr_FR","de_DE","it_IT"
+                                                    ,"ru_RU","es_ES","pt_PT","ar_SA","fa_IR","tr_TR");
+            for (String language_sup : supportedLanguages){
+                if (language_sup.equals(languageCode)){
+                    String languageName = languageMap.get(language_sup);
+                    languageBean = new LanguageBean(languageName,languageCode,false);
+                    if (languageCode.equals(currentLanguageCode)){
+                        languageBean.setSelect(true);
+                    }
+                    languageBeans.add(languageBean);
                 }
-                languageBeans.add(languageBean);
-            } else if (language.contains("zh_TW")) {
-                languageBean = new LanguageBean("繁體中文",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.equals("English_en_")) {
-                languageBean = new LanguageBean("English",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.contains("ja_JP")) {
-                languageBean = new LanguageBean("日本語",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.contains("ko_KR")) {
-                languageBean = new LanguageBean("한국어",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.contains("th_TH")) {
-                languageBean = new LanguageBean("ไทย (ไทย)",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.contains("hi_IN")) {
-                languageBean = new LanguageBean("हिन्दी (भारत)",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.contains("fr_FR")) {
-                languageBean = new LanguageBean("français (France)",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.contains("de_DE")) {
-                languageBean = new LanguageBean("Deutsch (Deutschland)",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.contains("it_IT")) {
-                languageBean = new LanguageBean("italiano (Italia)",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.contains("ru_RU")) {
-                languageBean = new LanguageBean("русский (Россия)",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.contains("es_ES")) {
-                languageBean = new LanguageBean("español (España)",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.contains("pt_PT")) {
-                languageBean = new LanguageBean("português (Portugal)",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.contains("ar_SA")) {
-                languageBean = new LanguageBean("العربية (المملكة العربية السعودية)",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.contains("fa_IR")) {
-                languageBean = new LanguageBean("فارسی (ایران)",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
-            } else if (language.contains("tr_TR")) {
-                languageBean = new LanguageBean("Türkçe (Türkiye)",languageCode,false);
-                if (languageCode.equals(currentLanguageCode)){
-                    languageBean.setSelect(true);
-                }
-                languageBeans.add(languageBean);
             }
         }
         //添加语言
@@ -232,6 +169,8 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
                     changeSystemLanguage(Locale.ENGLISH);
                 } else if (indexLanguage.equals("ja_JP")) {
                     changeSystemLanguage(Locale.JAPAN);
+                } else if (indexLanguage.equals("ko_KR")) {
+                    changeSystemLanguage(Locale.KOREA);
                 }
 
                 // 关闭当前应用程序

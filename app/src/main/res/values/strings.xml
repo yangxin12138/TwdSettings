@@ -38,6 +38,7 @@
     <string name="net_wifiList_connecttoWifi_isConnected_false">
         Failed, please try again</string>
     <string name="net_wifiList_isCheckedText_saved">Saved</string>
+    <string name="net_wifiList_isCheckedText_connected">Connected</string>
     <!--Bluetooth-->
     <string name="bluetooth_index_title_text">Bluetooth</string>
     <string name="bluetooth_index_bt_tv">Bluetooth switch</string>

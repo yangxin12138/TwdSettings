@@ -38,6 +38,7 @@
     <string name="net_wifiList_connecttoWifi_isConnected_false">
         連接失敗，請重試</string>
     <string name="net_wifiList_isCheckedText_saved">已存儲</string>
+    <string name="net_wifiList_isCheckedText_connected">已連接</string>
     <!--Bluetooth-->
     <string name="bluetooth_index_title_text">藍牙</string>
     <string name="bluetooth_index_bt_tv">藍牙開關</string>

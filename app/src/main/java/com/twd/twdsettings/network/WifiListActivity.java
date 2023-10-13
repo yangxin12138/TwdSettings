@@ -461,7 +461,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             // 判断当前连接的网络和展示的网络是否相同
             String displayedSsidFormat = "\"" + displayedSsid + "\"";
             if (displayedSsidFormat.equals(connectedSsid)){
-                isCheckedText.setText("已连接");
+                isCheckedText.setText(getString(R.string.net_wifiList_isCheckedText_connected));
             }
 
             //设置聚焦效果

@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">설정</string>
+    <!--Index-->
+    <string name="main_index_title_text">설정</string>
+    <string name="main_projection_text">프로젝션 설정</string>
+    <string name="main_wifi_text">인터넷</string>
+    <string name="main_bluetooth_text">블루투스</string>
+    <string name="main_Universal_text">공통</string>
+    <string name="main_aboutDevice_text">장치 정보</string>
+    <!--Projection-->
+    <string name="projection_index_title_text">투사</string>
+    <string name="projection_index_double_point">2점 키스톤 보정</string>
+    <string name="projection_index_single_point">4포인트 키스톤 보정</string>
+    <string name="projection_index_size">크기</string>
+    <string name="projection_index_projection_method">프로젝션 방식</string>
+    <string name="projection_size_level_text">확대 및 축소하는 왼쪽 및 오른쪽 키</string>
+    <string name="projection_method_title_text">프로젝션 방식</string>
+    <string name="projection_method_pos_pos">전면 설치 전면 투사</string>
+    <string name="projection_method_pos_neg">전면 장착 후면 투사</string>
+    <string name="projection_method_neg_pos">천장 설치 전면 투사</string>
+    <string name="projection_method_neg_neg">천장 설치 후면 투사</string>
+    <!--Internet-->
+    <string name="net_index_title_text">인터넷</string>
+    <string name="net_index_wifi_tv">무선 네트워크</string>
+    <string name="net_index_available_tv">사용 가능한 네트워크</string>
+    <string name="net_connect_dialog_ok_button">확인하다</string>
+    <string name="net_connectbypreference_dialog_ok_button">연결하다</string>
+    <string name="net_connectbypreference_dialog_ignore_button">비밀번호 지우기</string>
+    <string name="net_wifiList_scanToast_tv">스캔 중입니다. 잠시 기다려 주세요...</string>
+    <string name="net_wifiList_connectbypreference_title_tv">
+        이 네트워크는 저장되었습니다. 연결하시겠습니까?</string>
+    <string name="net_wifiList_connectbypreference_ignoreTitle_tv">
+        이 네트워크를 삭제하시겠습니까?</string>
+    <string name="net_wifiList_connectbypreference_ignoreConfirm_tv">OK</string>
+    <string name="net_wifiList_connectbypreference_ignoreCancel_tv">취소</string>
+    <string name="net_wifiList_connecttoWifi_title_tv">연결 중입니다. 잠시 기다려 주세요...</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_true">연결 성공</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_false">
+        실패했습니다. 다시 시도해 주세요.</string>
+    <string name="net_wifiList_isCheckedText_saved">저장됨</string>
+    <string name="net_wifiList_isCheckedText_connected">연결됨</string>
+    <!--Bluetooth-->
+    <string name="bluetooth_index_title_text">블루투스</string>
+    <string name="bluetooth_index_bt_tv">블루투스 스위치</string>
+    <string name="bluetooth_index_search_title_tv">발견된 장치</string>
+    <string name="bluetooth_index_search_tv">검색 중</string>
+    <string name="bluetooth_index_NotSupport">이 장치는 블루투스를 지원하지 않습니다</string>
+    <string name="bluetooth_index_search_again_tv">다시 검색</string>
+    <string name="bluetooth_index_search_finish">블루투스 검색 완료</string>
+    <string name="bluetooth_index_deviceStatus_Bonded">페어링 완료</string>
+    <string name="bluetooth_index_deviceStatus_Bonding">짝짓기 중</string>
+    <string name="bluetooth_index_deviceStatus_Connected">연결됨</string>
+    <string name="bluetooth_index_deviceStatus_BondFiled"> : 페어링 실패</string>
+    <string name="bluetooth_index_piarTodevice_title">  블루투스 페어링 요청</string>
+    <string name="bluetooth_index_Connectdialog_flag_0">
+        이 장치는 바인딩되었습니다. 연결해야 합니까?</string>
+    <string name="bluetooth_index_Connectdialog_flag_1">
+        이 장치는 연결되어 있습니다. 연결을 해제하시겠습니까?</string>
+    <string name="bluetooth_index_connect_succese">연결 성공</string>
+    <string name="bluetooth_index_connect_failed">연결에 실패</string>
+    <string name="bluetooth_index_close">연결이 끊어졌습니다.</string>
+    <string name="bluetooth_dialog_connect">연결하다</string>
+    <string name="bluetooth_dialog_cancel">취소</string>
+    <string name="bluetooth_dialog_clear">삭제</string>
+    <string name="bluetooth_dialog_pair">짝짓기</string>
+    <!--Universal-->
+    <string name="universal_index_title_tv">공통</string>
+    <string name="universal_index_input_tv">입력</string>
+    <string name="universal_index_language_tv">언어</string>
+    <string name="title_language">언어</string>
+    <string name="dialog_changeLanguage_title">힌트</string>
+    <string name="dialog_changeLanguage_message">언어 설정을 전환하려면 앱을 다시 시작해야 적용됩니다. 전환하시겠습니까?</string>
+    <string name="dialog_changeLanguage_btConfirm">확인하다</string>
+    <string name="dialog_changeLanguage_btCancel">취소</string>
+    <string name="inputMethod_value_sougou">Sogou Pinyin</string>
+    <string name="inputMethod_value_google">구글 Pinyin</string>
+    <string name="inputMethod_value_Aosp">안드로이드 키보드</string>
+    <!--Device-->
+    <string name="device_index_title_tv">장치 정보</string>
+    <string name="device_index_info_tv">장치 정보</string>
+    <string name="device_index_storage_tv">장치 저장소</string>
+    <string name="device_info_deviceNo">장치 번호</string>
+    <string name="device_info_androidVersion">안드로이드 버전</string>
+    <string name="device_info_softwareVersion">소프트웨어 번호</string>
+    <string name="device_info_mac_wifi">MAC 주소(와이파이)</string>
+    <string name="device_info_mac_bluetooth">MAC 주소(블루투스)</string>
+    <string name="device_storage_title">스토리지</string>
+    <string name="device_storage_internal">내부 저장소</string>
+    <string name="device_storage_total">총액</string>
+    <string name="device_storage_available">사용 가능한 용량</string>
+    <string name="device_storage_system">시스템</string>
+    <string name="device_storage_app">프로그램 </string>
+    <string name="device_storage_other">다른 </string>
+</resources>
