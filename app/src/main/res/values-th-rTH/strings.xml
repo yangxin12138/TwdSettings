@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">การตั้งค่า</string>
+    <!--Index-->
+    <string name="main_index_title_text">การตั้งค่า</string>
+    <string name="main_projection_text">การตั้งค่าการฉายภาพ</string>
+    <string name="main_wifi_text">การตั้งค่าเครือข่าย</string>
+    <string name="main_bluetooth_text">บลูทู ธ</string>
+    <string name="main_Universal_text">สากล</string>
+    <string name="main_aboutDevice_text">เกี่ยวกับอุปกรณ์</string>
+    <!--Projection-->
+    <string name="projection_index_title_text">การตั้งค่าการฉายภาพ</string>
+    <string name="projection_index_double_point">การแก้ไขคีย์สโตนสองจุด</string>
+    <string name="projection_index_single_point">การแก้ไขคีย์สโตนสี่จุด</string>
+    <string name="projection_index_size">การปรับขนาด</string>
+    <string name="projection_index_projection_method">วิธีการฉายภาพ</string>
+    <string name="projection_size_level_text">ปุ่มซ้ายและขวาเพื่อซูมเข้าและออก</string>
+    <string name="projection_method_title_text">วิธีการฉายภาพ</string>
+    <string name="projection_method_pos_pos">การฉายภาพด้านหน้าการติดตั้งด้านหน้า</string>
+    <string name="projection_method_pos_neg">การฉายภาพด้านหลังแบบติดตั้งด้านหน้า</string>
+    <string name="projection_method_neg_pos">การฉายภาพด้านหน้าการติดตั้งฝ้าเพดาน</string>
+    <string name="projection_method_neg_neg">การฉายภาพด้านหลังการติดตั้งฝ้าเพดาน</string>
+    <!--Internet-->
+    <string name="net_index_title_text">เครือข่าย</string>
+    <string name="net_index_wifi_tv">เครือข่ายไร้สาย</string>
+    <string name="net_index_available_tv">เครือข่ายที่มีอยู่</string>
+    <string name="net_connect_dialog_ok_button">ยืนยัน</string>
+    <string name="net_connectbypreference_dialog_ok_button">เชื่อมต่อ</string>
+    <string name="net_connectbypreference_dialog_ignore_button">ละเว้นเครือข่ายนี้</string>
+    <string name="net_wifiList_scanToast_tv">กำลังสแกน กรุณารอสักครู่...</string>
+    <string name="net_wifiList_connectbypreference_title_tv">
+        บันทึกเครือข่ายนี้แล้ว คุณต้องการเชื่อมต่อโดยตรงหรือไม่?</string>
+    <string name="net_wifiList_connectbypreference_ignoreTitle_tv">
+        คุณแน่ใจหรือไม่ว่าต้องการเพิกเฉยต่อเครือข่ายนี้?</string>
+    <string name="net_wifiList_connectbypreference_ignoreConfirm_tv">ยืนยัน</string>
+    <string name="net_wifiList_connectbypreference_ignoreCancel_tv">ยกเลิก</string>
+    <string name="net_wifiList_connecttoWifi_title_tv">กำลังเชื่อมต่อ โปรดรอสักครู่...</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_true">การเชื่อมต่อสำเร็จ</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_false">
+        การเชื่อมต่อล้มเหลว โปรดลองอีกครั้ง</string>
+    <string name="net_wifiList_isCheckedText_saved">บันทึกแล้ว</string>
+    <string name="net_wifiList_isCheckedText_connected">เชื่อมต่อแล้ว</string>
+
+    <!--Bluetooth-->
+    <string name="bluetooth_index_title_text">บลูทู ธ</string>
+    <string name="bluetooth_index_bt_tv">สวิตช์บลูทูธ</string>
+    <string name="bluetooth_index_search_title_tv">พบอุปกรณ์</string>
+    <string name="bluetooth_index_search_tv">กำลังค้นหา</string>
+    <string name="bluetooth_index_NotSupport">อุปกรณ์นี้ไม่รองรับบลูทูธ</string>
+    <string name="bluetooth_index_search_again_tv">ค้นหาอีกครั้ง</string>
+    <string name="bluetooth_index_search_finish">การสแกนบลูทูธเสร็จสมบูรณ์</string>
+    <string name="bluetooth_index_deviceStatus_Bonded">จับคู่แล้ว</string>
+    <string name="bluetooth_index_deviceStatus_Bonding">กำลังจับคู่</string>
+    <string name="bluetooth_index_deviceStatus_Connected">เชื่อมต่อแล้ว</string>
+    <string name="bluetooth_index_deviceStatus_BondFiled"> : การจับคู่ล้มเหลว</string>
+    <string name="bluetooth_index_piarTodevice_title">  คำขอจับคู่บลูทูธ</string>
+    <string name="bluetooth_index_Connectdialog_flag_0">
+        อุปกรณ์นี้จับคู่แล้ว คุณต้องการเชื่อมต่อโดยตรงหรือไม่?</string>
+    <string name="bluetooth_index_Connectdialog_flag_1">
+        อุปกรณ์นี้เชื่อมต่ออยู่ คุณต้องการยกเลิกการเชื่อมต่อหรือไม่?</string>
+    <string name="bluetooth_index_connect_succese">การเชื่อมต่อสำเร็จ</string>
+    <string name="bluetooth_index_connect_failed">การเชื่อมต่อล้มเหลว</string>
+    <string name="bluetooth_index_close">ตัดการเชื่อมต่อเรียบร้อยแล้ว</string>
+    <string name="bluetooth_dialog_connect">เชื่อมต่อ</string>
+    <string name="bluetooth_dialog_cancel">ยกเลิก</string>
+    <string name="bluetooth_dialog_clear">แน่นอน</string>
+    <string name="bluetooth_dialog_pair">จับคู่</string>
+    <!--Universal-->
+    <string name="universal_index_title_tv">สากล</string>
+    <string name="universal_index_input_tv">วิธีการป้อนข้อมูล</string>
+    <string name="universal_index_language_tv">ภาษา</string>
+    <string name="title_language">ภาษา</string>
+    <string name="dialog_changeLanguage_title">คำใบ้</string>
+    <string name="dialog_changeLanguage_message">การเปลี่ยนการตั้งค่าภาษาจำเป็นต้องรีสตาร์ทแอปจึงจะมีผล คุณต้องการเปลี่ยนหรือไม่</string>
+    <string name="dialog_changeLanguage_btConfirm">ยืนยัน</string>
+    <string name="dialog_changeLanguage_btCancel">ยกเลิก</string>
+    <string name="inputMethod_value_sougou">Sogou Pinyin</string>
+    <string name="inputMethod_value_google">Google Pinyin</string>
+    <string name="inputMethod_value_Aosp">Android แป้นพิมพ์</string>
+    <!--Device-->
+    <string name="device_index_title_tv">เกี่ยวกับอุปกรณ์</string>
+    <string name="device_index_info_tv">ข้อมูลท้องถิ่น</string>
+    <string name="device_index_storage_tv">อุปกรณ์จัดเก็บข้อมูล</string>
+    <string name="device_info_deviceNo">หมายเลขอุปกรณ์</string>
+    <string name="device_info_androidVersion">Androidเวอร์ชัน</string>
+    <string name="device_info_softwareVersion">หมายเลขซอฟต์แวร์</string>
+    <string name="device_info_mac_wifi">MACที่อยู่ (ไร้สาย)</string>
+    <string name="device_info_mac_bluetooth">MACที่อยู่(บลูทูธ)</string>
+    <string name="device_storage_title">รายละเอียดการจัดเก็บ</string>
+    <string name="device_storage_internal">ที่เก็บข้อมูลในตัว</string>
+    <string name="device_storage_total">ความจุรวม</string>
+    <string name="device_storage_available">ความจุที่มีอยู่</string>
+    <string name="device_storage_system">อัตราการเข้าพักของระบบ</string>
+    <string name="device_storage_app">ข้อมูลแอปพลิเคชัน</string>
+    <string name="device_storage_other">ข้อมูลอื่นๆ</string>
+</resources>
