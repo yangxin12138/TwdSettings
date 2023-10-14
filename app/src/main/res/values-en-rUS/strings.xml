@@ -15,10 +15,10 @@
     <string name="projection_index_projection_method">Projection Method</string>
     <string name="projection_size_level_text">Left and right keys to zoom in and out</string>
     <string name="projection_method_title_text">Projection Method</string>
-    <string name="projection_method_pos_pos">Forward-mounted Reverse-projection</string>
+    <string name="projection_method_pos_pos">Forward-mounted Forward-projection</string>
     <string name="projection_method_pos_neg">Forward-mounted Reverse-projection</string>
-    <string name="projection_method_neg_pos">Reverse-mounted Forward-projection</string>
-    <string name="projection_method_neg_neg">Reverse-mounted Reverse-projection</string>
+    <string name="projection_method_neg_pos">Hanging-mounted Forward-projection</string>
+    <string name="projection_method_neg_neg">Hanging-mounted Reverse-projection</string>
     <!--Internet-->
     <string name="net_index_title_text">Internet</string>
     <string name="net_index_wifi_tv">Wireless</string>

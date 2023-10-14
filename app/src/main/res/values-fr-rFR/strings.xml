@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">Paramètres</string>
+    <!--Index-->
+    <string name="main_index_title_text">Paramètres</string>
+    <string name="main_projection_text">Paramètres de projection</string>
+    <string name="main_wifi_text">Paramètres réseau</string>
+    <string name="main_bluetooth_text">Bluetooth</string>
+    <string name="main_Universal_text">Universel</string>
+    <string name="main_aboutDevice_text">À propos de l\'appareil</string>
+    <!--Projection-->
+    <string name="projection_index_title_text">Paramètres de projection</string>
+    <string name="projection_index_double_point">Correction-DoublePoint</string>
+    <string name="projection_index_single_point">Correction-SinglePoint</string>
+    <string name="projection_index_size">Ajustement de la taille</string>
+    <string name="projection_index_projection_method">Méthode de projection</string>
+    <string name="projection_size_level_text">Touches gauche et droite pour zoomer et dézoomer</string>
+    <string name="projection_method_title_text">Méthode de projection</string>
+    <string name="projection_method_pos_pos">Projection frontale montée vers l\'avant</string>
+    <string name="projection_method_pos_neg">Projection inversée montée vers l\'avant</string>
+    <string name="projection_method_neg_pos">Projection frontale montée au plafond</string>
+    <string name="projection_method_neg_neg">Projection inversée montée au plafond</string>
+    <!--Internet-->
+    <string name="net_index_title_text">Réseau</string>
+    <string name="net_index_wifi_tv">réseau sans fil</string>
+    <string name="net_index_available_tv">Réseaux disponibles</string>
+    <string name="net_connect_dialog_ok_button">confirmer</string>
+    <string name="net_connectbypreference_dialog_ok_button">connecter</string>
+    <string name="net_connectbypreference_dialog_ignore_button">ignorer ce réseau</string>
+    <string name="net_wifiList_scanToast_tv">Numérisation, veuillez patienter...</string>
+    <string name="net_wifiList_connectbypreference_title_tv">
+        Ce réseau a été enregistré. Voulez-vous vous connecter directement?</string>
+    <string name="net_wifiList_connectbypreference_ignoreTitle_tv">
+        Êtes-vous sûr de vouloir ignorer ce réseau?</string>
+    <string name="net_wifiList_connectbypreference_ignoreConfirm_tv">Bien sûr</string>
+    <string name="net_wifiList_connectbypreference_ignoreCancel_tv">Annuler</string>
+    <string name="net_wifiList_connecttoWifi_title_tv">Connexion, veuillez patienter...</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_true">connexion réussie</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_false">
+        La connexion a échoué, veuillez réessayer</string>
+    <string name="net_wifiList_isCheckedText_saved">Enregistré</string>
+    <string name="net_wifiList_isCheckedText_connected">Connecté</string>
+
+    <!--Bluetooth-->
+    <string name="bluetooth_index_title_text">Bluetooth</string>
+    <string name="bluetooth_index_bt_tv">Commutateur Bluetooth</string>
+    <string name="bluetooth_index_search_title_tv">Appareils trouvés</string>
+    <string name="bluetooth_index_search_tv">recherche</string>
+    <string name="bluetooth_index_NotSupport">Cet appareil ne prend pas en charge Bluetooth</string>
+    <string name="bluetooth_index_search_again_tv">Chercher à nouveau</string>
+    <string name="bluetooth_index_search_finish">Analyse Bluetooth terminée</string>
+    <string name="bluetooth_index_deviceStatus_Bonded">Déjà assorti</string>
+    <string name="bluetooth_index_deviceStatus_Bonding">Bounding</string>
+    <string name="bluetooth_index_deviceStatus_Connected">Déjà connecté</string>
+    <string name="bluetooth_index_deviceStatus_BondFiled"> : Échec du couplage</string>
+    <string name="bluetooth_index_piarTodevice_title">  Demande d\'appairage Bluetooth</string>
+    <string name="bluetooth_index_Connectdialog_flag_0">
+        Cet appareil a été associé. Voulez-vous vous connecter directement?</string>
+    <string name="bluetooth_index_Connectdialog_flag_1">
+        Cet appareil est connecté. Voulez-vous vraiment vous déconnecter?</string>
+    <string name="bluetooth_index_connect_succese">connexion réussie</string>
+    <string name="bluetooth_index_connect_failed">connexion succès</string>
+    <string name="bluetooth_index_close">Déconnecté avec succès</string>
+    <string name="bluetooth_dialog_connect">connecter</string>
+    <string name="bluetooth_dialog_cancel">Annuler</string>
+    <string name="bluetooth_dialog_clear">Bien sûr</string>
+    <string name="bluetooth_dialog_pair">paire</string>
+    <!--Universal-->
+    <string name="universal_index_title_tv">Universel</string>
+    <string name="universal_index_input_tv">Saisir</string>
+    <string name="universal_index_language_tv">langue</string>
+    <string name="title_language">langue</string>
+    <string name="dialog_changeLanguage_title">conseils</string>
+    <string name="dialog_changeLanguage_message">Le changement de paramètre de langue nécessite le redémarrage de l\'application pour prendre effet. Voulez-vous changer?</string>
+    <string name="dialog_changeLanguage_btConfirm">confirmer</string>
+    <string name="dialog_changeLanguage_btCancel">Annuler</string>
+    <string name="inputMethod_value_sougou">Sogou Pinyin</string>
+    <string name="inputMethod_value_google">Google Pinyin</string>
+    <string name="inputMethod_value_Aosp">Android clavier</string>
+    <!--Device-->
+    <string name="device_index_title_tv">À propos de l\'appareil</string>
+    <string name="device_index_info_tv">Informations locales</string>
+    <string name="device_index_storage_tv">Stockage de l\'appareil</string>
+    <string name="device_info_deviceNo">Numéro d\'appareil</string>
+    <string name="device_info_androidVersion">Android Version</string>
+    <string name="device_info_softwareVersion">Numéro de logiciel</string>
+    <string name="device_info_mac_wifi">MAC Adresse (sans fil)</string>
+    <string name="device_info_mac_bluetooth">MAC Adresse (Bluetooth)</string>
+    <string name="device_storage_title">Détails de stockage</string>
+    <string name="device_storage_internal">Stockage intégré</string>
+    <string name="device_storage_total">capacité totale</string>
+    <string name="device_storage_available">Capacité disponible</string>
+    <string name="device_storage_system">Occupation du système</string>
+    <string name="device_storage_app">Application Data</string>
+    <string name="device_storage_other">Autre informations</string>
+</resources>

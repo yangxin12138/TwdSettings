@@ -40,6 +40,7 @@ import java.io.FileReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.TreeMap;
 
 public class DeviceStorageActivity extends AppCompatActivity {
@@ -79,6 +80,16 @@ public class DeviceStorageActivity extends AppCompatActivity {
         initView();
     }
 
+    private double FranceReplace(String rom){
+        double Rom_Long;
+        if (Locale.getDefault().getLanguage().equals("fr")){
+            Rom_Long = Double.parseDouble(rom.replace(",","."));
+        }else {
+            Rom_Long = Double.parseDouble(rom);
+        }
+        return Rom_Long;
+    }
+
     private void initView(){
          storage_total = findViewById(R.id.storage_total);
          storage_available = findViewById(R.id.storage_available);
@@ -94,27 +105,27 @@ public class DeviceStorageActivity extends AppCompatActivity {
          //总容量
         String totalRom = getTotalRom();
         String total = totalRom.substring(0, totalRom.indexOf("GB")).trim();
-        double total_Long = Double.parseDouble(total);
+        double total_Long = FranceReplace(total);
 
         //可用容量
         String availableRom = getAvailableStorage();
         String available = availableRom.substring(0,availableRom.indexOf("GB")).trim();
-        double available_Long = Double.parseDouble(available);
+        double available_Long = FranceReplace(available);
 
         //系统占用
         String systemRom = getSystemFileSize();
         String system = systemRom.substring(0,systemRom.indexOf("GB")).trim();
-        double system_Long = Double.parseDouble(system);
+        double system_Long = FranceReplace(system);
 
         //应用数据
         String appRom = getTotalStorageUsedByApps();
         String app = appRom.substring(0,appRom.indexOf("GB")).trim();
-        double app_Long = Double.parseDouble(app);
+        double app_Long = FranceReplace(app);
 
         //其他占用
         double otherRom = total_Long - (available_Long + system_Long + app_Long);
         String other = String.format("%.2f", otherRom);
-        double other_Long = Double.parseDouble(other);
+        double other_Long = FranceReplace(other);
 
          storage_total.setText(getString(R.string.device_storage_total)+" : " + totalRom);
          storage_available.setText(getString(R.string.device_storage_available)+" : " + availableRom);
