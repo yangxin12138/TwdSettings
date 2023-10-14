@@ -84,6 +84,8 @@ public class UniversalActivity extends AppCompatActivity implements  View.OnClic
             tv_languageCurrent.setText("한국어");
         } else if (currentLanguage.contains("th_TH")) {
             tv_languageCurrent.setText("ไทย (ไทย)");
+        } else if (currentLanguage.contains("hi_IN")) {
+            tv_languageCurrent.setText("हिन्दी (भारत)");
         }
 
     }

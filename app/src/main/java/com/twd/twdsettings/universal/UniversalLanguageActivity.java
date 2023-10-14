@@ -173,6 +173,8 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
                     changeSystemLanguage(Locale.KOREA);
                 } else if (indexLanguage.equals("th_TH")) {
                     changeSystemLanguage(new Locale("th","TH"));
+                } else if (indexLanguage.equals("hi_IN")) {
+                    changeSystemLanguage(new Locale("hi","IN"));
                 }
 
                 // 关闭当前应用程序

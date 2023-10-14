@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">समायोजन</string>
+    <!--Index-->
+    <string name="main_index_title_text">समायोजन</string>
+    <string name="main_projection_text">प्रोजेक्शन विन्यास</string>
+    <string name="main_wifi_text">संजाल विन्यास</string>
+    <string name="main_bluetooth_text">ब्लूटूथ</string>
+    <string name="main_Universal_text">सामान्य</string>
+    <string name="main_aboutDevice_text">डिवाइस के बारे में</string>
+    <!--Projection-->
+    <string name="projection_index_title_text">प्रोजेक्शन विन्यास</string>
+    <string name="projection_index_double_point">दो-बिंदु कीस्टोन सुधार</string>
+    <string name="projection_index_single_point">चार-बिंदु कीस्टोन सुधार</string>
+    <string name="projection_index_size">आकार समायोजन</string>
+    <string name="projection_index_projection_method">प्रोजेक्शन विधि</string>
+    <string name="projection_size_level_text">ज़ूम इन और ज़ूम आउट करने के लिए बाएँ और दाएँ कुंजियों का उपयोग करें</string>
+    <string name="projection_method_title_text">प्रोजेक्शन विधि</string>
+    <string name="projection_method_pos_pos">सामने की स्थापना सामने का प्रक्षेपण</string>
+    <string name="projection_method_pos_neg">सामने की स्थापना पीछे का प्रक्षेपण</string>
+    <string name="projection_method_neg_pos">पीछे का प्रक्षेपण सामने का प्रक्षेपण</string>
+    <string name="projection_method_neg_neg">पीछे का प्रक्षेपण पीछे का प्रक्षेपण</string>
+    <!--Internet-->
+    <string name="net_index_title_text">नेटवर्क</string>
+    <string name="net_index_wifi_tv">विफी</string>
+    <string name="net_index_available_tv">उपलब्ध नेटवर्क</string>
+    <string name="net_connect_dialog_ok_button">स्वीकार करना</string>
+    <string name="net_connectbypreference_dialog_ok_button">जोड़ना</string>
+    <string name="net_connectbypreference_dialog_ignore_button">इस नेटवर्क को अनदेखा करें</string>
+    <string name="net_wifiList_scanToast_tv">स्कैनिंग, कृपया प्रतीक्षा करें...</string>
+    <string name="net_wifiList_connectbypreference_title_tv">
+        यह नेटवर्क सहेजा गया है. क्या आप सीधे कनेक्ट करना चाहते हैं?</string>
+    <string name="net_wifiList_connectbypreference_ignoreTitle_tv">
+        क्या आप वाकई इस नेटवर्क को अनदेखा करना चाहते हैं?</string>
+    <string name="net_wifiList_connectbypreference_ignoreConfirm_tv">स्वीकार करना</string>
+    <string name="net_wifiList_connectbypreference_ignoreCancel_tv">रद्द करना</string>
+    <string name="net_wifiList_connecttoWifi_title_tv">कनेक्ट हो रहा है, कृपया प्रतीक्षा करें...</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_true">सफलतापूर्वक कनेक्ट</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_false">
+        कनेक्शन विफल, कृपया पुनः प्रयास करें</string>
+    <string name="net_wifiList_isCheckedText_saved">पहले से याद है</string>
+    <string name="net_wifiList_isCheckedText_connected">पहले से कनेक्ट है</string>
+
+    <!--Bluetooth-->
+    <string name="bluetooth_index_title_text">ब्लूटूथ</string>
+    <string name="bluetooth_index_bt_tv">ब्लूटूथ स्विच</string>
+    <string name="bluetooth_index_search_title_tv">उपकरण मिले</string>
+    <string name="bluetooth_index_search_tv">खोज कर</string>
+    <string name="bluetooth_index_NotSupport">यह डिवाइस ब्लूटूथ को सपोर्ट नहीं करता है</string>
+    <string name="bluetooth_index_search_again_tv">फिर से खोजो</string>
+    <string name="bluetooth_index_search_finish">ब्लूटूथ स्कैन पूरा हुआ</string>
+    <string name="bluetooth_index_deviceStatus_Bonded">मैच पूरा हुआ</string>
+    <string name="bluetooth_index_deviceStatus_Bonding">मेल मिलाना</string>
+    <string name="bluetooth_index_deviceStatus_Connected">पहले से कनेक्ट है</string>
+    <string name="bluetooth_index_deviceStatus_BondFiled"> : मैच असफल रहा</string>
+    <string name="bluetooth_index_piarTodevice_title">  ब्लूटूथ पेयरिंग अनुरोध</string>
+    <string name="bluetooth_index_Connectdialog_flag_0">
+        इस डिवाइस का मिलान कर लिया गया है. क्या आप सीधे कनेक्ट करना चाहते हैं?</string>
+    <string name="bluetooth_index_Connectdialog_flag_1">
+        यह डिवाइस कनेक्ट है. क्या आप निश्चित रूप से डिस्कनेक्ट करना चाहते हैं?</string>
+    <string name="bluetooth_index_connect_succese">कनेक्शन सफल हुआ</string>
+    <string name="bluetooth_index_connect_failed">कनेक्शन विफल</string>
+    <string name="bluetooth_index_close">सफलतापूर्वक डिस्कनेक्ट किया गया</string>
+    <string name="bluetooth_dialog_connect">जोड़ना</string>
+    <string name="bluetooth_dialog_cancel">रद्द करना</string>
+    <string name="bluetooth_dialog_clear">स्वीकार करना</string>
+    <string name="bluetooth_dialog_pair">मिलान</string>
+    <!--Universal-->
+    <string name="universal_index_title_tv">सामान्य</string>
+    <string name="universal_index_input_tv">इनपुट</string>
+    <string name="universal_index_language_tv">भाषा</string>
+    <string name="title_language">भाषा</string>
+    <string name="dialog_changeLanguage_title">संकेत देना</string>
+    <string name="dialog_changeLanguage_message">भाषा सेटिंग्स को बदलने के लिए प्रभावी होने के लिए एप्लिकेशन को पुनरारंभ करना आवश्यक है। क्या आप स्विच करना चाहते हैं?</string>
+    <string name="dialog_changeLanguage_btConfirm">स्वीकार करना</string>
+    <string name="dialog_changeLanguage_btCancel">रद्द करना</string>
+    <string name="inputMethod_value_sougou">Sogou Pinyin</string>
+    <string name="inputMethod_value_google">Google Pinyin</string>
+    <string name="inputMethod_value_Aosp">Android कीबोर्ड</string>
+    <!--Device-->
+    <string name="device_index_title_tv">डिवाइस के बारे में</string>
+    <string name="device_index_info_tv">स्थानीय जानकारी</string>
+    <string name="device_index_storage_tv">डिवाइस स्टोरेज</string>
+    <string name="device_info_deviceNo">डिवाइस नं</string>
+    <string name="device_info_androidVersion">Androidसंस्करण</string>
+    <string name="device_info_softwareVersion">सॉफ्टवेयर नंबर</string>
+    <string name="device_info_mac_wifi">MACपता (वायरलेस)</string>
+    <string name="device_info_mac_bluetooth">MACपता(ब्लूटूथ)</string>
+    <string name="device_storage_title">स्टोरेज विवरण</string>
+    <string name="device_storage_internal">अन्दर निर्मित भंडारण</string>
+    <string name="device_storage_total">कुल क्षमता</string>
+    <string name="device_storage_available">उपलब्ध क्षमता</string>
+    <string name="device_storage_system">सिस्टम अधिभोग</string>
+    <string name="device_storage_app">अनुप्रयोग डेटा</string>
+    <string name="device_storage_other">अन्य आंकड़ा</string>
+</resources>
