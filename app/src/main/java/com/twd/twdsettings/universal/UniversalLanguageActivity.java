@@ -177,6 +177,8 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
                     changeSystemLanguage(new Locale("hi","IN"));
                 } else if (indexLanguage.equals("fr_FR")) {
                     changeSystemLanguage(Locale.FRANCE);
+                } else if (indexLanguage.equals("de_DE")) {
+                    changeSystemLanguage(Locale.GERMANY);
                 }
 
                 // 关闭当前应用程序
