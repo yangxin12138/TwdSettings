@@ -44,6 +44,7 @@ import com.twd.twdsettings.bean.BluetoothItem;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -64,6 +65,7 @@ public class BluetoothActivity extends AppCompatActivity {
     private List<BluetoothDevice> pairedDevicesList = new ArrayList<>();//保存已配对的设备
 
     private Context mContext = this;
+    int currentFocusedPosition = 0;
     String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
 
     @Override
@@ -103,7 +105,8 @@ public class BluetoothActivity extends AppCompatActivity {
                 if (bluetooth_tv_search.getText().equals(getString(R.string.bluetooth_index_search_again_tv))) {
                     bluetoothDevices.clear();
                     bluetooth_tv_search.setText(getString(R.string.bluetooth_index_search_tv));
-                    deviceAdapter.notifyDataSetChanged();
+                    currentFocusedPosition = deviceAdapter.getFocusedPosition();
+                    updateDeviceAdapterData(currentFocusedPosition);
                     startBluetoothScan();
                 }
             }
@@ -174,6 +177,22 @@ public class BluetoothActivity extends AppCompatActivity {
         startBluetoothScan();
         registerBroadcastReveiver();
     }
+    private void updateDeviceAdapterData(int currentFocusedPosition){
+        deviceAdapter.notifyDataSetChanged();
+        if (currentFocusedPosition != RecyclerView.NO_POSITION){
+            recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+                @Override
+                public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                    recyclerView.removeOnLayoutChangeListener(this);
+                    recyclerView.scrollToPosition(currentFocusedPosition);
+                    RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForAdapterPosition(currentFocusedPosition);
+                    if (viewHolder != null) {
+                        viewHolder.itemView.requestFocus();
+                    }
+                }
+            });
+        }
+    }
 
     /*获取已配对的设备*/
     private void getPairedDevices() {
@@ -181,7 +200,8 @@ public class BluetoothActivity extends AppCompatActivity {
         Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
         pairedDevicesList.clear();
         pairedDevicesList.addAll(pairedDevices);
-        deviceAdapter.notifyDataSetChanged();
+        currentFocusedPosition = deviceAdapter.getFocusedPosition();
+        updateDeviceAdapterData(currentFocusedPosition);
     }
 
     private void showToast(String text) {
@@ -200,7 +220,8 @@ public class BluetoothActivity extends AppCompatActivity {
             checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
             bluetoothAdapter.enable();
             bluetoothDevices.clear();
-            deviceAdapter.notifyDataSetChanged();
+            currentFocusedPosition = deviceAdapter.getFocusedPosition();
+            updateDeviceAdapterData(currentFocusedPosition);
             // 延迟一段时间等待UI更新完成
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -229,7 +250,8 @@ public class BluetoothActivity extends AppCompatActivity {
             if (bluetoothAdapter.isDiscovering()) {
                 bluetoothAdapter.cancelDiscovery();
             }
-            deviceAdapter.notifyDataSetChanged();
+            currentFocusedPosition = deviceAdapter.getFocusedPosition();
+            updateDeviceAdapterData(currentFocusedPosition);
         }
     };
 
@@ -257,10 +279,12 @@ public class BluetoothActivity extends AppCompatActivity {
         }
         bluetoothDevices.clear();
         getPairedDevices();
-        deviceAdapter.notifyDataSetChanged();
+        currentFocusedPosition = deviceAdapter.getFocusedPosition();
+        updateDeviceAdapterData(currentFocusedPosition);
 
     }
-
+    // 声明一个Set来存储已经扫描到的MAC地址
+    Set<String> scannedMacs = new HashSet<>();
     private BroadcastReceiver bluetoothReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -268,13 +292,25 @@ public class BluetoothActivity extends AppCompatActivity {
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 //发现新设备
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                if (!isPairedDevice(device)) {
-                    bluetoothDevices.add(device);
-                    Log.i("yangxin", "onReceive: 触发扫描回调");
-                    deviceAdapter.notifyDataSetChanged();
+                checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
+                String name = device.getName();
+                String mac = device.getAddress();
+                if (name != null) {
+                    if (!scannedMacs.contains(mac)) {
+                        Log.i("MYbluetooth", "onReceive: name = " + name + ",mac = " +mac);
+                        scannedMacs.add(mac);
+                        if (!isPairedDevice(device)) {
+                            bluetoothDevices.add(device);
+                            Log.i("yangxin", "onReceive: 触发扫描回调");
+                            currentFocusedPosition = deviceAdapter.getFocusedPosition();
+                            updateDeviceAdapterData(currentFocusedPosition);
+                        }
+                    }
                 }
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 //蓝牙扫描完成
+                currentFocusedPosition = deviceAdapter.getFocusedPosition();
+                updateDeviceAdapterData(currentFocusedPosition);
                 showToast(getString(R.string.bluetooth_index_search_finish));
                 bluetooth_tv_search.setText(getString(R.string.bluetooth_index_search_again_tv));
             }
@@ -316,15 +352,18 @@ public class BluetoothActivity extends AppCompatActivity {
                     int bondState = pairedDevice.getBondState();
                     if (bondState == BluetoothDevice.BOND_BONDED) {
                         item.setDeviceStatus(getString(R.string.bluetooth_index_deviceStatus_Bonded));//已配对
-                        deviceAdapter.notifyDataSetChanged();
+                        currentFocusedPosition = deviceAdapter.getFocusedPosition();
+                        updateDeviceAdapterData(currentFocusedPosition);
                     } else if (bondState == BluetoothDevice.BOND_BONDING) {
                         item.setDeviceStatus(getString(R.string.bluetooth_index_deviceStatus_Bonding));//配对中
-                        deviceAdapter.notifyDataSetChanged();
+                        currentFocusedPosition = deviceAdapter.getFocusedPosition();
+                        updateDeviceAdapterData(currentFocusedPosition);
                     } else if (bondState == BluetoothDevice.BOND_NONE) {
                         item.setDeviceStatus("");
                         showToast(item.getDeviceName() +
                                 getString(R.string.bluetooth_index_deviceStatus_BondFiled));//绑定失败
-                        deviceAdapter.notifyDataSetChanged();
+                        currentFocusedPosition = deviceAdapter.getFocusedPosition();
+                        updateDeviceAdapterData(currentFocusedPosition);
                     }
                 }
             }
@@ -390,6 +429,7 @@ public class BluetoothActivity extends AppCompatActivity {
         private List<BluetoothDevice> pairedDevicesList;
         private Context context;
         private ConnectThread connectThread;
+        private int focusedPosition = RecyclerView.NO_POSITION;
 
         public BluetoothDeviceAdapter(Context context, List<BluetoothDevice> devices, List<BluetoothDevice> pairedDevicesList) {
             this.context = context;
@@ -421,6 +461,10 @@ public class BluetoothActivity extends AppCompatActivity {
         @Override
         public int getItemCount() {
             return devices.size() + pairedDevicesList.size();
+        }
+
+        public int getFocusedPosition() {
+            return focusedPosition;
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
@@ -463,6 +507,7 @@ public class BluetoothActivity extends AppCompatActivity {
                     @Override
                     public void onFocusChange(View v, boolean hasFocus) {
                         if (hasFocus) {
+                            focusedPosition = getAdapterPosition();
                             v.setBackgroundResource(backgroundResIdSel);
                             icon_bluetooth.setImageResource(iconResIdSel);
                             deviceNameTextView.setTextColor(ContextCompat.getColor(context, textViewResIdSel));
@@ -609,7 +654,8 @@ public class BluetoothActivity extends AppCompatActivity {
                 //showToast("点击了忽略");
                 removeToDevice(device);
                 conDialog.dismiss();
-                deviceAdapter.notifyDataSetChanged();
+                currentFocusedPosition = deviceAdapter.getFocusedPosition();
+                updateDeviceAdapterData(currentFocusedPosition);
             }
         });
         ConConnectLL.setOnClickListener(new View.OnClickListener() {
@@ -620,7 +666,8 @@ public class BluetoothActivity extends AppCompatActivity {
                 connectThread.run();
                 item.setConnectThread(connectThread);
                 Log.i("yang", "onClick: 点击了连接connectThread = " + connectThread);
-                deviceAdapter.notifyDataSetChanged();
+                currentFocusedPosition = deviceAdapter.getFocusedPosition();
+                updateDeviceAdapterData(currentFocusedPosition);
             }
         });
 
@@ -646,7 +693,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
                 UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
                 checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
-                tmp = device.createRfcommSocketToServiceRecord(MY_UUID);
+                tmp = device.createInsecureRfcommSocketToServiceRecord(MY_UUID);
             } catch (IOException e) {
                 Log.e("yang", "Socket's create() method failed", e);
             }
@@ -730,18 +777,22 @@ public class BluetoothActivity extends AppCompatActivity {
             String action = intent.getAction();
 
             if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
-                deviceAdapter.notifyDataSetChanged();
+                currentFocusedPosition = deviceAdapter.getFocusedPosition();
+                updateDeviceAdapterData(currentFocusedPosition);
             }
             if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
-                deviceAdapter.notifyDataSetChanged();
+                currentFocusedPosition = deviceAdapter.getFocusedPosition();
+                updateDeviceAdapterData(currentFocusedPosition);
             }
 
             if (BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED.equals(action)) {
-                deviceAdapter.notifyDataSetChanged();
+                currentFocusedPosition = deviceAdapter.getFocusedPosition();
+                updateDeviceAdapterData(currentFocusedPosition);
             }
 
             if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) {
-                deviceAdapter.notifyDataSetChanged();
+                currentFocusedPosition = deviceAdapter.getFocusedPosition();
+                updateDeviceAdapterData(currentFocusedPosition);
             }
         }
     };

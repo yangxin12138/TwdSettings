@@ -97,14 +97,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".universal.UniversalActivity" />
-
-        <receiver
-            android:name=".bluetooth.BluetoothPairingRequestReceiver"
-            android:exported="true">
-            <intent-filter android:priority="1000">
-                <action android:name="android.bluetooth.device.action.PAIRING_REQUEST" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>
