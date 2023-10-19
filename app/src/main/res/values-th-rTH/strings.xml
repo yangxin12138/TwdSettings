@@ -62,7 +62,7 @@
     <string name="bluetooth_index_close">ตัดการเชื่อมต่อเรียบร้อยแล้ว</string>
     <string name="bluetooth_dialog_connect">เชื่อมต่อ</string>
     <string name="bluetooth_dialog_cancel">ยกเลิก</string>
-    <string name="bluetooth_dialog_clear">แน่นอน</string>
+    <string name="bluetooth_dialog_clear">ละเว้นบลูทูธ</string>
     <string name="bluetooth_dialog_pair">จับคู่</string>
     <!--Universal-->
     <string name="universal_index_title_tv">สากล</string>

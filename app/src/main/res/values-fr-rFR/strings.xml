@@ -62,7 +62,7 @@
     <string name="bluetooth_index_close">Déconnecté avec succès</string>
     <string name="bluetooth_dialog_connect">connecter</string>
     <string name="bluetooth_dialog_cancel">Annuler</string>
-    <string name="bluetooth_dialog_clear">Bien sûr</string>
+    <string name="bluetooth_dialog_clear">négligence</string>
     <string name="bluetooth_dialog_pair">paire</string>
     <!--Universal-->
     <string name="universal_index_title_tv">Universel</string>

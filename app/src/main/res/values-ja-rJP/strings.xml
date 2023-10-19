@@ -61,7 +61,7 @@
     <string name="bluetooth_index_close">正常に切断されました</string>
     <string name="bluetooth_dialog_connect">接続する</string>
     <string name="bluetooth_dialog_cancel">キャンセル</string>
-    <string name="bluetooth_dialog_clear">確認する</string>
+    <string name="bluetooth_dialog_clear">忘れる</string>
     <string name="bluetooth_dialog_pair">ペア</string>
     <!--Universal-->
     <string name="universal_index_title_tv">ユニバーサル</string>

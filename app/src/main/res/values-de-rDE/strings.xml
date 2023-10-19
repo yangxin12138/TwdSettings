@@ -62,7 +62,7 @@
     <string name="bluetooth_index_close">Erfolgreich getrennt</string>
     <string name="bluetooth_dialog_connect">verbinden</string>
     <string name="bluetooth_dialog_cancel">Stornieren</string>
-    <string name="bluetooth_dialog_clear">akzeptieren</string>
+    <string name="bluetooth_dialog_clear">Vernachlässigung</string>
     <string name="bluetooth_dialog_pair">Verbindung</string>
     <!--Universal-->
     <string name="universal_index_title_tv">Allgemein</string>

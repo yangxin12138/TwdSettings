@@ -635,14 +635,16 @@ public class BluetoothActivity extends AppCompatActivity {
         final LinearLayout ConCancelLL = dialogView.findViewById(R.id.bt_cancel_btn);
         final LinearLayout ConIgnoreLL = dialogView.findViewById(R.id.ignore_bt_btn);
 
-        if (flag == 0){
+        if (flag == 0){ //已配对
             ConTitle.setText(getString(R.string.bluetooth_index_Connectdialog_flag_0));
+            ConIgnoreLL.setVisibility(View.VISIBLE);
             ConCancelLL.setVisibility(View.GONE);
             ConConnectLL.setVisibility(View.VISIBLE);
-        } else if (flag == 1) {
+        } else if (flag == 1) {//已连接
             ConTitle.setText(getString(R.string.bluetooth_index_Connectdialog_flag_1));
             ConCancelLL.setVisibility(View.VISIBLE);
             ConConnectLL.setVisibility(View.GONE);
+            ConIgnoreLL.setVisibility(View.VISIBLE);
         }
 
         conDialog.show();

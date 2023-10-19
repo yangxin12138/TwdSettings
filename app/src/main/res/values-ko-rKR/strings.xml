@@ -61,7 +61,7 @@
     <string name="bluetooth_index_close">연결이 끊어졌습니다.</string>
     <string name="bluetooth_dialog_connect">연결하다</string>
     <string name="bluetooth_dialog_cancel">취소</string>
-    <string name="bluetooth_dialog_clear">삭제</string>
+    <string name="bluetooth_dialog_clear">소홀히 하다</string>
     <string name="bluetooth_dialog_pair">짝짓기</string>
     <!--Universal-->
     <string name="universal_index_title_tv">공통</string>
