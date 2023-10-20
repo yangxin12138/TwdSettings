@@ -16,6 +16,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.ParcelUuid;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,7 @@ import com.twd.twdsettings.bean.BluetoothItem;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -301,6 +303,7 @@ public class BluetoothActivity extends AppCompatActivity {
                         scannedMacs.add(mac);
                         if (!isPairedDevice(device)) {
                             bluetoothDevices.add(device);
+                            getUuid();
                             Log.i("yangxin", "onReceive: 触发扫描回调");
                             currentFocusedPosition = deviceAdapter.getFocusedPosition();
                             updateDeviceAdapterData(currentFocusedPosition);
@@ -316,6 +319,24 @@ public class BluetoothActivity extends AppCompatActivity {
             }
         }
     };
+    ArrayList<String> uuidList = new ArrayList<>();
+    private void getUuid(){
+        checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
+        for (BluetoothDevice device : pairedDevicesList){
+            ParcelUuid[] uuids = device.getUuids();
+            if (uuids != null){
+                for (ParcelUuid uuid : uuids){
+                    String deviceName = device.getName();
+                    String deviceUUID = uuid.getUuid().toString();
+                    String deviceInfo = "Device Name :" + deviceName + ",UUID = " + deviceUUID;
+                    uuidList.add(deviceInfo);
+                }
+            }
+        }
+        for (String deviceInfo : uuidList){
+            Log.i("yang", "addUuid: " + deviceInfo);
+        }
+    }
 
     private boolean isPairedDevice(BluetoothDevice device) {
         for (BluetoothDevice pairedDevice : pairedDevicesList) {
@@ -454,7 +475,7 @@ public class BluetoothActivity extends AppCompatActivity {
             }
             //在主线程中创建Handler对象
             Handler mHandler = new Handler(Looper.getMainLooper());
-            connectThread = new ConnectThread(device, mHandler);
+            connectThread = new ConnectThread(device.getAddress(), mHandler);
             holder.bindData(device);
         }
 
@@ -686,16 +707,16 @@ public class BluetoothActivity extends AppCompatActivity {
         private final BluetoothDevice mmDevice;
         private final Handler mHandler;
 
-        public ConnectThread(BluetoothDevice device, Handler handler) {
+        public ConnectThread(String mac, Handler handler) {
             BluetoothSocket tmp = null;
-            mmDevice = device;
+            mmDevice = bluetoothAdapter.getRemoteDevice(mac);
             mHandler = handler;
 
             try {
 
-                UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+                UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
                 checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
-                tmp = device.createInsecureRfcommSocketToServiceRecord(MY_UUID);
+                tmp = mmDevice.createInsecureRfcommSocketToServiceRecord(MY_UUID);
             } catch (IOException e) {
                 Log.e("yang", "Socket's create() method failed", e);
             }
