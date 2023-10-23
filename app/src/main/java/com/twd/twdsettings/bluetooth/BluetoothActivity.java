@@ -717,7 +717,9 @@ public class BluetoothActivity extends AppCompatActivity {
                 UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
                 checkPermission(Manifest.permission.BLUETOOTH_CONNECT);
                 tmp = mmDevice.createInsecureRfcommSocketToServiceRecord(MY_UUID);
-            } catch (IOException e) {
+                /*Method m =mmDevice.getClass().getMethod("createRfcommSocket",new Class[]{int.class});
+                tmp = (BluetoothSocket) m.invoke(mmDevice,1);*/
+            } catch (Exception e) {
                 Log.e("yang", "Socket's create() method failed", e);
             }
             mmSocket = tmp;

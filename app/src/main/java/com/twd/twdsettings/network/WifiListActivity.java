@@ -51,6 +51,7 @@ import com.twd.twdsettings.bean.WifiItem;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class WifiListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -65,6 +66,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
 
     private final Context context = this;
     private SharedPreferences wifi_infoPreferences;
+    private int focusedItem = -1; // 记录焦点位置
 
     WifiAdapter adapter;
     String theme_code = SystemPropertiesUtils.getPropertyColor("persist.sys.background_blue","0");
@@ -83,7 +85,14 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_netlist);
+        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         initListView();
+    }
+
+    private String getCurrentConnectedWifiSSID(){
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        Log.i("yang","当前的ssid是："+wifiInfo.getSSID());
+        return wifiInfo.getSSID();
     }
 
     @Override
@@ -106,7 +115,6 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
 
     private void initListView() {
         wifiListView = findViewById(R.id.wifiListView);
-        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         //检查并请求wifi权限
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
@@ -134,6 +142,13 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                 for (ScanResult wifi : wifiList){
                     wifiItems.add(new WifiItem(wifi.SSID,wifi.level));
                 }
+
+                SharedPreferences wifiStatusPreferences = getSharedPreferences("wifi_status", MODE_PRIVATE);
+                for (WifiItem wifiItem : wifiItems) {
+                    String ssid = wifiItem.getName();
+                    String status = wifiStatusPreferences.getString(ssid, "");
+                    wifiItem.setStatus(status);
+                }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -145,6 +160,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                 adapter.setFocusedItem(position);
+                                focusedItem = position;
                             }
 
                             @Override
@@ -152,6 +168,12 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
 
                             }
                         });
+
+                        // 恢复焦点位置
+                        if (focusedItem != -1 && focusedItem < wifiItems.size()) {
+                            wifiListView.setSelection(focusedItem);
+                            wifiListView.requestFocus();
+                        }
                     }
                 });
             }
@@ -165,14 +187,15 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
         ScanResult selectedWifi = wifiList.get(position);
         String selectedSSID = selectedWifi.SSID;
         if (!wifi_infoPreferences.getString(selectedSSID, "").equals("")){
-            showConnectByPreferencesDialog(selectedWifi);
+            showConnectByPreferencesDialog(selectedWifi,wifiItems.get(position));
         }else {
-            showPasswordDialog(selectedWifi);
+            showPasswordDialog(selectedWifi,wifiItems.get(position));
         }
-
+        wifiListView.setSelection(position);
+        wifiListView.requestFocus();
     }
 
-    private void showConnectByPreferencesDialog(final ScanResult wifi){
+    private void showConnectByPreferencesDialog(final ScanResult wifi,final  WifiItem item){
         connectedDialog = new Dialog(this,R.style.DialogStyle);
 
         //加载自定义布局文件
@@ -200,8 +223,8 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
         connectLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                connectToWifi(wifi,password);
-                scanWifi();
+                connectToWifi(wifi.SSID,password,item);
+                adapter.notifyDataSetChanged();
                 connectedDialog.dismiss();
             }
         });
@@ -219,9 +242,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                         //TODO:
 
                         // 获取当前连接的WiFi网络的SSID
-                        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-                        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-                        String connectedSsid = wifiInfo.getSSID();
+                        String connectedSsid =getCurrentConnectedWifiSSID();
                         Log.i("yang", "onClick: connectedSsid = " + connectedSsid);
                         Log.i("yang", "onClick: wifi.SSID = " + wifi.SSID);
                         String currentNetSSID = "\"" + wifi.SSID + "\"";
@@ -232,7 +253,10 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                         SharedPreferences.Editor ignoreEditor = getSharedPreferences("wifi_password",MODE_PRIVATE).edit();
                         ignoreEditor.putString(wifi.SSID,"");
                         ignoreEditor.apply();
-
+                        item.setStatus(" ");
+                        SharedPreferences.Editor editor = getSharedPreferences("wifi_status", MODE_PRIVATE).edit();
+                        editor.putString(wifi.SSID, " ");
+                        editor.apply();
                         adapter.notifyDataSetChanged();
                         dialog.dismiss();
                         connectedDialog.dismiss();
@@ -254,7 +278,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
-    private void showPasswordDialog(final ScanResult wifi){
+    private void showPasswordDialog(final ScanResult wifi, final  WifiItem wifiItem){
         passwordDialog = new Dialog(this,R.style.DialogStyle);
         Log.i("yang", "showPasswordDialog: ------wifi,ssid = " + wifi.SSID);
 
@@ -300,7 +324,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View v) {
                 String password = passwordEditText.getText().toString();
-                connectToWifi(wifi,password);
+                connectToWifi(wifi.SSID,password,wifiItem);
                 passwordDialog.dismiss();
             }
         });
@@ -308,26 +332,46 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
-    private void connectToWifi(ScanResult wifi,String password){
+    private void connectToWifi(String wifi_ssid,String password,WifiItem item){
 
         //显示加载动画
         ProgressDialog progressDialog = ProgressDialog.show(context,"",getString(R.string.net_wifiList_connecttoWifi_title_tv));
         new Thread(new Runnable() {
+            WifiItem connectedItem = null;
+            String connectedSsid = null;
             @Override
             public void run() {
                 Log.i("yang","开始连接");
                 //TODO:使用wifi.SSID和password参数进行连接
                 WifiConfiguration wifiConfig = new WifiConfiguration();
-                wifiConfig.SSID = "\"" + wifi.SSID + "\"";
+                wifiConfig.SSID = "\"" + wifi_ssid + "\"";
                 wifiConfig.preSharedKey = "\"" + password + "\"";
                 //保存密码
                 SharedPreferences.Editor editor = getSharedPreferences("wifi_password",MODE_PRIVATE).edit();
-                editor.putString(wifi.SSID,password);
+                editor.putString(wifi_ssid,password);
                 editor.apply();
                 int networkId = wifiManager.addNetwork(wifiConfig);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        for (WifiItem item : wifiItems) {
+                            if (item.getStatus().equals(getString(R.string.net_wifiList_isCheckedText_connected))) {
+                                connectedItem = item;
+                                Log.i("yangxin", "run: connectedItem.ssid = " +connectedItem.getName());
+                                break;
+                            }
+                        }
+                        if (connectedItem!=null){
+                            connectedSsid = connectedItem.getName();
+                            Log.i("yang", "run: connectedSsid = " + connectedSsid);
+                        }
+                        if (!Objects.equals(connectedSsid, null)){
+                            SharedPreferences.Editor wifiStatusEditor = getSharedPreferences("wifi_status", MODE_PRIVATE).edit();
+                            wifiStatusEditor.putString(connectedSsid, getString(R.string.net_wifiList_isCheckedText_saved));
+                            wifiStatusEditor.apply();
+                            scanWifi();
+                            Log.i("yang", "run: unknown = yes");
+                        }
                         wifiManager.disconnect();
                         wifiManager.enableNetwork(networkId,true);
 
@@ -339,15 +383,29 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
                                 boolean isConnected = wifiInfo.getNetworkId() == networkId && wifiInfo.getSupplicantState() == SupplicantState.COMPLETED;
                                 if (isConnected){
 //                                    Toast.makeText(context, "连接成功！", Toast.LENGTH_SHORT).show();
-                                    scanWifi();
+                                    item.setStatus(getString(R.string.net_wifiList_isCheckedText_connected));
+                                    SharedPreferences.Editor editor = getSharedPreferences("wifi_status", MODE_PRIVATE).edit();
+                                    editor.putString(wifi_ssid, getString(R.string.net_wifiList_isCheckedText_connected));
+                                    editor.apply();
                                     Log.i("yang", "run: -------成功");
-                                    showToast(getString(R.string.net_wifiList_connecttoWifi_isConnected_true));
+//                                    showToast(getString(R.string.net_wifiList_connecttoWifi_isConnected_true));
                                 }else {
 //                                    Toast.makeText(context, "密码错误请重试！", Toast.LENGTH_SHORT).show();
-                                    scanWifi();
                                     Log.i("yang", "run: ---------失败");
+                                    item.setStatus(getString(R.string.net_wifiList_isCheckedText_saved));
+                                    SharedPreferences.Editor editor = getSharedPreferences("wifi_status", MODE_PRIVATE).edit();
+                                    editor.putString(wifi_ssid, getString(R.string.net_wifiList_isCheckedText_saved));
+                                    editor.apply();
+                                    if(!Objects.equals(connectedSsid, null)){
+                                        Log.i("yang", "run: unknown 内部 = yes");
+                                        wifi_infoPreferences = getSharedPreferences("wifi_password",MODE_PRIVATE);
+                                        String exPassword = wifi_infoPreferences.getString(connectedSsid,"");
+                                        Log.i("yang", "run: 重新连接 ssid = " + connectedSsid + ",expassword = " + exPassword);
+                                        connectToWifi(connectedSsid,exPassword,item);
+                                    }
                                     showToast(getString(R.string.net_wifiList_connecttoWifi_isConnected_false));
                                 }
+                                scanWifi();
                                 progressDialog.dismiss();
                             }
                         },5000);
@@ -390,10 +448,6 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             wifiSignalImageView = itemView.findViewById(R.id.wifiSignalImageView);
             isCheckedText = itemView.findViewById(R.id.text_isChecked);
 
-            // 获取当前连接的WiFi网络的SSID
-            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-            String connectedSsid = wifiInfo.getSSID();
 
             int btnBgResId_sel = 0; int textColor_sel = 0;
             int btnBgResId = 0; int textColor = 0;
@@ -450,19 +504,7 @@ public class WifiListActivity extends AppCompatActivity implements AdapterView.O
             }
 
             wifi_infoPreferences = getSharedPreferences("wifi_password",MODE_PRIVATE);
-            // 获取展示的网络的SSID
-            String displayedSsid = wifiNameTextView.getText().toString();
-            Log.i("yang1", "getView: 当前展示的网络SSID = " + displayedSsid + " , 当前连接的网络的SSID = " + connectedSsid);
-            if (!wifi_infoPreferences.getString(displayedSsid, "").equals("")){
-                isCheckedText.setText(getString(R.string.net_wifiList_isCheckedText_saved));
-            } else {
-                isCheckedText.setText("");
-            }
-            // 判断当前连接的网络和展示的网络是否相同
-            String displayedSsidFormat = "\"" + displayedSsid + "\"";
-            if (displayedSsidFormat.equals(connectedSsid)){
-                isCheckedText.setText(getString(R.string.net_wifiList_isCheckedText_connected));
-            }
+            isCheckedText.setText(wifiItem.getStatus());
 
             //设置聚焦效果
             if (position == focusedItem){
