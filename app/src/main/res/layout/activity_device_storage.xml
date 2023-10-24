@@ -23,7 +23,7 @@
             android:text="@string/device_storage_title"
             android:textColor="?textColor"
             android:textSize="@dimen/devices_title_tv_textSize"
-            android:layout_width="@dimen/devices_title_tv_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/devices_title_tv_marginStart"
             android:layout_gravity="center_vertical"/>

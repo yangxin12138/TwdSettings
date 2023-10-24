@@ -84,8 +84,10 @@ public class DeviceStorageActivity extends AppCompatActivity {
         double Rom_Long;
         if (Locale.getDefault().getLanguage().equals("fr") ||
                 Locale.getDefault().getLanguage().equals("de")){
+            Log.i(TAG, "InternationalReplace: 走逗号格式化");
             Rom_Long = Double.parseDouble(rom.replace(",","."));
         }else {
+            Log.i(TAG, "InternationalReplace: Rom_Long = " + Double.parseDouble(rom));
             Rom_Long = Double.parseDouble(rom);
         }
         return Rom_Long;
@@ -106,26 +108,31 @@ public class DeviceStorageActivity extends AppCompatActivity {
          //总容量
         String totalRom = getTotalRom();
         String total = totalRom.substring(0, totalRom.indexOf("GB")).trim();
+        Log.i(TAG, "initView: total = " + total);
         double total_Long = InternationalReplace(total);
 
         //可用容量
-        String availableRom = getAvailableStorage();
+        String availableRom = getAvailableStorage().replace(",",".");
         String available = availableRom.substring(0,availableRom.indexOf("GB")).trim();
+        Log.i(TAG, "initView: availableFormat = " + available);
         double available_Long = InternationalReplace(available);
 
         //系统占用
-        String systemRom = getSystemFileSize();
+        String systemRom = getSystemFileSize().replace(",",".");
         String system = systemRom.substring(0,systemRom.indexOf("GB")).trim();
+        Log.i(TAG, "initView: system = " + system);
         double system_Long = InternationalReplace(system);
 
         //应用数据
-        String appRom = getTotalStorageUsedByApps();
-        String app = appRom.substring(0,appRom.indexOf("GB")).trim();
+        String appRom = getTotalStorageUsedByApps().replace(",",".");
+        String app = appRom.substring(0,appRom.indexOf("GB"));
+        Log.i(TAG, "initView: app = " + app);
         double app_Long = InternationalReplace(app);
 
         //其他占用
         double otherRom = total_Long - (available_Long + system_Long + app_Long);
-        String other = String.format("%.2f", otherRom);
+        String other = String.format("%.2f", otherRom).replace(",",".");
+        Log.i(TAG, "initView: other = " + other);
         double other_Long = InternationalReplace(other);
 
          storage_total.setText(getString(R.string.device_storage_total)+" : " + totalRom);
