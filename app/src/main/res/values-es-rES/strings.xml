@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">configuración</string>
+    <!--Index-->
+    <string name="main_index_title_text">configuración</string>
+    <string name="main_projection_text">Configuración de proyección</string>
+    <string name="main_wifi_text">Configuración de la red</string>
+    <string name="main_bluetooth_text">Bluetooth</string>
+    <string name="main_Universal_text">Universal</string>
+    <string name="main_aboutDevice_text">Información del dispositivo</string>
+    <!--Projection-->
+    <string name="projection_index_title_text">Configuración de proyección</string>
+    <string name="projection_index_double_point">Corrección trapezoidal de dos puntos</string>
+    <string name="projection_index_single_point">Corrección trapezoidal de cuatro puntos</string>
+    <string name="projection_index_size">Ajuste de tamaño</string>
+    <string name="projection_index_projection_method">Método de proyección</string>
+    <string name="projection_size_level_text">Teclas izquierda y derecha para acercar y alejar</string>
+    <string name="projection_method_title_text">Método de proyección</string>
+    <string name="projection_method_pos_pos">Instalación frontal proyección frontal</string>
+    <string name="projection_method_pos_neg">Instalación frontal proyección trasera</string>
+    <string name="projection_method_neg_pos">Instalación colgante, proyección frontal</string>
+    <string name="projection_method_neg_neg">Instalación colgante, proyección trasera</string>
+    <!--Internet-->
+    <string name="net_index_title_text">Configuración de la red</string>
+    <string name="net_index_wifi_tv">red inalámbrica</string>
+    <string name="net_index_available_tv">Redes disponibles</string>
+    <string name="net_connect_dialog_ok_button">OK</string>
+    <string name="net_connectbypreference_dialog_ok_button">OK</string>
+    <string name="net_connectbypreference_dialog_ignore_button">ignora esta red</string>
+    <string name="net_wifiList_scanToast_tv">Escaneando, por favor espere...</string>
+    <string name="net_wifiList_connectbypreference_title_tv">
+        Esta red ha sido guardada. ¿Quieres conectarte directamente?</string>
+    <string name="net_wifiList_connectbypreference_ignoreTitle_tv">
+        ¿Estás seguro de que quieres ignorar esta red?</string>
+    <string name="net_wifiList_connectbypreference_ignoreConfirm_tv">OK</string>
+    <string name="net_wifiList_connectbypreference_ignoreCancel_tv">Cancelar</string>
+    <string name="net_wifiList_connecttoWifi_title_tv">Conectando, espere por favor...</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_true">conexión exitosa</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_false">
+        Error de conexión, inténtelo de nuevo</string>
+    <string name="net_wifiList_isCheckedText_saved">Salvado</string>
+    <string name="net_wifiList_isCheckedText_connected">conectado</string>
+
+    <!--Bluetooth-->
+    <string name="bluetooth_index_title_text">Bluetooth</string>
+    <string name="bluetooth_index_bt_tv">interruptor bluetooth</string>
+    <string name="bluetooth_index_search_title_tv">Dispositivos encontrados</string>
+    <string name="bluetooth_index_search_tv">buscando</string>
+    <string name="bluetooth_index_NotSupport">Este dispositivo no es compatible con Bluetooth</string>
+    <string name="bluetooth_index_search_again_tv">Busca de nuevo</string>
+    <string name="bluetooth_index_search_finish">Escaneo de Bluetooth completado</string>
+    <string name="bluetooth_index_deviceStatus_Bonded">emparejado</string>
+    <string name="bluetooth_index_deviceStatus_Bonding">Emparejamiento</string>
+    <string name="bluetooth_index_deviceStatus_Connected">conectado</string>
+    <string name="bluetooth_index_deviceStatus_BondFiled"> : El emparejamiento falló</string>
+    <string name="bluetooth_index_piarTodevice_title">  Solicitud de emparejamiento de Bluetooth</string>
+    <string name="bluetooth_index_Connectdialog_flag_0">
+        El dispositivo ya está instalado. ¿Quieres conectarte directamente?</string>
+    <string name="bluetooth_index_Connectdialog_flag_1">
+        Este dispositivo está conectado. ¿Estás seguro de que quieres desconectarte?</string>
+    <string name="bluetooth_index_connect_succese">conexión exitosa</string>
+    <string name="bluetooth_index_connect_failed">La conexión falló</string>
+    <string name="bluetooth_index_close">Desconectado exitosamente</string>
+    <string name="bluetooth_dialog_connect">conectar</string>
+    <string name="bluetooth_dialog_cancel">Cancelar</string>
+    <string name="bluetooth_dialog_clear">ignorar bluetooth</string>
+    <string name="bluetooth_dialog_pair">conectar</string>
+    <!--Universal-->
+    <string name="universal_index_title_tv">Universal</string>
+    <string name="universal_index_input_tv">Método de entrada</string>
+    <string name="universal_index_language_tv">idioma</string>
+    <string name="title_language">idioma</string>
+    <string name="dialog_changeLanguage_title">Consejos</string>
+    <string name="dialog_changeLanguage_message">Cambiar la configuración de idioma requiere reiniciar la aplicación para que surta efecto. ¿Quieres cambiar?</string>
+    <string name="dialog_changeLanguage_btConfirm">OK</string>
+    <string name="dialog_changeLanguage_btCancel">Cancelar</string>
+    <string name="inputMethod_value_sougou">Sogou Pinyin</string>
+    <string name="inputMethod_value_google">Google Pinyin</string>
+    <string name="inputMethod_value_Aosp">Android teclado</string>
+    <!--Device-->
+    <string name="device_index_title_tv">Información del dispositivo</string>
+    <string name="device_index_info_tv">información local</string>
+    <string name="device_index_storage_tv">Almacenamiento del dispositivo</string>
+    <string name="device_info_deviceNo">Número de dispositivo</string>
+    <string name="device_info_androidVersion">Android Versión</string>
+    <string name="device_info_softwareVersion">Número de software</string>
+    <string name="device_info_mac_wifi">MAC Dirección (inalámbrica)</string>
+    <string name="device_info_mac_bluetooth">MAC Dirección (Bluetooth)</string>
+    <string name="device_storage_title">Detalles de almacenamiento</string>
+    <string name="device_storage_internal">almacenamiento incorporado</string>
+    <string name="device_storage_total">capacidad total</string>
+    <string name="device_storage_available">capacidad disponible</string>
+    <string name="device_storage_system">Ocupación del sistema</string>
+    <string name="device_storage_app">Datos de la aplicación</string>
+    <string name="device_storage_other">Otros datos</string>
+</resources>
