@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">Настройки</string>
+    <!--Index-->
+    <string name="main_index_title_text">Настройки</string>
+    <string name="main_projection_text">Настройки проекции</string>
+    <string name="main_wifi_text">Настройки сети</string>
+    <string name="main_bluetooth_text">настройки Bluetooth</string>
+    <string name="main_Universal_text">Универсальный</string>
+    <string name="main_aboutDevice_text">Об устройстве</string>
+    <!--Projection-->
+    <string name="projection_index_title_text">Настройки проекции</string>
+    <string name="projection_index_double_point">двойные точки коррекция трапецеидального</string>
+    <string name="projection_index_single_point">одна точка коррекция трапецеидального</string>
+    <string name="projection_index_size">Регулировка размера</string>
+    <string name="projection_index_projection_method">Метод проекции</string>
+    <string name="projection_size_level_text">Клавиши влево и вправо для увеличения и уменьшения масштаба</string>
+    <string name="projection_method_title_text">Метод проекции</string>
+    <string name="projection_method_pos_pos">Фронтальная установка, передняя проекция</string>
+    <string name="projection_method_pos_neg">Фронтальная установка, задняя проекция</string>
+    <string name="projection_method_neg_pos">Подвесной монтаж, фронтальная проекция</string>
+    <string name="projection_method_neg_neg">Потолочный монтаж, обратная проекция</string>
+    <!--Internet-->
+    <string name="net_index_title_text">Настройки сети</string>
+    <string name="net_index_wifi_tv">беспроводная сеть</string>
+    <string name="net_index_available_tv">Доступные сети</string>
+    <string name="net_connect_dialog_ok_button">OK</string>
+    <string name="net_connectbypreference_dialog_ok_button">соединять</string>
+    <string name="net_connectbypreference_dialog_ignore_button">игнорировать эту сеть</string>
+    <string name="net_wifiList_scanToast_tv">Сканирование, пожалуйста, подождите...</string>
+    <string name="net_wifiList_connectbypreference_title_tv">
+        Эта сеть сохранена. Хотите подключиться напрямую?</string>
+    <string name="net_wifiList_connectbypreference_ignoreTitle_tv">
+        Вы уверены, что хотите игнорировать эту сеть?</string>
+    <string name="net_wifiList_connectbypreference_ignoreConfirm_tv">OK</string>
+    <string name="net_wifiList_connectbypreference_ignoreCancel_tv">Отмена</string>
+    <string name="net_wifiList_connecttoWifi_title_tv">Подключение, пожалуйста, подождите...</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_true">соединение выполнено успешно</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_false">
+        Не удалось подключиться, попробуйте еще раз</string>
+    <string name="net_wifiList_isCheckedText_saved">Сохранено</string>
+    <string name="net_wifiList_isCheckedText_connected">Уже подключено</string>
+
+    <!--Bluetooth-->
+    <string name="bluetooth_index_title_text">настройки Bluetooth</string>
+    <string name="bluetooth_index_bt_tv">Bluetooth-переключатель</string>
+    <string name="bluetooth_index_search_title_tv">Устройства найдены</string>
+    <string name="bluetooth_index_search_tv">идет поиск</string>
+    <string name="bluetooth_index_NotSupport">Это устройство не поддерживает Bluetooth</string>
+    <string name="bluetooth_index_search_again_tv">Искать снова</string>
+    <string name="bluetooth_index_search_finish">Сканирование Bluetooth завершено</string>
+    <string name="bluetooth_index_deviceStatus_Bonded">Парный</string>
+    <string name="bluetooth_index_deviceStatus_Bonding">Уже связано</string>
+    <string name="bluetooth_index_deviceStatus_Connected">связанный</string>
+    <string name="bluetooth_index_deviceStatus_BondFiled"> : Привязка не удалась</string>
+    <string name="bluetooth_index_piarTodevice_title">  Запрос на привязку Bluetooth</string>
+    <string name="bluetooth_index_Connectdialog_flag_0">
+        Это устройство сопряжено. Хотите подключиться напрямую?</string>
+    <string name="bluetooth_index_Connectdialog_flag_1">
+        Это устройство подключено. Вы уверены, что хотите отключиться?</string>
+    <string name="bluetooth_index_connect_succese">соединение выполнено успешно</string>
+    <string name="bluetooth_index_connect_failed">Соединение не удалось</string>
+    <string name="bluetooth_index_close">Отключено успешно</string>
+    <string name="bluetooth_dialog_connect">соединять</string>
+    <string name="bluetooth_dialog_cancel">Отмена</string>
+    <string name="bluetooth_dialog_clear">Игнорировать Bluetooth</string>
+    <string name="bluetooth_dialog_pair">соединять</string>
+    <!--Universal-->
+    <string name="universal_index_title_tv">Универсальный</string>
+    <string name="universal_index_input_tv">Вход</string>
+    <string name="universal_index_language_tv">язык</string>
+    <string name="title_language">язык</string>
+    <string name="dialog_changeLanguage_title">намекать</string>
+    <string name="dialog_changeLanguage_message">Для изменения языковых настроек необходимо перезапустить приложение. Хотите переключиться?</string>
+    <string name="dialog_changeLanguage_btConfirm">OK</string>
+    <string name="dialog_changeLanguage_btCancel">Отмена</string>
+    <string name="inputMethod_value_sougou">Sogou Pinyin</string>
+    <string name="inputMethod_value_google">Google Pinyin</string>
+    <string name="inputMethod_value_Aosp">Android клавиатура</string>
+    <!--Device-->
+    <string name="device_index_title_tv">Об устройстве</string>
+    <string name="device_index_info_tv">местная информация</string>
+    <string name="device_index_storage_tv">Хранилище устройства</string>
+    <string name="device_info_deviceNo">Номер устройства</string>
+    <string name="device_info_androidVersion">Android Версия</string>
+    <string name="device_info_softwareVersion">Номер программного обеспечения</string>
+    <string name="device_info_mac_wifi">MAC Адрес (беспроводной)</string>
+    <string name="device_info_mac_bluetooth">MAC Адрес (Bluetooth)</string>
+    <string name="device_storage_title">Подробности хранения</string>
+    <string name="device_storage_internal">Встроенное хранилище</string>
+    <string name="device_storage_total">общая мощность</string>
+    <string name="device_storage_available">доступная мощность</string>
+    <string name="device_storage_system">система</string>
+    <string name="device_storage_app">Данные Приложения</string>
+    <string name="device_storage_other">Другие данные</string>
+</resources>
