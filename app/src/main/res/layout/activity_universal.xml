@@ -54,7 +54,8 @@
                 android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/universal_tv_marginStart"/>
+                android:layout_marginStart="@dimen/universal_tv_marginStart"
+                android:textDirection="ltr"/>
             <TextView
                 android:duplicateParentState="true"
                 android:id="@+id/universal_tv_inputcurrent"
@@ -94,7 +95,8 @@
                 android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/universal_tv_marginStart"/>
+                android:layout_marginStart="@dimen/universal_tv_marginStart"
+                android:textDirection="ltr"/>
             <TextView
                 android:duplicateParentState="true"
                 android:id="@+id/universal_tv_languagecurrent"

@@ -22,7 +22,8 @@
         android:textColor="?textColor"
         android:layout_marginStart="@dimen/projection_title_marginStart"
         android:textSize="@dimen/projection_title_textSize"
-        android:textStyle="normal" />
+        android:textStyle="normal"
+        android:textDirection="ltr"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

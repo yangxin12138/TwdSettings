@@ -28,7 +28,8 @@
         android:layout_marginStart="@dimen/main_title_marginStart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/main_title_marginTop"/>
+        android:layout_marginTop="@dimen/main_title_marginTop"
+        android:textDirection="ltr"/>
 
     <!--菜单list-->
     <LinearLayout
@@ -73,7 +74,8 @@
                 android:text="@string/projection_index_double_point"
                 android:textColor="?textColor"
                 android:textSize="@dimen/main_tv_textSize"
-                android:textStyle="normal"/>
+                android:textStyle="normal"
+                android:textDirection="ltr"/>
             
             <ImageView
                 android:duplicateParentState="true"
@@ -114,7 +116,8 @@
                 android:text="@string/projection_index_single_point"
                 android:textColor="?textColor"
                 android:textSize="@dimen/main_tv_textSize"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:textDirection="ltr"/>
 
             <ImageView
                 android:duplicateParentState="true"
@@ -155,7 +158,8 @@
                 android:text="@string/projection_index_size"
                 android:textColor="?textColor"
                 android:textSize="@dimen/main_tv_textSize"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:textDirection="ltr"/>
 
             <ImageView
                 android:duplicateParentState="true"
@@ -190,25 +194,27 @@
                 android:duplicateParentState="true"
                 android:id="@+id/tv_projection"
                 android:layout_width="0dp"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 android:layout_height="@dimen/main_tv_height"
                 android:gravity="center_vertical"
                 android:text="@string/projection_index_projection_method"
                 android:textColor="?textColor"
                 android:textSize="@dimen/main_tv_textSize"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:textDirection="ltr"/>
 
        <TextView
-           android:duplicateParentState="true"
+                android:duplicateParentState="true"
                 android:id="@+id/tv_projection_small"
                 android:layout_width="0dp"
-                android:layout_weight="3"
+                android:layout_weight="4"
                 android:layout_height="@dimen/main_tv_height"
                 android:paddingTop="@dimen/main_tv_paddingTop"
                 android:text=""
                 android:textColor="?textColor"
                 android:textSize="@dimen/main_tv_textSize_small"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:textDirection="ltr"/>
 
             <ImageView
                 android:duplicateParentState="true"

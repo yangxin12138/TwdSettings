@@ -38,6 +38,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -82,6 +84,7 @@ public class DeviceStorageActivity extends AppCompatActivity {
 
     private double InternationalReplace(String rom){
         double Rom_Long;
+
         if (Locale.getDefault().getLanguage().equals("fr") ||
                 Locale.getDefault().getLanguage().equals("de")){
             Log.i(TAG, "InternationalReplace: 走逗号格式化");
@@ -91,6 +94,19 @@ public class DeviceStorageActivity extends AppCompatActivity {
             Rom_Long = Double.parseDouble(rom);
         }
         return Rom_Long;
+    }
+
+    private String formatNumberWithCommas(String number){
+        Locale defaultLocale  = Locale.getDefault();
+        try {
+            NumberFormat numberFormat = NumberFormat.getInstance(defaultLocale);
+            double romValue = numberFormat.parse(number).doubleValue();
+            Log.i(TAG, "formatNumberWithCommas: romValue = " + romValue);
+            return String.valueOf(romValue);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "0.00"; // 或者您可以根据需要设置一个默认值
+        }
     }
 
     private void initView(){
@@ -115,31 +131,47 @@ public class DeviceStorageActivity extends AppCompatActivity {
         String availableRom = getAvailableStorage().replace(",",".");
         String available = availableRom.substring(0,availableRom.indexOf("GB")).trim();
         Log.i(TAG, "initView: availableFormat = " + available);
-        double available_Long = InternationalReplace(available);
+        String formattedAvailable = formatNumberWithCommas(available);
+        Log.i(TAG, "initView: formattedAvailable = " + formattedAvailable);
+        double available_Long = InternationalReplace(formattedAvailable);
 
         //系统占用
         String systemRom = getSystemFileSize().replace(",",".");
         String system = systemRom.substring(0,systemRom.indexOf("GB")).trim();
         Log.i(TAG, "initView: system = " + system);
-        double system_Long = InternationalReplace(system);
+        String formattedSystem = formatNumberWithCommas(system);
+        Log.i(TAG, "initView: formattedSystem = " + formattedSystem);
+        double system_Long = InternationalReplace(formattedSystem);
 
         //应用数据
         String appRom = getTotalStorageUsedByApps().replace(",",".");
         String app = appRom.substring(0,appRom.indexOf("GB"));
         Log.i(TAG, "initView: app = " + app);
-        double app_Long = InternationalReplace(app);
+        String formattedApp = formatNumberWithCommas(app);
+        Log.i(TAG, "initView: formattedApp = " + formattedApp);
+        double app_Long = InternationalReplace(formattedApp);
 
         //其他占用
         double otherRom = total_Long - (available_Long + system_Long + app_Long);
         String other = String.format("%.2f", otherRom).replace(",",".");
         Log.i(TAG, "initView: other = " + other);
-        double other_Long = InternationalReplace(other);
+        String formattedOther = formatNumberWithCommas(other);
+        double other_Long = InternationalReplace(formattedOther);
 
-         storage_total.setText(getString(R.string.device_storage_total)+" : " + totalRom);
-         storage_available.setText(getString(R.string.device_storage_available)+" : " + availableRom);
-         storage_system.setText(getString(R.string.device_storage_system)+" : " + systemRom);
-         storage_app.setText(getString(R.string.device_storage_app)+" : " + appRom);
-         storage_other.setText(getString(R.string.device_storage_other)+" : " + other + "GB");
+        if (Locale.getDefault().getLanguage().equals("ar")) {
+            storage_total.setText(totalRom + " : " + getString(R.string.device_storage_total));
+            storage_available.setText(availableRom+" : " + getString(R.string.device_storage_available));
+            storage_system.setText(systemRom +" : " + getString(R.string.device_storage_system));
+            storage_app.setText(appRom +" : " + getString(R.string.device_storage_app));
+            storage_other.setText(other + "GB" +" : " + getString(R.string.device_storage_other));
+        }else {
+            Log.i(TAG, "initView: storage_total = " + storage_total.getText());
+            storage_total.setText(getString(R.string.device_storage_total) + ":" + totalRom);
+            storage_available.setText(getString(R.string.device_storage_available)+" : " + availableRom);
+            storage_system.setText(getString(R.string.device_storage_system)+" : " + systemRom);
+            storage_app.setText(getString(R.string.device_storage_app)+" : " + appRom);
+            storage_other.setText(getString(R.string.device_storage_other)+" : " + other + "GB");
+        }
 
          Draw_Charts(total_Long,available_Long,system_Long,app_Long,other_Long);
     }

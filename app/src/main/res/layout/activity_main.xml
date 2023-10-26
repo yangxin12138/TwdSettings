@@ -49,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/main_projection_text"
                 android:textColor="?textColor"
-                android:textSize="@dimen/index_tv_textSize" />
+                android:textSize="@dimen/index_tv_textSize"
+                android:textDirection="ltr"/>
             <ImageView
                 android:duplicateParentState="true"
                 android:id="@+id/indexArrow_projection"
@@ -82,7 +83,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/main_wifi_text"
                 android:textColor="?textColor"
-                android:textSize="@dimen/index_tv_textSize" />
+                android:textSize="@dimen/index_tv_textSize"
+                android:textDirection="ltr"/>
             <ImageView
                 android:duplicateParentState="true"
                 android:id="@+id/indexArrow_wifi"
@@ -115,14 +117,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/main_bluetooth_text"
                 android:textColor="?textColor"
-                android:textSize="@dimen/index_tv_textSize" />
+                android:textSize="@dimen/index_tv_textSize"
+                android:textDirection="ltr"/>
             <ImageView
                 android:duplicateParentState="true"
                 android:id="@+id/indexArrow_bluetooth"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="@dimen/index_iv_height"
-                android:src="?arrowSrc"/>
+                android:src="?arrowSrc" />
         </LinearLayout>
         <LinearLayout
             android:layout_below="@+id/LL_index_bluetooth"
@@ -148,7 +151,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/main_Universal_text"
                 android:textColor="?textColor"
-                android:textSize="@dimen/index_tv_textSize" />
+                android:textSize="@dimen/index_tv_textSize"
+                android:textDirection="ltr"/>
             <ImageView
                 android:duplicateParentState="true"
                 android:id="@+id/indexArrow_setup"
@@ -181,7 +185,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/main_aboutDevice_text"
                 android:textColor="?textColor"
-                android:textSize="@dimen/index_tv_textSize" />
+                android:textSize="@dimen/index_tv_textSize"
+                android:textDirection="ltr"/>
             <ImageView
                 android:duplicateParentState="true"
                 android:id="@+id/indexArrow_about"

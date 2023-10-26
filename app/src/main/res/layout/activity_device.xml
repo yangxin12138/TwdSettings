@@ -54,7 +54,8 @@
                 android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/devices_info_tv_marginStart"/>
+                android:layout_marginStart="@dimen/devices_info_tv_marginStart"
+                android:textDirection="ltr"/>
             <ImageView
                 android:duplicateParentState="true"
                 android:id="@+id/arrow_info"
@@ -83,7 +84,8 @@
                 android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/devices_storage_tv_marginStart"/>
+                android:layout_marginStart="@dimen/devices_storage_tv_marginStart"
+                android:textDirection="ltr"/>
             <ImageView
                 android:duplicateParentState="true"
                 android:id="@+id/arrow_storage"

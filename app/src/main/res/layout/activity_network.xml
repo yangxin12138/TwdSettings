@@ -41,7 +41,8 @@
             android:textSize="@dimen/net_content_tv_textSize"
             android:textColor="?textColor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textDirection="ltr"/>
         <LinearLayout
             android:id="@+id/net_LL_wlan"
             android:orientation="horizontal"
@@ -59,7 +60,8 @@
                 android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/net_tv_marginStart"/>
+                android:layout_marginStart="@dimen/net_tv_marginStart"
+                android:textDirection="ltr"/>
             <Switch
                 android:id="@+id/net_switch"
                 android:layout_width="0dp"
@@ -92,7 +94,8 @@
                 android:layout_weight="5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/net_tv_marginStart"/>
+                android:layout_marginStart="@dimen/net_tv_marginStart"
+                android:textDirection="ltr"/>
             <TextView
                 android:duplicateParentState="true"
                 android:id="@+id/net_tv_ssidcurrent"

@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">ضبط</string>
+    <!--Index-->
+    <string name="main_index_title_text">ضبط</string>
+    <string name="main_projection_text">إعدادات الإسقاط</string>
+    <string name="main_wifi_text">اعدادات الشبكة</string>
+    <string name="main_bluetooth_text">بلوتوث</string>
+    <string name="main_Universal_text">عالمي</string>
+    <string name="main_aboutDevice_text">حول الجهاز</string>
+    <!--Projection-->
+    <string name="projection_index_title_text">إعدادات الإسقاط</string>
+    <string name="projection_index_double_point">تصحيح الانحراف من نقطتين</string>
+    <string name="projection_index_single_point">تصحيح الانحراف من أربع نقاط</string>
+    <string name="projection_index_size">تعديل الحجم</string>
+    <string name="projection_index_projection_method">طريقة الإسقاط</string>
+    <string name="projection_size_level_text">مفاتيح اليسار واليمين للتكبير والتصغير</string>
+    <string name="projection_method_title_text">طريقة الإسقاط</string>
+    <string name="projection_method_pos_pos">التثبيت الأمامي، الإسقاط الأمامي</string>
+    <string name="projection_method_pos_neg">التثبيت الأمامي، الإسقاط الخلفي</string>
+    <string name="projection_method_neg_pos">تركيب معلق، إسقاط أمامي</string>
+    <string name="projection_method_neg_neg">تركيب السقف، الإسقاط الخلفي</string>
+    <!--Internet-->
+    <string name="net_index_title_text">اعدادات الشبكة</string>
+    <string name="net_index_wifi_tv">شبكة لاسلكية</string>
+    <string name="net_index_available_tv">الشبكات المتاحة</string>
+    <string name="net_connect_dialog_ok_button">نعم</string>
+    <string name="net_connectbypreference_dialog_ok_button">نعم</string>
+    <string name="net_connectbypreference_dialog_ignore_button">تجاهل هذه الشبكة</string>
+    <string name="net_wifiList_scanToast_tv">جارٍ الفحص، يرجى الانتظار...</string>
+    <string name="net_wifiList_connectbypreference_title_tv">
+        تم حفظ هذه الشبكة. هل تريد الاتصال مباشرة؟</string>
+    <string name="net_wifiList_connectbypreference_ignoreTitle_tv">
+        هل أنت متأكد أنك تريد تجاهل هذه الشبكة؟</string>
+    <string name="net_wifiList_connectbypreference_ignoreConfirm_tv">نعم</string>
+    <string name="net_wifiList_connectbypreference_ignoreCancel_tv">يلغي</string>
+    <string name="net_wifiList_connecttoWifi_title_tv">الاتصال الرجاء الانتظار...</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_true">نجح الاتصال</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_false">
+        فشل الاتصال، يرجى المحاولة مرة أخرى</string>
+    <string name="net_wifiList_isCheckedText_saved">تم الحفظ بالفعل</string>
+    <string name="net_wifiList_isCheckedText_connected">متصل بالفعل</string>
+
+    <!--Bluetooth-->
+    <string name="bluetooth_index_title_text">بلوتوث</string>
+    <string name="bluetooth_index_bt_tv">تبديل بلوتوث</string>
+    <string name="bluetooth_index_search_title_tv">تم العثور على الأجهزة</string>
+    <string name="bluetooth_index_search_tv">يبحث</string>
+    <string name="bluetooth_index_NotSupport">هذا الجهاز لا يدعم البلوتوث</string>
+    <string name="bluetooth_index_search_again_tv">ابحث ثانيا</string>
+    <string name="bluetooth_index_search_finish">اكتمل البحث عن البلوتوث</string>
+    <string name="bluetooth_index_deviceStatus_Bonded">ملزمة بالفعل</string>
+    <string name="bluetooth_index_deviceStatus_Bonding">بوند</string>
+    <string name="bluetooth_index_deviceStatus_Connected">متصل بالفعل</string>
+    <string name="bluetooth_index_deviceStatus_BondFiled"> : فشل الاقتران</string>
+    <string name="bluetooth_index_piarTodevice_title">  طلب الاقتران بالبلوتوث</string>
+    <string name="bluetooth_index_Connectdialog_flag_0">
+        لقد تم إقران هذا الجهاز. هل تريد الاتصال مباشرة؟</string>
+    <string name="bluetooth_index_Connectdialog_flag_1">
+        هذا الجهاز متصل. هل أنت متأكد من أنك تريد قطع الاتصال؟</string>
+    <string name="bluetooth_index_connect_succese">نجح الاتصال</string>
+    <string name="bluetooth_index_connect_failed">فشل الاتصال</string>
+    <string name="bluetooth_index_close">تم قطع الاتصال بنجاح</string>
+    <string name="bluetooth_dialog_connect">نعم</string>
+    <string name="bluetooth_dialog_cancel">يلغي</string>
+    <string name="bluetooth_dialog_clear">تجاهل البلوتوث</string>
+    <string name="bluetooth_dialog_pair">يتصل</string>
+    <!--Universal-->
+    <string name="universal_index_title_tv">عالمي</string>
+    <string name="universal_index_input_tv">مدخل</string>
+    <string name="universal_index_language_tv">لغة</string>
+    <string name="title_language">لغة</string>
+    <string name="dialog_changeLanguage_title">تَلمِيح</string>
+    <string name="dialog_changeLanguage_message">يتطلب تبديل إعدادات اللغة إعادة تشغيل التطبيق ليصبح ساري المفعول. هل تريد التبديل؟</string>
+    <string name="dialog_changeLanguage_btConfirm">نعم</string>
+    <string name="dialog_changeLanguage_btCancel">يلغي</string>
+    <string name="inputMethod_value_sougou">Sogou Pinyin</string>
+    <string name="inputMethod_value_google">Google Pinyin</string>
+    <string name="inputMethod_value_Aosp">Android لوحة المفاتيح</string>
+    <!--Device-->
+    <string name="device_index_title_tv">حول الجهاز</string>
+    <string name="device_index_info_tv">معلومات الجهاز</string>
+    <string name="device_index_storage_tv">جهاز تخزين</string>
+    <string name="device_info_deviceNo">رقم الجهاز</string>
+    <string name="device_info_androidVersion">Android إصدار</string>
+    <string name="device_info_softwareVersion">رقم البرنامج</string>
+    <string name="device_info_mac_wifi">MAC العنوان (لاسلكي)</string>
+    <string name="device_info_mac_bluetooth">MAC العنوان (بلوتوث)</string>
+    <string name="device_storage_title">تفاصيل التخزين</string>
+    <string name="device_storage_internal">ذاكرة تخزين مدمجة</string>
+    <string name="device_storage_total">السعة الاجمالية</string>
+    <string name="device_storage_available">الحجم المتوفر</string>
+    <string name="device_storage_system">إشغال النظام</string>
+    <string name="device_storage_app">معلومات التطبيق</string>
+    <string name="device_storage_other">بيانات أخرى</string>
+</resources>

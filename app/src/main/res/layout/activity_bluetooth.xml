@@ -53,7 +53,8 @@
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/blu_bluetooth_tv_marginStart"/>
+                android:layout_marginStart="@dimen/blu_bluetooth_tv_marginStart"
+                android:textDirection="ltr"/>
             <Switch
                 android:id="@+id/bluetooth_switch"
                 android:layout_width="0dp"
@@ -75,7 +76,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:textDirection="ltr"/>
         <LinearLayout
             android:id="@+id/bluetooth_LL_search"
             android:orientation="horizontal"
@@ -92,7 +94,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/blu_search_tv_marginStart"/>
+                android:layout_marginStart="@dimen/blu_search_tv_marginStart"
+                android:textDirection="ltr"/>
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bluetooth_recyclerview"
