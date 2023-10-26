@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">تنظیمات</string>
+    <!--Index-->
+    <string name="main_index_title_text">تنظیمات</string>
+    <string name="main_projection_text">تنظیمات صفحه نمایش</string>
+    <string name="main_wifi_text">تنظیمات شبکه</string>
+    <string name="main_bluetooth_text">بلوتوث</string>
+    <string name="main_Universal_text">جهانی</string>
+    <string name="main_aboutDevice_text">درباره دستگاه</string>
+    <!--Projection-->
+    <string name="projection_index_title_text">تنظیمات صفحه نمایش</string>
+    <string name="projection_index_double_point">تصحیح کیستون دو نقطه ای</string>
+    <string name="projection_index_single_point">تصحیح کیستون چهار نقطه ای</string>
+    <string name="projection_index_size">اندازه صفحه نمایش</string>
+    <string name="projection_index_projection_method">روش فرافکنی</string>
+    <string name="projection_size_level_text">کلیدهای چپ و راست برای بزرگنمایی و بزرگنمایی</string>
+    <string name="projection_method_title_text">روش فرافکنی</string>
+    <string name="projection_method_pos_pos">نصب جلویی، پخش جلویی</string>
+    <string name="projection_method_pos_neg">نصب در جلو، پخش عقب</string>
+    <string name="projection_method_neg_pos">نصب آویز، پخش از جلو</string>
+    <string name="projection_method_neg_neg">نصب آویز، پخش از پشت</string>
+    <!--Internet-->
+    <string name="net_index_title_text">تنظیمات شبکه</string>
+    <string name="net_index_wifi_tv">شبکه بی سیم</string>
+    <string name="net_index_available_tv">شبکه های موجود</string>
+    <string name="net_connect_dialog_ok_button">OK</string>
+    <string name="net_connectbypreference_dialog_ok_button">اتصال</string>
+    <string name="net_connectbypreference_dialog_ignore_button">این شبکه را نادیده بگیرید</string>
+    <string name="net_wifiList_scanToast_tv">در حال اسکن، لطفا صبر کنید...</string>
+    <string name="net_wifiList_connectbypreference_title_tv">
+        این شبکه ذخیره شده است. آیا می خواهید مستقیماً متصل شوید؟</string>
+    <string name="net_wifiList_connectbypreference_ignoreTitle_tv">
+        آیا مطمئن هستید که می خواهید این شبکه را نادیده بگیرید؟</string>
+    <string name="net_wifiList_connectbypreference_ignoreConfirm_tv">OK</string>
+    <string name="net_wifiList_connectbypreference_ignoreCancel_tv">لغو کنید</string>
+    <string name="net_wifiList_connecttoWifi_title_tv">در حال اتصال، لطفا صبر کنید...</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_true">اتصال موفق شد</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_false">
+        اتصال ناموفق بود، لطفا دوباره امتحان کنید</string>
+    <string name="net_wifiList_isCheckedText_saved">ذخیره</string>
+    <string name="net_wifiList_isCheckedText_connected">متصل</string>
+
+    <!--Bluetooth-->
+    <string name="bluetooth_index_title_text">بلوتوث</string>
+    <string name="bluetooth_index_bt_tv">سوئیچ بلوتوث</string>
+    <string name="bluetooth_index_search_title_tv">دستگاه های پیدا شد</string>
+    <string name="bluetooth_index_search_tv">دستگاه های پیدا شد</string>
+    <string name="bluetooth_index_NotSupport">این دستگاه از بلوتوث پشتیبانی نمی کند</string>
+    <string name="bluetooth_index_search_again_tv">دوباره جستجو کنید</string>
+    <string name="bluetooth_index_search_finish">اسکن بلوتوث تکمیل شد</string>
+    <string name="bluetooth_index_deviceStatus_Bonded">جفت شد</string>
+    <string name="bluetooth_index_deviceStatus_Bonding">جفت شدن</string>
+    <string name="bluetooth_index_deviceStatus_Connected">متصل</string>
+    <string name="bluetooth_index_deviceStatus_BondFiled"> : جفت شدن ناموفق بود</string>
+    <string name="bluetooth_index_piarTodevice_title">  درخواست جفت شدن بلوتوث</string>
+    <string name="bluetooth_index_Connectdialog_flag_0">
+        این دستگاه جفت شده است. آیا می خواهید مستقیماً متصل شوید؟</string>
+    <string name="bluetooth_index_Connectdialog_flag_1">
+        این دستگاه متصل است. آیا مطمئن هستید که می‌خواهید اتصال را قطع کنید؟</string>
+    <string name="bluetooth_index_connect_succese">اتصال موفق شد</string>
+    <string name="bluetooth_index_connect_failed">ارتباط ناموفق بود</string>
+    <string name="bluetooth_index_close">با موفقیت قطع شد</string>
+    <string name="bluetooth_dialog_connect">اتصال</string>
+    <string name="bluetooth_dialog_cancel">لغو کنید</string>
+    <string name="bluetooth_dialog_clear">بلوتوث را نادیده بگیرید</string>
+    <string name="bluetooth_dialog_pair">اتصال</string>
+    <!--Universal-->
+    <string name="universal_index_title_tv">جهانی</string>
+    <string name="universal_index_input_tv">ورودی</string>
+    <string name="universal_index_language_tv">زبان</string>
+    <string name="title_language">زبان</string>
+    <string name="dialog_changeLanguage_title">اشاره</string>
+    <string name="dialog_changeLanguage_message">بعد از تغییر تنظیمات زبان باید برنامه را ریستارت کنید تا اعمال شود آیا تغییری ایجاد شده است؟</string>
+    <string name="dialog_changeLanguage_btConfirm">OK</string>
+    <string name="dialog_changeLanguage_btCancel">لغو کنید</string>
+    <string name="inputMethod_value_sougou">Sogou Pinyin</string>
+    <string name="inputMethod_value_google">Google Pinyin</string>
+    <string name="inputMethod_value_Aosp">Android صفحه کلید</string>
+    <!--Device-->
+    <string name="device_index_title_tv">درباره دستگاه</string>
+    <string name="device_index_info_tv">اطلاعات محلی</string>
+    <string name="device_index_storage_tv">ذخیره سازی دستگاه</string>
+    <string name="device_info_deviceNo">شناسه دستگاه</string>
+    <string name="device_info_androidVersion">Android نسخه</string>
+    <string name="device_info_softwareVersion">شماره نرم افزار</string>
+    <string name="device_info_mac_wifi">MACآدرس (بی سیم)</string>
+    <string name="device_info_mac_bluetooth">MACآدرس (بلوتوث)</string>
+    <string name="device_storage_title">جزئیات ذخیره سازی</string>
+    <string name="device_storage_internal">ذخیره سازی داخلی</string>
+    <string name="device_storage_total">ظرفیت کل</string>
+    <string name="device_storage_available">ظرفیت موجود</string>
+    <string name="device_storage_system">اشغال سیستم</string>
+    <string name="device_storage_app">داده های برنامه</string>
+    <string name="device_storage_other">داده های دیگر</string>
+</resources>

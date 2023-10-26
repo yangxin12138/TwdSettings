@@ -100,6 +100,8 @@ public class UniversalActivity extends AppCompatActivity implements  View.OnClic
             tv_languageCurrent.setText("português (Portugal)");
         } else if (currentLanguage.contains("ar_SA")) {
             tv_languageCurrent.setText("العربية (المملكة العربية السعودية)");
+        } else if (currentLanguage.contains("fa_IR")) {
+            tv_languageCurrent.setText("فارسی (ایران)");
         }
 
     }

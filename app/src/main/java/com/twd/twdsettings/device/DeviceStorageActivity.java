@@ -158,7 +158,7 @@ public class DeviceStorageActivity extends AppCompatActivity {
         String formattedOther = formatNumberWithCommas(other);
         double other_Long = InternationalReplace(formattedOther);
 
-        if (Locale.getDefault().getLanguage().equals("ar")) {
+        if (Locale.getDefault().getLanguage().equals("ar") || Locale.getDefault().getLanguage().equals("fa")) {
             storage_total.setText(totalRom + " : " + getString(R.string.device_storage_total));
             storage_available.setText(availableRom+" : " + getString(R.string.device_storage_available));
             storage_system.setText(systemRom +" : " + getString(R.string.device_storage_system));
