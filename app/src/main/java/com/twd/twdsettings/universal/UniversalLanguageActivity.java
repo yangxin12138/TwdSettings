@@ -159,7 +159,7 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
                //进行切换和重启
                 LanguageBean languageBean = languageBeans.get(position);
                 String indexLanguage = languageBean.getLanguageCode(); // en_US ; zh_CN ; zh_TW
-                showToast(indexLanguage);
+                //showToast(indexLanguage);
                 /*切换语言方法*/
                 if (indexLanguage.equals("zh_CN") ){
                     changeSystemLanguage(Locale.SIMPLIFIED_CHINESE);
@@ -191,6 +191,8 @@ public class UniversalLanguageActivity extends AppCompatActivity implements Adap
                     changeSystemLanguage(new Locale("ar","SA"));
                 } else if (indexLanguage.equals("fa_IR")) {
                     changeSystemLanguage(new Locale("fa","IR"));
+                } else if (indexLanguage.equals("tr_TR")) {
+                    changeSystemLanguage(new Locale("tr","TR"));
                 }
 
                 // 关闭当前应用程序

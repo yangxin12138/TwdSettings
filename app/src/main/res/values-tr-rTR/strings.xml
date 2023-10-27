@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">Ayarla</string>
+    <!--Index-->
+    <string name="main_index_title_text">Ayarla</string>
+    <string name="main_projection_text">Projeksiyon ayarları</string>
+    <string name="main_wifi_text">Ağ ayarları</string>
+    <string name="main_bluetooth_text">Bluetooth</string>
+    <string name="main_Universal_text">Evrensel</string>
+    <string name="main_aboutDevice_text">Cihaz hakkında</string>
+    <!--Projection-->
+    <string name="projection_index_title_text">Projeksiyon ayarları</string>
+    <string name="projection_index_double_point">İki noktalı trapezoid düzeltme</string>
+    <string name="projection_index_single_point">Dört noktalı kilit taşı düzeltmesi</string>
+    <string name="projection_index_size">Boyut ayarı</string>
+    <string name="projection_index_projection_method">Projeksiyon yöntemi</string>
+    <string name="projection_size_level_text">Yakınlaştırmak ve uzaklaştırmak için sol ve sağ tuşlar</string>
+    <string name="projection_method_title_text">Projeksiyon yöntemi</string>
+    <string name="projection_method_pos_pos">İleri kurulum, ileri projeksiyon</string>
+    <string name="projection_method_pos_neg">İleri kurulum, ters projeksiyon</string>
+    <string name="projection_method_neg_pos">Tavan montajı, ileri projeksiyon</string>
+    <string name="projection_method_neg_neg">Tavan montajı, ters projeksiyon</string>
+    <!--Internet-->
+    <string name="net_index_title_text">Ağ ayarları</string>
+    <string name="net_index_wifi_tv">Kablosuz ağ</string>
+    <string name="net_index_available_tv">Mevcut ağlar</string>
+    <string name="net_connect_dialog_ok_button">OK</string>
+    <string name="net_connectbypreference_dialog_ok_button">OK</string>
+    <string name="net_connectbypreference_dialog_ignore_button">bu ağı görmezden gel</string>
+    <string name="net_wifiList_scanToast_tv">Taranıyor, lütfen bekleyin...</string>
+    <string name="net_wifiList_connectbypreference_title_tv">
+        Bu ağ kaydedildi. Doğrudan bağlanmak istiyor musunuz?</string>
+    <string name="net_wifiList_connectbypreference_ignoreTitle_tv">
+        Bu ağı yok saymak istediğinizden emin misiniz?</string>
+    <string name="net_wifiList_connectbypreference_ignoreConfirm_tv">OK</string>
+    <string name="net_wifiList_connectbypreference_ignoreCancel_tv">İptal etmek</string>
+    <string name="net_wifiList_connecttoWifi_title_tv">Bağlanıyor, lütfen bekleyin...</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_true">bağlantı başarılı</string>
+    <string name="net_wifiList_connecttoWifi_isConnected_false">
+        Bağlantı başarısız oldu, lütfen tekrar deneyin</string>
+    <string name="net_wifiList_isCheckedText_saved">Kaydedildi</string>
+    <string name="net_wifiList_isCheckedText_connected">bağlı</string>
+
+    <!--Bluetooth-->
+    <string name="bluetooth_index_title_text">Bluetooth</string>
+    <string name="bluetooth_index_bt_tv">Bluetooth anahtarı</string>
+    <string name="bluetooth_index_search_title_tv">Bulunan cihazlar</string>
+    <string name="bluetooth_index_search_tv">Aranıyor</string>
+    <string name="bluetooth_index_NotSupport">Bu cihaz Bluetooth\'u desteklemiyor</string>
+    <string name="bluetooth_index_search_again_tv">Tekrar aramak</string>
+    <string name="bluetooth_index_search_finish">Bluetooth taraması tamamlandı</string>
+    <string name="bluetooth_index_deviceStatus_Bonded">Zaten eşlendi</string>
+    <string name="bluetooth_index_deviceStatus_Bonding">Eşleştirme</string>
+    <string name="bluetooth_index_deviceStatus_Connected">bağlı</string>
+    <string name="bluetooth_index_deviceStatus_BondFiled"> : Eşleştirme başarısız oldu</string>
+    <string name="bluetooth_index_piarTodevice_title">  Bluetooth eşleştirme isteği</string>
+    <string name="bluetooth_index_Connectdialog_flag_0">
+        Bu cihaz eşleştirildi. Doğrudan bağlanmak istiyor musunuz?</string>
+    <string name="bluetooth_index_Connectdialog_flag_1">
+        Bu cihaz bağlı. Bağlantıyı kesmek istediğinizden emin misiniz?</string>
+    <string name="bluetooth_index_connect_succese">bağlantı başarılı</string>
+    <string name="bluetooth_index_connect_failed">Bağlantı başarısız oldu</string>
+    <string name="bluetooth_index_close">Bağlantı başarıyla kesildi</string>
+    <string name="bluetooth_dialog_connect">OK</string>
+    <string name="bluetooth_dialog_cancel">İptal etmek</string>
+    <string name="bluetooth_dialog_clear">Bluetooth\'u yoksay</string>
+    <string name="bluetooth_dialog_pair">bağlamak</string>
+    <!--Universal-->
+    <string name="universal_index_title_tv">Evrensel</string>
+    <string name="universal_index_input_tv">Giriş</string>
+    <string name="universal_index_language_tv">dil</string>
+    <string name="title_language">dil</string>
+    <string name="dialog_changeLanguage_title">ipucu</string>
+    <string name="dialog_changeLanguage_message">Dil ayarlarını değiştirmenin etkili olması için uygulamanın yeniden başlatılması gerekir. Geçiş yapmak istiyor musunuz?</string>
+    <string name="dialog_changeLanguage_btConfirm">OK</string>
+    <string name="dialog_changeLanguage_btCancel">İptal etmek</string>
+    <string name="inputMethod_value_sougou">Sogou Pinyin</string>
+    <string name="inputMethod_value_google">Google Pinyin</string>
+    <string name="inputMethod_value_Aosp">Android tuş takımı</string>
+    <!--Device-->
+    <string name="device_index_title_tv">Cihaz hakkında</string>
+    <string name="device_index_info_tv">Yerel parametreler</string>
+    <string name="device_index_storage_tv">Cihaz Belleği</string>
+    <string name="device_info_deviceNo">Cihaz No</string>
+    <string name="device_info_androidVersion">Android Sürüm</string>
+    <string name="device_info_softwareVersion">Yazılım numarası</string>
+    <string name="device_info_mac_wifi">MAC Adres (kablosuz)</string>
+    <string name="device_info_mac_bluetooth">MAC Adres(Bluetooth)</string>
+    <string name="device_storage_title">Depolama ayrıntıları</string>
+    <string name="device_storage_internal">Dahili depolama</string>
+    <string name="device_storage_total">toplam kapasite</string>
+    <string name="device_storage_available">Boş alan</string>
+    <string name="device_storage_system">Sistem doluluğu</string>
+    <string name="device_storage_app">Uygulama Verileri</string>
+    <string name="device_storage_other">Diğer veri</string>
+</resources>

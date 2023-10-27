@@ -137,7 +137,8 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
             intent = new Intent(this, NetworkActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.LL_index_bluetooth) {
-            intent = new Intent(this, BluetoothActivity.class);
+            intent = new Intent();
+            intent.setClassName("com.android.settings", "com.android.settings.bluetooth.BluetoothSettings");
             startActivity(intent);
         } else if (v.getId() == R.id.LL_index_setup) {
             intent = new Intent(this, UniversalActivity.class);
